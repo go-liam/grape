@@ -1,0 +1,18 @@
+package config
+
+func init()  {
+	mail()
+}
+
+func mail()  {
+	Mail.UserEmail = "****9@qq.com"
+	// 端口号，:25也行
+	Mail.MailSMTPPort = ":587"
+	//邮箱的授权码，去邮箱自己获取
+	Mail.MailPassword = "*****zmzywbhda"
+	// 此处填写SMTP服务器
+	Mail.MailSMTPHost = "smtp.qq.com"
+}
+
+
+

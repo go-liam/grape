@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>getRegion</title>
+    <script src="rs/jquery.min.js">
+    </script>
+    <script>
+        //let hostUrl = "http://localhost:7001";
+        $(document).ready(function () {
+            $("#butDemo").click(function () {
+                let hostUrl = $("#hostValue").val();
+                console.log("hostUrl: ", hostUrl);
+                $.get(hostUrl + "", function (jsData, status) {
+                    console.log("数据: ", jsData);
+                    console.log("状态: " + status);
+                    $("#divValueHost").html("数据:<br>" + jsData + ",<br>状态:<br>" + status +"");
+                });
+            });
+            $("#butGetRegionUid").click(function () {
+                let hostUrl = $("#hostValue").val();
+                let userID = $("#userIDValue").val();
+                $.get(hostUrl + "/sv-region/v1/info/"+userID, function (jsData, status) {
+                    console.log("数据:", jsData);
+                    console.log("状态: ", status);
+                    $("#divValueUid").html("host:<br>" + jsData.data.host + ",<br>regionID:<br>" + jsData.data.regionID + ",<br>userID:<br>" + jsData.data.userID+"");
+                });
+            });
+            $("#butGetRegionIP").click(function () {
+                let hostUrl = $("#hostValue").val();
+                let ip = $("#ipValue").val();
+                $.get(hostUrl + "/sv-region/v1/reg?ip="+ip, function (jsData, status) {
+                    console.log("数据:", jsData);
+                    console.log("状态: ", status);
+                    $("#divValueIP").html("host:<br>" + jsData.data.host + ",<br>regionID:<br>" + jsData.data.regionID + ",<br>userID:<br>" + jsData.data.userID+"");
+                });
+            });
+        });
+    </script>
+    <style>
+        hr{clear: both; margin: 20px 0;}
+        button{padding: 12px; color: red; font-size: 16px;}
+    </style>
+</head>
+<body>
+<a href="./index.html">返回</a>
+
+<hr>
+<h1>区域信息获取，</h1>
+<hr>
+<h3>测试服务器链接</h3>
+<p>
+
+    <button id="butDemo">测试服务器链接</button>
+    服务地址：<input id="hostValue" value="http://localhost:7001">
+    <br><br>
+    本地：http://localhost:7001 <br>
+    开发: http://gateway-api-dev.mygs.com:6001<br>
+    测试: http://gateway-api-test.mygs.com<br>
+    预发布: http://gateway-api-pre.mygs.com<br>
+    正式: http://gateway-api-prod.mygs.com<br>
+    备注：启动 sv-region, gateway-api 服务；<br>
+
+</p>
+<br>
+<div id="divValueHost" style="width: 90%;clear: both;">
+</div>
+<br>
+<hr>
+<h3>- 新注册用户/未登录用户</h3>
+可以根据用户IP，分配给他区域ID与域名；
+<p>
+    <button id="butGetRegionIP">获取IP区域信息</button> IP:<input id="ipValue" value="127.0.0.1">
+    <br>
+    测试数据：  <br>
+    <br>127.0.0.1 , 192.168.0.1,其它
+    <br>
+</p>
+
+<br>
+<div id="divValueIP" style="width: 90%;clear: both;">
+</div>
+
+<br/>
+<hr/>
+<h5>- 登录用户</h5>
+根据userID 查找所在区域，返回区域ID，与域名；
+<p>
+    <button id="butGetRegionUid">获取UserID所在区信息</button>
+    userID:<input id="userIDValue" value="69043718094614139">
+    <br>
+    测试数据：  <br>
+    <br>10 , 100,其它
+</p>
+<div id="divValueUid" style="width: 90%;clear: both;">
+</div>
+<br><br>
+</body>
+</html>

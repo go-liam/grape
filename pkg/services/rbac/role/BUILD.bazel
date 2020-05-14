@@ -1,0 +1,22 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "init.go",
+        "interface.go",
+        "mock.go",
+        "model.go",
+        "role.go",
+        "role_mock.go",
+    ],
+    importpath = "grape/pkg/rbac/role",
+    visibility = ["//visibility:public"],
+    deps = ["//pkg/util/conv:go_default_library"],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["role_test.go"],
+    embed = [":go_default_library"],
+)

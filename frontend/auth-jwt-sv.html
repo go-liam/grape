@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sv-jwt-sv</title>
+    <script src="rs/jquery.min.js"></script>
+    <script>
+        function ParseToken() {
+            let token = $("#jwtValue").val();
+            let msg = decodeURIComponent(escape(window.atob(token.split('.')[1]))) //     将JWT切割   获取需要的载荷
+            console.log("data:", msg)
+            let res = JSON.parse(msg)  //   将获取的字符串转换成JSON对象
+            $("#divValueJwt").html("userID:<br>" + res.id + ",<br>过期时间:<br>" + res.exp +"<br>数据:<br>" + JSON.stringify(msg));
+        }
+
+        function login() {
+            let hostUrl = $("#hostValue").val();
+            let uName = $("#loginNameValue").val();
+            let pwd = $("#loginUidValue").val();
+            let dataUrl = hostUrl + "/auth-jwt/sv/v1/login?name=" + uName + "&pwd=" + pwd
+            $.get(dataUrl, function (jsData, status) {
+                console.log("数据: ", jsData);
+                console.log("状态: " + status);
+                $("#divValueLogin").html("数据:<br>" + JSON.stringify(jsData) + ",<br>状态:<br>" + status + "");
+            });
+        }
+
+        function logout() {
+            let hostUrl = $("#hostValue").val();
+            let token = $("#logoutJWTValue").val(); //""
+            let dataUrl = hostUrl + "/auth-jwt/sv/v1/logout"
+            $.ajax({
+                type: "GET",
+                url: dataUrl,
+                beforeSend: function (request) {
+                    request.setRequestHeader("tokenjwt", token);
+                },
+                success: function (jsData) {
+                    $("#divValueLogoutJwt").html("数据:<br>" + JSON.stringify(jsData));
+                }
+            });
+        }
+
+        function getInfo() {
+            let hostUrl = $("#hostValue").val();
+            let token = $("#getJWTValue").val();
+            let dataUrl = hostUrl + "/auth-jwt/sv/v1/info"
+            $.ajax({
+                type: "GET",
+                url: dataUrl,
+                beforeSend: function (request) {
+                    request.setRequestHeader("tokenjwt", token);
+                },
+                success: function (jsData) {
+                    $("#divValueGetJwt").html("数据:<br>" + JSON.stringify(jsData));
+                }
+            });
+        }
+
+        function refresh() {
+            let hostUrl = $("#hostValue").val();
+            let token = $("#refreshJWTValue").val();
+            let dataUrl = hostUrl + "/auth-jwt/sv/v1/refresh"
+            $.ajax({
+                type: "GET",
+                url: dataUrl,
+                beforeSend: function (request) {
+                    request.setRequestHeader("tokenjwt", token);
+                },
+                success: function (jsData) {
+                    $("#divValueRefreshJwt").html("数据:<br>" + JSON.stringify(jsData));
+                }
+            });
+        }
+
+        function checkBadUid() {
+            let hostUrl = $("#hostValue").val();
+            let token = $("#badJWTValue").val();
+            let dataUrl = hostUrl + "/auth-jwt/sv/v1/check"
+            $.ajax({
+                type: "GET",
+                url: dataUrl,
+                beforeSend: function (request) {
+                    request.setRequestHeader("tokenjwt", token);
+                },
+                success: function (jsData) {
+                    $("#divValueBadJwt").html("数据:<br>" + JSON.stringify(jsData));
+                }
+            });
+        }
+
+    </script>
+
+    <style>
+        hr {
+            clear: both;
+            margin: 20px 0;
+        }
+
+        button {
+            padding: 12px;
+            color: red;
+            font-size: 16px;
+        }
+
+        textarea {
+            width: 60%;
+            height: 60px;
+        }
+
+        input {
+            min-width: 200px;
+        }
+    </style>
+</head>
+<body>
+
+<hr/>
+<h1>解密Jwt数据</h1>
+<p>
+    <button onclick="ParseToken()">解密jwt数据</button>
+    jwt数据：
+    <textarea id="jwtValue">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywibmFtZSI6ImxpYW0iLCJ0eXBlIjowLCJleHAiOjE2MTk4NjU1MTEsImlzcyI6IkxpYW0iLCJuYmYiOjE1ODgzMTk1MTF9.4XP-pFjEBcWh63RPieYUX01-ZbB9-ealEoerqhmXcCo</textarea>
+</p>
+<br>
+<div id="divValueJwt" style="width: 90%;clear: both;">
+</div>
+
+<br/>
+<hr/>
+服务地址：<input id="hostValue" value="http://localhost:7001"><br>
+
+<h1>登录</h1>
+
+<p>
+    name: <input id="loginNameValue" value="jerray"><br>
+    uid(psw): <input id="loginUidValue" value="119"> (uid =119 是黑名单)<br>
+    <button onclick="login()">登录</button>
+    <br>
+</p>
+<div id="divValueLogin" style="width: 90%;clear: both;">
+</div>
+
+<h1>退出</h1>
+<p>
+    token: <textarea id="logoutJWTValue">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywibmFtZSI6ImxpYW0iLCJ0eXBlIjowLCJleHAiOjE2MTk4NjU1MTEsImlzcyI6IkxpYW0iLCJuYmYiOjE1ODgzMTk1MTF9.4XP-pFjEBcWh63RPieYUX01-ZbB9-ealEoerqhmXcCo</textarea>
+    <button onclick="logout()">退出</button>
+    <br>
+</p>
+<div id="divValueLogoutJwt" style="width: 90%;clear: both;">
+</div>
+
+<h1>获取数据</h1>
+<p>
+    token: <textarea id="getJWTValue">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyMyIsIm4iOiJsaWFtIiwidHlwZSI6MCwiZXhwIjoxNjIwNDY0ODE5LCJpc3MiOiJMaWFtIiwibmJmIjoxNTg4OTE4ODE5fQ.r9cqME1xNSrkACGLHqT-SNAphM7IL1zqua7esbWtKvY</textarea>
+    <button onclick="getInfo()">获取数据</button>
+    <br>
+</p>
+<div id="divValueGetJwt" style="width: 90%;clear: both;">
+</div>
+
+<h1>刷新jwt</h1>
+<p>
+    token: <textarea id="refreshJWTValue">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyMyIsIm4iOiJsaWFtIiwidHlwZSI6MCwiZXhwIjoxNjIwNDY0ODE5LCJpc3MiOiJMaWFtIiwibmJmIjoxNTg4OTE4ODE5fQ.r9cqME1xNSrkACGLHqT-SNAphM7IL1zqua7esbWtKvY</textarea>
+    <button onclick="refresh()">刷新jwt</button>
+    <br>
+</p>
+<div id="divValueRefreshJwt" style="width: 90%;clear: both;">
+</div>
+<hr/>
+
+<h1>黑名单uid=119</h1>
+<p>
+    token: <textarea id="badJWTValue">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjExOSIsIm4iOiJqZXJyYXkiLCJ0eXBlIjowLCJleHAiOjE2MjA1NDU2MzIsImlzcyI6IkxpYW0iLCJuYmYiOjE1ODg5OTk2MzJ9.pp77wz3Max_m4aoTYbO6qrZCNManykMe2y6Ngz8AANo</textarea>
+    <button onclick="checkBadUid()">是否是黑名单</button>
+    <br>
+</p>
+<div id="divValueBadJwt" style="width: 90%;clear: both;">
+</div>
+<hr/>
+
+<br>
+
+</body>
+</html>

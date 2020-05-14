@@ -1,0 +1,23 @@
+*~
+bazel-*
+.bazelrc
+.idea
+.vagrant
+
+# Eclipse
+.project
+.classpath
+.settings/
+# Maven
+target/
+
+#go.sum
+public/cert
+coverage.data
+app/*/build
+deploy/*/build/*
+temp-demo
+
+## private
+pkg/config/private_*.go
+MakeDockerConfig.mk

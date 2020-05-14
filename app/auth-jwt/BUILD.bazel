@@ -1,0 +1,19 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["main.go"],
+    importpath = "grape/app/auth-jwt",
+    visibility = ["//visibility:private"],
+    deps = [
+        "//pkg/util/conv:go_default_library",
+        "//pkg/util/cookie:go_default_library",
+        "@com_github_gin_gonic_gin//:go_default_library",
+    ],
+)
+
+go_binary(
+    name = "auth-jwt",
+    embed = [":go_default_library"],
+    visibility = ["//visibility:public"],
+)

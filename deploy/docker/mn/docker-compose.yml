@@ -1,0 +1,161 @@
+version: '3.7'
+services:
+  gateway-api:
+    image: liam1803/s1-gateway-api:v1.0.0
+    ports:
+      - "6001:7001"
+    environment:
+      - PROJECT_ENV=test
+      - TEMP=test53
+    networks:
+      - s1-example
+  api-app:
+    image: liam1803/s1-api-app:v1.0.0
+    ports:
+      - "6201:7201"
+    environment:
+      - PROJECT_ENV=test
+      - TEMP=test53
+    networks:
+      - s1-example
+  api-cms:
+    image: liam1803/s1-api-cms:v1.0.0
+    ports:
+      - "6202:7202"
+    environment:
+      - PROJECT_ENV=test
+      - TEMP=test53
+    networks:
+      - s1-example
+  api-www:
+    image: liam1803/s1-api-www:v1.0.0
+    ports:
+      - "6203:7203"
+    environment:
+      - PROJECT_ENV=test
+      - TEMP=test53
+    networks:
+      - s1-example
+  api-wx:
+    image: liam1803/s1-api-wx:v1.0.0
+    ports:
+      - "7204:7204"
+    environment:
+      - PROJECT_ENV=test
+      - TEMP=test53
+    networks:
+      - s1-example
+  auth-jwt:
+    image: liam1803/s1-auth-jwt:v1.0.0
+    ports:
+      - "6301:7301"
+    environment:
+      - PROJECT_ENV=test
+      - TEMP=test53
+    networks:
+      - s1-example
+  auth-rbac:
+    image: liam1803/s1-auth-rbac:v1.0.0
+    ports:
+      - "6302:7302"
+    environment:
+      - PROJECT_ENV=test
+      - TEMP=test53
+    networks:
+      - s1-example
+
+  sv-ai:
+    image: liam1803/s1-sv-ai:v1.0.0
+    ports:
+      - "6401:7401"
+    environment:
+      - PROJECT_ENV=test
+      - TEMP=test53
+    networks:
+      - s1-example
+  sv-config:
+    image: liam1803/s1-sv-config:v1.0.0
+    ports:
+      - "6402:7402"
+    environment:
+      - PROJECT_ENV=test
+      - TEMP=test53
+    networks:
+      - s1-example
+  sv-log:
+    image: liam1803/s1-sv-log:v1.0.0
+    ports:
+      - "6403:7403"
+    environment:
+      - PROJECT_ENV=test
+      - TEMP=test53
+    networks:
+      - s1-example
+  sv-mq:
+    image: liam1803/s1-sv-mq:v1.0.0
+    ports:
+      - "6404:7404"
+    environment:
+      - PROJECT_ENV=test
+      - TEMP=test53
+    networks:
+      - s1-example
+  sv-notice:
+    image: liam1803/s1-sv-notice:v1.0.0
+    ports:
+      - "6405:7405"
+    environment:
+      - PROJECT_ENV=test
+      - TEMP=test53
+    networks:
+      - s1-example
+  sv-oss:
+    image: liam1803/s1-sv-oss:v1.0.0
+    ports:
+      - "6406:7406"
+    environment:
+      - PROJECT_ENV=test
+      - TEMP=test54
+    networks:
+      - s1-example
+  sv-user:
+    image: liam1803/s1-sv-user:v1.0.0
+    ports:
+      - "6407:7407"
+    environment:
+      - PROJECT_ENV=test
+      - TEMP_STRING=test54
+    networks:
+      - s1-example
+  sv-money:
+    image: liam1803/s1-sv-money:v1.0.0
+    ports:
+      - "6408:7408"
+    environment:
+      - PROJECT_ENV=test
+      - TEMP=test53
+    networks:
+      - s1-example
+  sv-region:
+    image: liam1803/s1-sv-region:v1.0.0
+    ports:
+      - "6409:7409"
+    environment:
+      - PROJECT_ENV=test
+      - TEMP=test53
+    networks:
+      - s1-example
+#  hotrod:
+#    image: jaegertracing/example-hotrod:latest
+#    ports:
+#      - "7041:8080"
+#    command: ["all"]
+#    environment:
+#      - JAEGER_AGENT_HOST=jaeger
+#      - JAEGER_AGENT_PORT=6831
+#    networks:
+#      - s1-example
+#    depends_on:
+#      - jaeger
+networks:
+  s1-example:
