@@ -29,7 +29,7 @@
   - [5、Istio环境](#5istio环境)
   
 - [五、代码开发](#五代码开发)
-  - [1、grape代码管理方式](#1grape代码管理方式)
+  - [1、Monorepo代码管理方式](#1Monorepo代码管理方式)
   - [2、代码规范](#2代码规范)
   - [3、代码测试](#3代码测试)
   - [4、性能要求](#4性能要求)
@@ -160,10 +160,10 @@ cd deploy
 
 ## 五、代码开发
 
-### 1、grape代码管理方式
-grape 是一种单库存储代码的方式。
+### 1、Monorepo代码管理方式
+Monorepo 是一种单库存储代码的方式。
 
-[grape详细](doc/subject/grape.md)
+[monorepo详细](doc/subject/monorepo.md)
 
 ### 2、代码规范
 
