@@ -1,12 +1,12 @@
 package dingtalk
 
 import (
-	dingtalk_robot "github.com/JetBlink/dingtalk-notify-go-sdk"
 	"log"
 	"testing"
 )
 
 /*
+每个机器人每分钟最多发送20条
 https://github.com/JetBlink/dingtalk-notify-go-sdk
 */
 
@@ -15,7 +15,7 @@ func TestName_Ding(t *testing.T) {
 }
 
 func send2()  {
-	robot := dingtalk_robot.NewRobot("4fc5802ab76ad19377457b961f4d8c9142a0e90c768d33c73cdac304f70841a4", "")
+	robot := NewRobot("4fc5802ab76ad19377457b961f4d8c9142a0e90c768d33c73cdac304f70841a4", "")
 	msg := map[string]interface{}{
 		"msgtype": "text",
 		"text": map[string]string{
