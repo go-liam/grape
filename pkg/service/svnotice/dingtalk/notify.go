@@ -13,7 +13,7 @@ import (
 	"time"
 )
 
-func NewRobot(token, secret string) *Robot {
+func New(token, secret string) *Robot {
 	return &Robot{
 		token:  token,
 		secret: secret,

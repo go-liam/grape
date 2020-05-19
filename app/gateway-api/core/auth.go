@@ -1,11 +1,10 @@
 package core
 
 import (
-	"fmt"
+	"github.com/go-liam/util/conv"
 	"github.com/go-liam/util/request"
-	"log"
-	"grape/pkg/util/conv"
 	"grape/pkg/util/jwt"
+	"log"
 	"net/http"
 )
 
@@ -34,7 +33,7 @@ func setUserIDHead( req *http.Request )  {
 	if token !=""{
 		info,_ := jwt.Server.ParseToken(token)
 		if info != nil && conv.StringToInt64(info.UserID,0) > 0{
-			req.Header.Set("UserID", fmt.Sprintf("%d", info.UserID))
+			req.Header.Set("UserID",  info.UserID)
 		}
 	}
 }

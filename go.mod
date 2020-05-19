@@ -7,7 +7,7 @@ require (
 	github.com/didip/tollbooth v4.0.2+incompatible
 	github.com/gin-gonic/gin v1.6.2
 	github.com/go-liam/tracing v1.0.1
-	github.com/go-liam/util v1.0.0
+	github.com/go-liam/util v1.0.2
 	github.com/golang/protobuf v1.3.5
 	github.com/opentracing-contrib/go-stdlib v0.0.0-20190519235532-cf7a6c988dc9
 	github.com/patrickmn/go-cache v2.1.0+incompatible // indirect

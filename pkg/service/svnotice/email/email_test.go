@@ -11,7 +11,7 @@ func TestNameEmail(t *testing.T) {
 }
 
 func sendTest() {
-	log.Printf("config=%+v\n", env.Mail)
+	log.Printf("config=%+v\n", env.MailConfig)
 	i := new(MailInfo)
 	i.To = []string{"liam.jiang@***.com"}
 	i.Body = `
@@ -25,5 +25,11 @@ func sendTest() {
 	i.FromName = "帅哥007"
 	i.Subject = "我是我-标题10"
 	i.Type = TypeMailHtml
-	Send(i)
+	//sv:= new(Mail)
+	//sv.UserEmail = env.Mail.UserEmail
+	//sv.MailPassword = env.Mail.MailPassword
+	//sv.MailSMTPHost =env.Mail.MailSMTPHost
+	//sv.MailSMTPPort =env.Mail.MailSMTPPort
+	sv := New(env.MailConfig.UserEmail,env.MailConfig.MailPassword,env.MailConfig.MailSMTPHost,env.MailConfig.MailSMTPPort )
+	sv.Send(i)
 }

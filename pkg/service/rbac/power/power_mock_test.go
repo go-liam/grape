@@ -1,7 +1,7 @@
 package power
 
 import (
-	"grape/pkg/util/conv"
+	"github.com/go-liam/util/conv"
 	"testing"
 )
 

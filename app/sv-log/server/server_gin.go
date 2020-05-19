@@ -3,10 +3,10 @@ package server
 import (
 	"encoding/json"
 	"github.com/gin-gonic/gin"
-	"io/ioutil"
+	"github.com/go-liam/util/response"
 	"grape/pkg/middleware/metric"
 	"grape/pkg/service/sylog"
-	"grape/pkg/util"
+	"io/ioutil"
 	"net/http"
 	"os"
 )
@@ -62,5 +62,5 @@ func writeCore(c *gin.Context) {
 	if req != nil && req.LogID > 0{
 		go svlog.WriteLog(req.LogID,req.Msg,req.Level)
 	}
-	c.JSON(http.StatusOK, util.APIResponseData(0,"OK",nil))
+	c.JSON(http.StatusOK, response.APIResponseData(0,"OK",nil))
 }

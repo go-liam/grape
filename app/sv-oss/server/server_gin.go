@@ -3,9 +3,9 @@ package server
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"github.com/go-liam/util/conv"
+	"github.com/go-liam/util/response"
 	"grape/pkg/middleware/metric"
-	"grape/pkg/util"
-	"grape/pkg/util/conv"
 	"net/http"
 	"os"
 )
@@ -63,5 +63,5 @@ func configCore(c *gin.Context) {
 	jsonSt = fmt.Sprintf(jsonSt, name)
 	var obj map[string]interface{}
 	conv.JsonStringToStruct(jsonSt, &obj)
-	c.JSON(http.StatusOK, util.APIResponseData(0, "OK", obj))
+	c.JSON(http.StatusOK, response.APIResponseData(0, "OK", obj))
 }

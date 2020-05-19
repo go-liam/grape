@@ -1,9 +1,9 @@
 package rbac
 
 import (
+	"github.com/go-liam/util/conv"
 	"grape/pkg/service/rbac/role"
 	"grape/pkg/service/rbac/user"
-	"grape/pkg/util/conv"
 )
 
 // UserInfo : 获取用户的所有权限 (要缓存)

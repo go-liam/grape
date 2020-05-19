@@ -3,7 +3,7 @@ package cookie
 import (
 	"errors"
 	"github.com/gin-gonic/gin"
-	"grape/pkg/util/conv"
+	"github.com/go-liam/util/conv"
 	"grape/pkg/util/jwt"
 	"time"
 )
@@ -34,7 +34,7 @@ func init() {
 
 func (sv *SvGin) Login(c *gin.Context, name string, userID int64) (int, error) {
 	claims := &jwt.CustomClaims{
-		UserID: userID,
+		UserID: conv.Int64ToString(userID),
 		Name:   name,
 	}
 	minute := 10
@@ -80,7 +80,7 @@ func (sv *SvGin) CheckBadUser(c *gin.Context ) (int, *jwt.CustomClaims, error)  
 	}
 	//info
 	info, _ := jwt.Server.ParseToken(cookie)
-	flag := conv.ArrayInt64Contains(sv.BadUidList,info.UserID)
+	flag := conv.ArrayInt64Contains(sv.BadUidList,conv.StringToInt64(info.UserID,0))
 	if flag {
 		return 4,nil , errors.New("bad uid")
 	}

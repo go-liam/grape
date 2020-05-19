@@ -2,7 +2,7 @@ package jwt
 
 import (
 	"errors"
-	"grape/pkg/util/conv"
+	"github.com/go-liam/util/conv"
 	"grape/pkg/util/jwt"
 	"time"
 )

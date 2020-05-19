@@ -3,9 +3,9 @@ package server
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"github.com/go-liam/util/conv"
+	"github.com/go-liam/util/response"
 	"grape/pkg/middleware/metric"
-	"grape/pkg/util"
-	"grape/pkg/util/conv"
 	"net/http"
 	"os"
 )
@@ -59,7 +59,7 @@ func regHandler(c *gin.Context) {
 	jsonSt = fmt.Sprintf(jsonSt, ip, rID, rInfo)
 	var obj map[string]interface{}
 	conv.JsonStringToStruct(jsonSt, &obj)
-	c.JSON(http.StatusOK, util.APIResponseData(0, "OK", obj))
+	c.JSON(http.StatusOK, response.APIResponseData(0, "OK", obj))
 }
 
 func userInfoHandler(c *gin.Context) {
@@ -75,5 +75,5 @@ func userInfoHandler(c *gin.Context) {
 	jsonSt = fmt.Sprintf(jsonSt, userID, rID, rInfo)
 	var obj map[string]interface{}
 	conv.JsonStringToStruct(jsonSt, &obj)
-	c.JSON(http.StatusOK, util.APIResponseData(0, "OK", obj))
+	c.JSON(http.StatusOK, response.APIResponseData(0, "OK", obj))
 }

@@ -1,13 +1,22 @@
 package email
 
 import (
-	"grape/pkg/config/env"
 	"log"
 	"net/smtp"
 	"strings"
 )
 
-const TypeMailHtml = "html"
+const (
+	TypeMailHtml  = "html"
+	TypeMailPlain = "plain"
+)
+
+type Mail struct {
+	UserEmail    string // 授权的用户 1234@qq.com
+	MailSMTPPort string // 端口号，:587  :25也行
+	MailPassword string // 邮箱的授权码
+	MailSMTPHost string //"smtp.qq.com"
+}
 
 type MailInfo struct {
 	To       []string //  []string{"***87685@qq.com"}
@@ -19,16 +28,25 @@ type MailInfo struct {
 	//Msg string
 }
 
-func Send(item *MailInfo) (bool, error) {
-	from := env.Mail.UserEmail
-	auth := smtp.PlainAuth("", env.Mail.UserEmail, env.Mail.MailPassword, env.Mail.MailSMTPHost)
+func New(userEmail string, mailPassword string, mailSMTPHost string, mailSMTPPort string, ) *Mail {
+	return &Mail{
+		UserEmail:    userEmail,
+		MailSMTPPort: mailSMTPPort,
+		MailPassword: mailPassword,
+		MailSMTPHost: mailSMTPHost,
+	}
+}
+
+func (sv *Mail) Send(item *MailInfo) (bool, error) {
+	from := sv.UserEmail
+	auth := smtp.PlainAuth("", sv.UserEmail, sv.MailPassword, sv.MailSMTPHost)
 	contentType := "Content-Type: text/plain; charset=UTF-8"
 	if item.Type == TypeMailHtml {
 		contentType = "Content-Type: text/html; charset=UTF-8"
 	}
 	msg := []byte("To: " + strings.Join(item.To, ",") + "\r\nFrom: " + item.FromName +
 		"<" + from + ">\r\nSubject: " + item.Subject + "\r\n" + contentType + "\r\n\r\n" + item.Body)
-	addr := env.Mail.MailSMTPHost + env.Mail.MailSMTPPort
+	addr := sv.MailSMTPHost + sv.MailSMTPPort
 	err := smtp.SendMail(addr, auth, from, item.To, msg)
 	if err != nil {
 		log.Printf("[ERROR] send mail error: %v", err)

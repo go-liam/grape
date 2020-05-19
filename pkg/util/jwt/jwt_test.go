@@ -10,7 +10,7 @@ func TestJWT_CreateToken(t *testing.T) {
 	// creat
 	j := NewJWT("")
 	claims := &CustomClaims{
-		UserID: 110,
+		UserID: "110",
 		Name:   "中国",
 	}
 	minute := 10
