@@ -124,6 +124,8 @@ kubernetes, istio, mq, devOps 。
 
 [ci-cd文档](./doc/ci-cd.md)
 
+### 2. gitOps
+
 ## 四、测试
 
 ### 1、本地开发
@@ -210,3 +212,4 @@ Bazel 是一个很厉害的开源构建工具，我还没有领略它的奥秘�
 ## 九、异常/注意
 
 - 要配置自己的docker账号（deploy/base/MakeDockerConfig.mk）
+- 配置 pkg/config/private***.go.example 改为 private***.go
