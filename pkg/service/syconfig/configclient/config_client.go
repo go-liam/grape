@@ -1,6 +1,6 @@
 package configclient
 
-import "grape/pkg/services/syconfig"
+import "grape/pkg/service/syconfig"
 
 //type ConfigItem struct {
 //	Key string `json:"key"`

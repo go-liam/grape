@@ -1,18 +1,17 @@
-package rbac
+package user
 
 import (
-	"grape/pkg/services/rbac/role"
-	"grape/pkg/services/rbac/user"
+	"grape/pkg/service/rbac/role"
 	"grape/pkg/util/conv"
 )
 
 // UserInfo : 获取用户的所有权限 (要缓存)
-func UserInfo(userID int64) (*user.ModelUser,error) {
-	info ,err1:= user.Server.FindOne(userID)
+func Info(userID int64) (*ModelUser,error) {
+	info ,err1:= Server.FindOne(userID)
 	if info == nil {
 		return info,err1
 	}
-	if info.RoleFlag == 1{
+	if info.RoleFlag == ConstRoleRoot {
 		return info,nil
 	}
 	roleIDs := conv.StringToIntArray(info.RoleIDs)

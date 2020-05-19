@@ -1,8 +1,8 @@
 package email
 
 import (
+	"grape/pkg/config/env"
 	"log"
-	"grape/pkg/config"
 	"testing"
 )
 
@@ -11,7 +11,7 @@ func TestNameEmail(t *testing.T) {
 }
 
 func sendTest() {
-	log.Printf("config=%+v\n", config.Mail)
+	log.Printf("config=%+v\n", env.Mail)
 	i := new(MailInfo)
 	i.To = []string{"liam.jiang@***.com"}
 	i.Body = `

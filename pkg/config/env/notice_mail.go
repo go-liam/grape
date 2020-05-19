@@ -1,4 +1,4 @@
-package config
+package env
 
 type MailConfig struct {
 	UserEmail string // 授权的用户 1234@qq.com

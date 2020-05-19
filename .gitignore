@@ -19,5 +19,6 @@ deploy/*/build/*
 temp-demo
 
 ## private
-pkg/config/private_my_*.go
+private_my_*.go
 MakeDockerConfig.mk
+.env

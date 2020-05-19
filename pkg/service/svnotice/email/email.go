@@ -1,8 +1,8 @@
 package email
 
 import (
+	"grape/pkg/config/env"
 	"log"
-	"grape/pkg/config"
 	"net/smtp"
 	"strings"
 )
@@ -20,15 +20,15 @@ type MailInfo struct {
 }
 
 func Send(item *MailInfo) (bool, error) {
-	from := config.Mail.UserEmail
-	auth := smtp.PlainAuth("", config.Mail.UserEmail, config.Mail.MailPassword, config.Mail.MailSMTPHost)
+	from := env.Mail.UserEmail
+	auth := smtp.PlainAuth("", env.Mail.UserEmail, env.Mail.MailPassword, env.Mail.MailSMTPHost)
 	contentType := "Content-Type: text/plain; charset=UTF-8"
 	if item.Type == TypeMailHtml {
 		contentType = "Content-Type: text/html; charset=UTF-8"
 	}
 	msg := []byte("To: " + strings.Join(item.To, ",") + "\r\nFrom: " + item.FromName +
 		"<" + from + ">\r\nSubject: " + item.Subject + "\r\n" + contentType + "\r\n\r\n" + item.Body)
-	addr := config.Mail.MailSMTPHost + config.Mail.MailSMTPPort
+	addr := env.Mail.MailSMTPHost + env.Mail.MailSMTPPort
 	err := smtp.SendMail(addr, auth, from, item.To, msg)
 	if err != nil {
 		log.Printf("[ERROR] send mail error: %v", err)

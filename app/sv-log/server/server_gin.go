@@ -5,7 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"io/ioutil"
 	"grape/pkg/middleware/metric"
-	"grape/pkg/services/sylog"
+	"grape/pkg/service/sylog"
 	"grape/pkg/util"
 	"net/http"
 	"os"

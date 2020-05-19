@@ -2,8 +2,8 @@ package core
 
 import (
 	"github.com/gin-gonic/gin"
-	"grape/pkg/services/rbac/power"
-	"grape/pkg/services/rbac/user"
+	"grape/pkg/service/rbac/power"
+	"grape/pkg/service/rbac/user"
 	"grape/pkg/util/conv"
 	"net/http"
 )

@@ -5,7 +5,7 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 	"log"
-	"grape/pkg/services/sylog"
+	"grape/pkg/service/sylog"
 	pb "grape/proto/svlog"
 	"net"
 )

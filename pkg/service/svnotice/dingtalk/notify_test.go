@@ -1,16 +1,18 @@
 package dingtalk
 
 import (
+	"grape/pkg/config/testdata"
 	"log"
 	"testing"
 )
 
 var (
-	ROBOT_TOKEN  = "4fc5802ab76ad19377457b961f4d8c9142a0e90c768d33c73cdac304f70841a4"
-	ROBOT_SECRET = ""
+	ROBOT_TOKEN  = testdata.DingTalkConfigRobotToken
+	ROBOT_SECRET = testdata.DingTalkConfigRobotSecret
 )
 
 func TestRobot_SendMessage(t *testing.T) {
+	println(ROBOT_TOKEN)
 	tsSendMessage()
 }
 func tsSendMessage() {
@@ -18,7 +20,7 @@ func tsSendMessage() {
 	msg := map[string]interface{}{
 		"msgtype": "text",
 		"text": map[string]string{
-			"content": "[提示]这是一条golang钉钉消息测试.",
+			"content": "这是一条golang钉钉消息测试2.",
 		},
 		"at": map[string]interface{}{
 			"atMobiles": []string{},

@@ -2,7 +2,7 @@ package cms
 
 import (
 	"github.com/gin-gonic/gin"
-	"grape/pkg/services/syconfig/configclient"
+	"grape/pkg/service/syconfig/configclient"
 	"grape/pkg/util"
 	"net/http"
 )

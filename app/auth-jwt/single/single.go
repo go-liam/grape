@@ -3,7 +3,7 @@ package single
 import (
 	"github.com/gin-gonic/gin"
 	"log"
-	"grape/pkg/services/jwt"
+	"grape/pkg/service/jwt"
 	"grape/pkg/util/conv"
 	"net/http"
 	jwt2 "grape/pkg/util/jwt"
