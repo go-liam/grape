@@ -14,12 +14,11 @@ message HealthResp {
 }
 
 message EmailReq {
-	string emailType = 1;
-	string to = 2;
-	string fromName = 3;
-    string subject = 4;
-    string type = 5;
-    string body = 6;
+	string to = 1;
+	string fromName = 2;
+    string subject = 3;
+    string type = 4;
+    string body = 5;
 }
 
 message EmailResp {

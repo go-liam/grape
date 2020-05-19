@@ -6,8 +6,8 @@ import (
 )
 
 type mailConfig struct {
-	UserEmail    string `env:"NOTICE_Mail_USER_EMAIL" default:"@qq.com"` // 授权的用户 1234@qq.com
-	MailPassword string `env:"NOTICE_Mail_PASSWORD" default:"jdqhpfjzmzywbhda"` // 邮箱的授权码 xxx
+	UserEmail    string `env:"NOTICE_Mail_USER_EMAIL" default:"***@qq.com"` // 授权的用户 1234@qq.com
+	MailPassword string `env:"NOTICE_Mail_PASSWORD" default:"jdqhpfjzmzywbhdabb"` // 邮箱的授权码 xxx
 	MailSMTPHost string `env:"NOTICE_Mail_SMTP_HOST" default:"smtp.qq.com"` //"smtp.qq.com"
 	MailSMTPPort string `env:"NOTICE_Mail_SMTP_PORT" default:":587"` // 端口号，:587  :25也行
 }
