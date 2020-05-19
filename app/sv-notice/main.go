@@ -9,10 +9,15 @@ import (
 	"os/signal"
 )
 
+const (
+	portGRPC = ":9405"
+	partGin    = ":7405"
+)
+
 func main() {
 	println(":run server")
-	go server.RunServerGin()
-	server.RunServerGRPC()
+	go server.RunServerGin(partGin)
+	server.RunServerGRPC(portGRPC)
 	quit := make(chan os.Signal)
 	signal.Notify(quit, os.Interrupt)
 	<-quit

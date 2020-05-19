@@ -1,5 +1,7 @@
 # info
 
+数据类型：https://www.jianshu.com/p/362a6cdb63c5
+
 ## run更新
 
 ```shell 

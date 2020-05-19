@@ -13,22 +13,35 @@ message HealthResp {
 	string message = 4;
 }
 
-message MessageReq {
-	int32 msgType = 1;
-	int64 msgID = 2;
-	string content = 3;
-	string from = 4;
-    string to = 5;
+message EmailReq {
+	string emailType = 1;
+	string to = 2;
+	string fromName = 3;
+    string subject = 4;
+    string type = 5;
+    string body = 6;
 }
 
-message MessageResp {
+message EmailResp {
 	int32 code = 1;
 	string  message = 2;
 }
 
+message DingTalkReq {
+	string token = 1;
+	string robotSecret = 2;
+	string title = 3;
+	string text = 4;
+    bool isAtAll = 5;
+}
 
+message DingTalkResp {
+	int32 code = 1;
+	string  message = 2;
+}
 
-service DemoService {
-	rpc SayHello(SayHelloReq) returns (SayHelloResp);
-	rpc Health(HealthReq) returns (HealthResp);
+service NoticeService {
+    rpc Health(HealthReq) returns (HealthResp);
+	rpc Email(EmailReq) returns (EmailResp);
+    rpc DingTalkMarkdown(DingTalkReq) returns (DingTalkResp);
 }

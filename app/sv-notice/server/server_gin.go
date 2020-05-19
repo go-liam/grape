@@ -11,17 +11,17 @@ import (
 )
 
 const (
-	partGin    = ":7405"
+	//partGin    = ":7405"
 	serverName = "sv-notice"
 	path = "/"+serverName
 )
 
-func RunServerGin() {
-	println(serverName+":run api partGin ", partGin)
+func RunServerGin(port string) {
+	println(serverName+":run api partGin ", port)
 	engine := gin.New()
 	// 设置路由
 	SetupRouter(engine)
-	engine.Run(partGin)
+	engine.Run(port)
 }
 
 func SetupRouter(engine *gin.Engine) {
