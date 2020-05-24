@@ -18,20 +18,23 @@ const (
 	defaultName   = "client:"
 )
 
-func TestSvGRPC_Health(t *testing.T) {
+func init()  {
 	go RunServerGRPC(tsGRPCPort)
+}
+
+func TestSvGRPC_Health(t *testing.T) {
 	time.Sleep(time.Microsecond * 10)
 	testHealth()
 }
 
 func TestSvGRPC_Email(t *testing.T) {
-	go RunServerGRPC(tsGRPCPort)
+	//go RunServerGRPC(tsGRPCPort)
 	time.Sleep(time.Microsecond * 10)
 	testEmail()
 }
 
 func TestSvGRPC_DingTalkMarkdown(t *testing.T) {
-	go RunServerGRPC(tsGRPCPort)
+	//go RunServerGRPC(tsGRPCPort)
 	time.Sleep(time.Microsecond * 10)
 	testDingTalkMarkdown()
 }

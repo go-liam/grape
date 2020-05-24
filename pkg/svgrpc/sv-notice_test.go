@@ -24,7 +24,7 @@ func TestNoticeEmail(t *testing.T) {
 	v1,v2:= NoticeEmail( &pb2.EmailReq{
 		To:       testdata.NoticeEmailTo,
 		FromName: "xxxFrom",
-		Subject:  "你好-2！",
+		Subject:  "你好-2-svgrpc",
 		Type:     "html",
 		Body:     `<h5 style="color: red; font-size: 16px;">测试-标题</h5>`,
 	})

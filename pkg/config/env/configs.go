@@ -2,20 +2,21 @@ package env
 
 import (
 	"github.com/timest/env"
-"log"
+	"log"
 )
+
 const (
 	ConstEnvLocal = "local"
-	ConstEnvDev = "dev"
-	ConstEnvTest = "test"
-	ConstEnvProd = "prod"
-	ConstEnvPre = "pre"
-	ConstEnvUnit = "unit" // 单元测试环境
+	ConstEnvDev   = "dev"
+	ConstEnvTest  = "test"
+	ConstEnvProd  = "prod"
+	ConstEnvPre   = "pre"
+	ConstEnvUnit  = "unit" // 单元测试环境
 )
 
 var (
 	// EnvConfig :
-	EnvConfig *config
+	EnvConfig = new(config) // *config
 )
 
 type config struct {
@@ -24,7 +25,7 @@ type config struct {
 }
 
 func init() {
-	EnvConfig = new(config)
+	//EnvConfig = new(config)
 	env.IgnorePrefix()
 	err := env.Fill(EnvConfig)
 	log.Printf("[INFO] config :%+v\n", EnvConfig)
@@ -32,4 +33,3 @@ func init() {
 		panic(err)
 	}
 }
-
