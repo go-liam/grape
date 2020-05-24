@@ -1,0 +1,22 @@
+package config
+
+
+func init() {
+	println("[INFO]EnvConfig.ProjectEnv:", EnvConfig.ProjectEnv)
+	if EnvConfig.ProjectEnv == ConstEnvUnit {
+		return
+	}
+	myData()
+}
+
+func myData() {
+	//test data
+	DefaultNoticeEmailTo = "liam.**@**.com"
+	// mail
+	DefaultMailConfigUserEmail = "****@qq.com"
+	DefaultMailConfigMailPassword = "jdqhpf*****bhda"
+	// dingTalk
+	DefaultDingTalkConfigRobotToken = "4fc5802ab76ad1*****ac304f70841a4"
+	DefaultDingTalkConfigRobotSecret = "SEC52300a28******5d2082ab7840"
+}
+

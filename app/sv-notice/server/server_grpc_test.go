@@ -4,7 +4,6 @@ import (
 	"context"
 	"google.golang.org/grpc"
 	"grape/pkg/config/env"
-	"grape/pkg/config/testdata"
 	pb2 "grape/proto/notice"
 	"log"
 	"os"
@@ -73,7 +72,7 @@ func testEmail() {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 	r, err := c.Email(ctx, &pb2.EmailReq{
-		To:       testdata.NoticeEmailTo ,
+		To:       env.DefaultNoticeEmailTo  ,
 		FromName: "xxxFrom",
 		Subject:  "你好！",
 		Type:     "html",

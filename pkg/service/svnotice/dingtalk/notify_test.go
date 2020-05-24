@@ -1,7 +1,7 @@
 package dingtalk
 
 import (
-	"grape/pkg/config/testdata"
+	"grape/pkg/config/env"
 	"log"
 	"testing"
 )
@@ -12,8 +12,8 @@ var (
 )
 
 func getConfig() {
-	robotToken = testdata.DingTalkConfigRobotToken
-	robotSecret = testdata.DingTalkConfigRobotSecret
+	robotToken = env.DefaultDingTalkConfigRobotToken
+	robotSecret = env.DefaultDingTalkConfigRobotSecret
 	println(robotToken,robotSecret)
 }
 

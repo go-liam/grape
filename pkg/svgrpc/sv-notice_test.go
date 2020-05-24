@@ -2,7 +2,6 @@ package svgrpc
 
 import (
 	"grape/pkg/config/env"
-	"grape/pkg/config/testdata"
 	pb2 "grape/proto/notice"
 	"log"
 	"testing"
@@ -22,7 +21,7 @@ func TestNoticeDingTalkMarkdown(t *testing.T) {
 
 func TestNoticeEmail(t *testing.T) {
 	v1,v2:= NoticeEmail( &pb2.EmailReq{
-		To:       testdata.NoticeEmailTo,
+		To:       env.DefaultNoticeEmailTo,
 		FromName: "xxxFrom",
 		Subject:  "你好-2-svgrpc",
 		Type:     "html",
