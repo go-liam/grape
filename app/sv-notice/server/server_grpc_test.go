@@ -3,6 +3,8 @@ package server
 import (
 	"context"
 	"google.golang.org/grpc"
+	"grape/pkg/config/env"
+	"grape/pkg/config/testdata"
 	pb2 "grape/proto/notice"
 	"log"
 	"os"
@@ -68,7 +70,7 @@ func testEmail() {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 	r, err := c.Email(ctx, &pb2.EmailReq{
-		To:       "56487685@qq.com",
+		To:       testdata.NoticeEmailTo ,
 		FromName: "xxxFrom",
 		Subject:  "你好！",
 		Type:     "html",
@@ -97,11 +99,11 @@ func testDingTalkMarkdown() {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 	r, err := c.DingTalkMarkdown(ctx, &pb2.DingTalkReq{
-		Token:       "xxx1",
-		RobotSecret: "xxx2",
-		Title:       "title-标题",
-		Text:        "text-",
-		IsAtAll:     false,
+		Token:       env.DingTalkConfig.RobotToken,
+		RobotSecret: env.DingTalkConfig.RobotSecret,
+		Title:       "title-标题-1",
+		Text:        "text:这是一条golang钉钉消息测试",
+		IsAtAll:     true,
 	})
 	if err != nil {
 		log.Printf("[ERROR]could not greet: %v", err)
@@ -109,4 +111,3 @@ func testDingTalkMarkdown() {
 	}
 	log.Printf("dingTalkMarkdown: %+v \n ", r) //r.Message)
 }
-

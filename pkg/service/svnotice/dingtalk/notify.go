@@ -121,7 +121,6 @@ func (robot *Robot) SendMarkdownMessage(title string, text string, atMobiles []s
 			"isAtAll":   isAtAll,
 		},
 	}
-
 	return robot.SendMessage(msg)
 }
 

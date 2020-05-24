@@ -1,6 +1,7 @@
 package dingtalk
 
 import (
+	"grape/pkg/config/testdata"
 	"log"
 	"testing"
 )
@@ -11,8 +12,8 @@ var (
 )
 
 func getConfig() {
-	//robotToken = testdata.DingTalkConfigRobotToken
-	//robotSecret = testdata.DingTalkConfigRobotSecret
+	robotToken = testdata.DingTalkConfigRobotToken
+	robotSecret = testdata.DingTalkConfigRobotSecret
 	println(robotToken,robotSecret)
 }
 
@@ -63,7 +64,7 @@ func tsSendMarkdownMessage() {
 		"[提示]Markdown Test Title",
 		"### Markdown 测试消息 **@指定手机号和@所有人** \n* 百度: [baidu](https://www.baidu.com/)\n* 一张图片\n ![](http://image.biaobaiju.com/uploads/20181025/19/1540467434-IhiJNbyXak.jpg)",
 		[]string{},
-		false,
+		true,
 	)
 	if err != nil {
 		log.Printf("%+v\n", err)
