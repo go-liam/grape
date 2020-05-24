@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package configproto;
+package config;
 
 message HealthReq {
 	string clientName = 1;
