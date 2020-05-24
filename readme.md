@@ -53,51 +53,63 @@
 
 ### 2、架构图
 
-[详情:doc/项目架构.md](doc/项目架构.md)
+    [详情:doc/项目架构.md](doc/项目架构.md)
 
-#### 区域信息(sv-region) 
+> -  区域信息(sv-region) 
 
-能定位用户是属于哪个区域服务集群。含各区域全量数据。
+    能定位用户是属于哪个区域服务集群。含各区域全量数据。
 
-#### 认证服务([auth-jwt](./doc/service/auth-jwt.md))
+> - 认证服务([auth-jwt](./doc/service/auth-jwt.md))
 
-用户通过各种方式登录后，付给它Token令牌去访问资源，支持分端单点登录。
+    用户通过各种方式登录后，付给它Token令牌去访问资源，支持分端单点登录。
 
-#### 鉴权服务([auth-rbac](./doc/service/auth-rbac.md))
+> -  鉴权服务([auth-rbac](./doc/service/auth-rbac.md))
 
-正规的rbac鉴权。分角色，用户，权限。
+    正规的rbac鉴权。分角色，用户，权限。
 
-#### 网关(gateway-api)
+> -  网关(gateway-api)
 
-统一对用户身份认证处理。统一入口。
+    统一对用户身份认证处理。统一入口。
 
-#### 配置中心(sv-config)
+> -  配置中心(sv-config)
 
-提供配置的数据接口；
+    提供配置的数据接口；
 
-#### 日志服务(sv-log)
+> -  日志服务(sv-log)
 
-记录日志，统一记录；
+    记录日志，统一记录；
 
-#### AI相关接口服务器(sv-ai)
+> -  AI相关接口服务器(sv-ai)
 
-#### 钱包(sv-money)
+    AI 大数据服务；
 
-#### 用户中心(sv-user)
+> -  钱包(sv-money)
 
-#### 通知服务(sv-notice)
+    用户钱包，充值，消费服务；
+> -  用户中心(sv-user)
 
-#### MQ服务(sv-mq)
+    用户信息管理；
+> -  通知服务(sv-notice)
 
-#### OSS文件管理(sv-oss)
+    Email,钉钉，短信服务；
+> -  MQ服务(sv-mq)
 
-#### 微信/小程序接口(api-wx)
+    消息服务，解偶，削峰填谷；
+> -  OSS文件管理(sv-oss)
 
-#### APP接口(api-app)
+    云文件，CDN；
+> -  微信/小程序接口(api-wx)
 
-#### CMS接口(api-cms)
+    微信SDK，公众号，小程序接口；
+> -  APP接口(api-app)
 
-#### 网站接口(api-www)
+    IOS，安卓APP端接口；
+> -  CMS接口(api-cms)
+
+    后台管理，资源管理接口；
+> -  网站接口(api-www)
+
+    网站数据接口；
 
 ### 3、项目技术栈
 
