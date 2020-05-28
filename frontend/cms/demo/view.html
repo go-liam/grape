@@ -1,0 +1,132 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link type=text/css href="../../rsoss/images/style.css" rel=stylesheet>
+    <script type="text/javascript" language="javascript" src="../../rsoss/js/p/calendar.js" ></script>
+    <script type="text/javascript" language="javascript" src="../../rsoss/js/p/jlcheck.js" ></script>
+    <script type="text/javascript" language="javascript" src="../../rsoss/js/pga/52t/t52shv2.js" ></script>
+</head>
+<body>
+<table cellspacing=1 cellpadding=2 class=table>
+    <tr >
+        <td colspan=2 align="left" class=td >商家信息</td>
+    </tr>
+    <form name=frm_input runat="server"  method=post id="frm_input"   >
+        <tr class="tr">
+            <td width="12%" class="s"><table border="0" cellspacing="0" cellpadding="0" height="100%">
+                <tr>
+                    <td valign="top" class="hh">商家名称:<br /></td>
+                </tr>
+            </table></td>
+            <td width="88%" align="left" class="s"><%=txTit%></td>
+        </tr>
+        <tr class="tr">
+            <td class="s"><table border="0" cellspacing="0" cellpadding="0" height="100%">
+                <tr>
+                    <td valign="top" class="hh">类型:<br /></td>
+                </tr>
+            </table></td>
+            <td align="left" class="s"><%=Web52v2Dll.Bll.shad.ShB.ShClass(dr["ClassID"])%>&nbsp;</td>
+        </tr>
+        <tr class="tr">
+            <td class="s"><table border="0" cellspacing="0" cellpadding="0" height="100%">
+                <tr>
+                    <td valign="top" class="hh">信息增加量：<br /></td>
+                </tr>
+            </table></td>
+            <td align="left" class="s"><%=NoInfoA %>
+            </td>
+        </tr>
+        <tr class="tr">
+            <td class="s"><table border="0" cellspacing="0" cellpadding="0" height="100%">
+                <tr>
+                    <td valign="top" class="hh">图片增加量：:<br /></td>
+                </tr>
+            </table></td>
+            <td align="left" class="s"><%=NoPicA %></td>
+        </tr>
+        <tr class="tr">
+            <td class="s"><table border="0" cellspacing="0" cellpadding="0" height="100%">
+                <tr>
+                    <td valign="top" class="hh">状态:<br /></td>
+                </tr>
+            </table></td>
+            <td align="left" class="s"><%=Web52v2Dll.Bll.shad.ShB.ShFlag(dr["Flag"])%>&nbsp;</td>
+        </tr>
+
+        <tr class="tr">
+            <td class="s"><table border="0" cellspacing="0" cellpadding="0" height="100%">
+                <tr>
+                    <td valign="top" class="hh">登录账号：:<br /></td>
+                </tr>
+            </table></td>
+            <td align="left" class="s"><%=dr["UserName"] %></td>
+        </tr>
+        <tr class="tr">
+            <td class="s"><table border="0" cellspacing="0" cellpadding="0" height="100%">
+                <tr>
+                    <td valign="top" class="hh">邮箱：:<br /></td>
+                </tr>
+            </table></td>
+            <td align="left" class="s"><%=dr["CtEmail"] %></td>
+        </tr>
+        <tr class="tr">
+            <td class="s"><table border="0" cellspacing="0" cellpadding="0" height="100%">
+                <tr>
+                    <td valign="top" class="hh">微博呢称：:<br /></td>
+                </tr>
+            </table></td>
+            <td align="left" class="s"><%=dr["WeiBo"] %></td>
+        </tr>
+        <tr class="tr">
+            <td class="s"><table border="0" cellspacing="0" cellpadding="0" height="100%">
+                <tr>
+                    <td valign="top" class="hh">联系QQ：:<br /></td>
+                </tr>
+            </table></td>
+            <td align="left" class="s"><%=dr["CtQQ"] %></td>
+        </tr>
+
+        <tr class="tr">
+            <td class="s"><table border="0" cellspacing="0" cellpadding="0" height="100%">
+                <tr>
+                    <td valign="top" class="hh">联系手机：:<br /></td>
+                </tr>
+            </table></td>
+            <td align="left" class="s"><%=dr["CtPhone"] %></td>
+        </tr>
+
+
+        <tr class="tr">
+            <td class="s"><table border="0" cellspacing="0" cellpadding="0" height="100%">
+                <tr>
+                    <td valign="top" class="hh">阿里旺旺：:<br /></td>
+                </tr>
+            </table></td>
+            <td align="left" class="s"><%=dr["WangWang"] %></td>
+        </tr>
+
+        <tr class="tr">
+            <td class="s"><table border="0" cellspacing="0" cellpadding="0" height="100%">
+                <tr>
+                    <td valign="top" class="hh">注册原因：:<br /></td>
+                </tr>
+            </table></td>
+            <td align="left" class="s"><%=dr["RegWhy"] %></td>
+        </tr>
+
+        <tr class=trb>
+            <td></td>
+            <td align="left" class=s><input name="reset" type=reset class=btn value="返回" onClick="location.href='t2_shop_list.aspx'">
+                <div id="dvInfo" style="color:#F00;"></div>
+            </td>
+        </tr>
+    </form>
+</table>
+
+<div id="dvLog"></div>
+</body>
+</html>

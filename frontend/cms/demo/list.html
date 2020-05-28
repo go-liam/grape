@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link type="text/css" href="../../rsoss/images/style.css" rel="stylesheet" />
+    <script type="text/javascript" language="javascript" src="../../rsoss/js/p/calendar.js" ></script>
+    <script type="text/javascript" src="../../rsoss/js/p/jlcheck.js"></script>
+    <script language="javascript" src="../../rsoss/js/c1/sele_box.js" ></script>
+    <script language="javascript" src="../../rsoss/js/pga/os_tuank.js" ></script>
+</head>
+<body>
+<div>用户管理：</div>
+<form method="get" name="fmList2" id="fmList2"   >
+    <table width="99%"  border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td>全选：
+                <input type=checkbox id="checkAll" onClick="CheckAll(this);"  runat="server"></td>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+    <table width="100%" border="0" style="display:none-;">
+        <tr>
+            <td align="center" >
+                <input name="db" type="hidden" id="db" value="1">
+                输入账号：
+                <input name=u type=text class=txt id="u" size=20 maxlength=50  />
+                &nbsp;&nbsp;  <!-- 内容：  <input name=k type=text class=txt id="k" size=20 maxlength=50  />  -->
+                时间从：
+                <input name=t0 type=text class=txt id="t0" size=15 maxlength=50  />
+                <img onClick="SelectDateB('t0','yyyy-MM-dd')"  alt="请选择日期" src="../../rsoss/comm/time/p.gif" align="top" style="cursor:hand;"/>到：
+                <input name=t1 type=text class=txt id="t1" size=15 maxlength=50  />
+                <img onClick="SelectDateB('t1','yyyy-MM-dd')"  alt="请选择日期" src="../../rsoss/comm/time/p.gif" align="top" 　style="cursor:hand;" />
+                <input type=submit class=btn onClick="" value="点击查询" >
+
+                (<a href="?db=1">所有日志</a>)<br />                    </td>
+        </tr>
+        <tr>
+            <td align="center" style="color:#FF0000" > </td>
+        </tr>
+    </table>
+</form>
+<form name="fmList" id="fmList"  >
+
+    <table  cellpadding="0" cellspacing="0" width="100%" border="1"  >
+
+        <tr class=td  align="Center" style="height:22px;">
+            <td Width="51" align="Center" >ShOpID</td>
+            <td Width="464" align="Center" >商店名</td>
+            <td width="307" align="Center" >状态</td>
+            <td width="190" >用户</td>
+            <td width="190" >时间</td>
+            <td width="95" >类型</td>
+            <td width="67" >设置</td>
+            <td width="68" >查看</td>
+            <td Width="95" align="Center">操作</td>
+        </tr>
+        <%
+        for(int i=0;i<tb.Rows.Count;i++ ){
+        %>
+        <tr align="Center" class=trb onMouseOver="this.className='tra';" onMouseOut="this.className='trb';" style="height:22px;">
+            <td class="total"><%=tb.Rows[i]["ShopID"]%></td>
+            <td  class="total"><%=tb.Rows[i]["ShopName"]%></td>
+            <td  align="center"><%=Web52v2Dll.Bll.shad.ShB.ShFlag(tb.Rows[i]["Flag"])%>  </td>
+            <td  ><span class="total"><%=tb.Rows[i]["UserName"]%></span></td>
+            <td  ><%=tb.Rows[i]["DateAdd"]%></td>
+            <td  ><%=Web52v2Dll.Bll.shad.ShB.ShClass(tb.Rows[i]["ClassID"])%></td>
+            <td  ><a href="sh_shop_edit.aspx?id=<%=tb.Rows[i]["ShopID"]%>">修改</a></td>
+            <td  ><a href="sh_shop_view.aspx?id=<%=tb.Rows[i]["ShopID"]%>">查看</a></td>
+            <td ><input type="checkbox" name="contract" value="<%=tb.Rows[i]["ShopID"]%>" />
+            </td>
+        </tr>
+        <% } %>
+    </table>
+
+    <div style="float:right; clear:both;"> <%=lbPage %> </div>
+    <div align="center">
+        <input name="btss" type=button class=btn value=" 操作 " onClick="jtk.list_ShopAct_Bt();" >
+        <select name="acttyle" id="acttyle">
+            <option value="-1" selected>请选择操作类型</option>
+            <option value="1">通过审核</option>
+            <option value="4">锁定</option>
+
+            <option value="44">删除</option>
+        </select>
+
+        <input name="tbID" type="hidden" id="tbID" value="1" />
+        <div id="dvInfo" style="color:#F00;"></div>
+    </div>
+
+    <table width="100%" border="0">
+        <tr>
+            <td align="right" style="font-size:16px;"> </td>
+        </tr>
+    </table>
+</form>
+<div id="dvLog" ></div>
+
+提示：<br>
+1.一般每人每天只能签到一次。<br>
+</body>
+</html>

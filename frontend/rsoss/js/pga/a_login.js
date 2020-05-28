@@ -65,10 +65,10 @@ var jlAdminLogin = function()
 //			ck.write("InfoAlert","密码不合法");
 //			return false ;
 //		}
-		if(!ck.checkVerify(ck.V("valcode1"))){
-			ck.Write("InfoAlert","验证码有误");
-			return false ;
-		}
+// 		if(!ck.checkVerify(ck.V("valcode1"))){
+// 			ck.Write("InfoAlert","验证码有误");
+// 			return false ;
+// 		}
 		Passurl = "act=login&u="+ escape(ck.V("username1")) +"&p="+ hex_md5(ck.V("password1")) +"&v="+ck.V("valcode1") ;
 		return true;
 	};

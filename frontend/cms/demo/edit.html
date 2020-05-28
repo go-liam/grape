@@ -1,0 +1,71 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link type=text/css href="../../rsoss/images/style.css" rel=stylesheet>
+    <script type="text/javascript" language="javascript" src="../../rsoss/js/p/calendar.js" ></script>
+    <script type="text/javascript" language="javascript" src="../../rsoss/js/p/jlcheck.js" ></script>
+    <script type="text/javascript" language="javascript" src="../../rsoss/js/pga/52t/t52shv2.js" ></script>
+</head>
+<body>
+<table cellspacing=1 cellpadding=2 class=table>
+    <tr >
+        <td colspan=2 align="left" class=td >商家信息设置</td>
+    </tr>
+    <form name=frm_input runat="server"  method=post id="frm_input"   >
+        <tr class="tr">
+            <td width="12%" class="s"><table border="0" cellspacing="0" cellpadding="0" height="100%">
+                <tr>
+                    <td valign="top" class="hh">名称:<br /></td>
+                </tr>
+            </table></td>
+            <td width="88%" align="left" class="s"><%=txTit%></td>
+        </tr>
+        <tr class="tr">
+            <td class="s"><table border="0" cellspacing="0" cellpadding="0" height="100%">
+                <tr>
+                    <td valign="top" class="hh">分类类型:<br /></td>
+                </tr>
+            </table></td>
+            <td align="left" class="s"><input type="text" class="txt" name="ClassID" id="ClassID" value="<%=ClassID %>" size="10" maxlength="10" />
+                （1为商家，2为团长）</td>
+        </tr>
+        <tr class="tr">
+            <td class="s"><table border="0" cellspacing="0" cellpadding="0" height="100%">
+                <tr>
+                    <td valign="top" class="hh">信息增加量：<br /></td>
+                </tr>
+            </table></td>
+            <td align="left" class="s"><input type="text" class="txt" name="NoInfoA" id="NoInfoA" value="<%=NoInfoA %>" size="10" maxlength="10" />
+                （填入数字，20表示扩容量为20条）</td>
+        </tr>
+        <tr class="tr">
+            <td class="s"><table border="0" cellspacing="0" cellpadding="0" height="100%">
+                <tr>
+                    <td valign="top" class="hh">图片增加量：:<br /></td>
+                </tr>
+            </table></td>
+            <td align="left" class="s"><input type="text" class="txt" name="NoPicA" id="NoPicA" value="<%=NoPicA %>" size="10" maxlength="10" />
+                （填入数字，20表示扩容量为20张）</td>
+        </tr>
+        <tr class=trb>
+            <td></td>
+            <td align="left" class=s><input type=submit class=btn name=btn_submit value="提交修改"   >
+                　 &nbsp;
+                <input name="reset" type=reset class=btn value="重新填写">
+                　 &nbsp;
+                <input name="act" type="hidden" id="act" value="editinfo">
+                <input name="eid" type="hidden" id="eid" value="<%=gid%>">
+
+                <input name="gourl" type="hidden" id="gourl" value="n_infoclass.aspx">
+                <div id="dvInfo" style="color:#F00;"></div>
+            </td>
+        </tr>
+    </form>
+</table>
+
+<div id="dvLog"></div>
+</body>
+</html>

@@ -3,10 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <link type=text/css href="../rsoss/images/style.css" rel=stylesheet>
+    <script type="text/javascript" src="../rs/js/system.js"></script>
+    <script type="text/javascript" src="../rs/js/jquery.min.js"></script>
+
     <script type="text/javascript" src="../rsoss/js/p/jlcheck.js"></script>
     <script type="text/javascript" src="../rsoss/js/pga/a_login.js"></script>
     <script type="text/javascript" src="../rsoss/js/p/md5.js"></script>
     <title>Login oss</title>
+    <script>
+        function login() {
+            let uName = $("#username1").val();
+            let pwd = $("#password1").val();
+            let clientID = 3;
+            let dataUrl = SystemURLAPI + "/auth-jwt/v1/login?name=" + uName + "&userID=" + pwd + "&clientID=" + clientID
+            $.get(dataUrl, function (jsData, status) {
+                console.log("login数据: ", jsData);
+                console.log("状态: " + status);
+                $("#divValueLogin").html("数据:<br>" + JSON.stringify(jsData) + ",<br>状态:<br>" + status + "");
+            });
+        }
+    </script>
 </head>
 <body>
 
@@ -26,24 +42,32 @@
                     </tr>
                     <tr>
                         <td height="32">用 户 名：</td>
-                        <td><input name="username1" type=text class=txt id="username1" style="width:120px;" tabindex=1 value="" size=16 maxlength=20>&nbsp;</td>
+                        <td><input name="username1" type=text class=txt id="username1" style="width:120px;" tabindex=1
+                                   value="" size=16 maxlength=20>&nbsp;
+                        </td>
                     </tr>
                     <tr>
                         <td height="32">登陆密码：</td>
-                        <td><input name="password1" type=password class=txt id="password1" style="width:120px;" tabindex=2 value="" size=16 maxlength=20>&nbsp;</td>
+                        <td><input name="password1" type=password class=txt id="password1" style="width:120px;"
+                                   tabindex=2 value="" size=16 maxlength=20>&nbsp;
+                        </td>
                     </tr>
                     <tr>
                         <td height="32">&nbsp;</td>
                         <td>
-                            <input type="button" name="button" id="button" value="管理登陆" onClick="jjLogin.LoginSubmit();" >
+                            <input type="button" name="button" id="button" value="管理登陆"
+                                   onClick="jjLogin.LoginSubmit();">
                         </td>
                     </tr>
                     <tr>
-                        <td height="32"><img border=0 src="../rsoss/images/frame/login_!.gif" width=18 height=18 align=absmiddle>&nbsp;<font class=red2>系统提示</font></td>
-                        <td><div id="InfoAlert" style="color:#F00;"> </div></td>
+                        <td height="32"><img border=0 src="../rsoss/images/frame/login_!.gif" width=18 height=18
+                                             align=absmiddle>&nbsp;<i class=red2>系统提示</i></td>
+                        <td>
+                            <div id="InfoAlert" style="color:#F00;"></div>
+                        </td>
                     </tr>
                 </table>
-                <br>    <br>
+                <br> <br>
 
 
             </td>
