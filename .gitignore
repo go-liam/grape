@@ -3,6 +3,7 @@ bazel-*
 .bazelrc
 .idea
 .vagrant
+Thumbs.db
 
 # Eclipse
 .project
