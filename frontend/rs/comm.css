@@ -1,0 +1,22 @@
+
+.list {
+}
+
+.list li {
+    clear: both;
+    line-height: 200%;
+
+}
+
+.list a:hover {
+    color: darkgreen;
+}
+
+.list-item {
+    color: black;
+}
+
+.back{}
+.content{width: 100%;clear: both;}
+.left{ width: 30%;float: left;display: block;border: black 1px ;overflow: hidden;}
+.right{ width: 68%; float: right;display: block;overflow: hidden}

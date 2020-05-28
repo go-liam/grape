@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>后台管理</title>
+    <style >
+        *{ margin:0; padding:0; border:0; font-size:12px;}
+        .fm_top{ clear:both; width:100%; height:50px;overflow:hidden;background-color:#CCC;}
+        .fm_end{ clear:both; width:100%; height:30px;overflow:hidden; background-color:#CCC;}
+        .fm_body{clear:both; width:100%; min-height:260px;}
+
+        .fm_body .LShow{ display:block;float:left; clear:left;height:100%;width:190px;}
+        .fm_body .LHide{ display:none;float:left;clear:left;height:100%;width:190px;}
+        .fm_body .Lbody{ width:100%; overflow:hidden;height:100%; }
+
+        .fm_body .RbodyBt{
+            float:left;
+            width:10px;
+            overflow:hidden;
+            cursor:pointer;
+            background-color:#CCC;
+            height:100%;
+            background-image: url(../../rsoss/images/frame/change1.gif);
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .fm_body .RSmall{ margin-left:0px;float:right;clear:right;height:100%;}
+        .fm_body .RBig{  margin-left:0px;float:right;clear:right;height:100%;}
+        .fm_body .Rbody{
+            clear:both;
+            overflow:hidden;
+            min-width:600px;
+            overflow:hidden;
+            height:100%;
+            width:100%;
+        }
+    </style>
+    <script type="text/javascript" >
+        function fmJLTag(){
+            var bb = document.getElementById("fmBodyLeft").className=='LHide' ? true: false ;
+            if(bb){ //is MaxBig to small window
+                document.getElementById("fmBodyLeft").className='LShow';
+                document.getElementById("fmBodyRight").className='RSmall';
+                fmJLSetDiv(0);
+            }else{
+                document.getElementById("fmBodyLeft").className='LHide';
+                document.getElementById("fmBodyRight").className='RBig';
+                fmJLSetDiv(1);
+            }
+        }
+        function fmJLSetDiv(ii){
+            //sWidth=document.body.offsetWidth;//  sHeight=screen.height;//document.body.clientHeight//document.documentElement.clientHeight//document.body.offsetWidth
+            var MaxHeight = document.documentElement.clientHeight ;
+            var MaxWidth = document.documentElement.clientWidth ;
+            var cHeight= (MaxHeight -50-30 )  ;//
+            var cWidth= (MaxWidth - 10 )  ;
+            if(ii==0)cWidth =cWidth - 190 ;
+            //if(ii==110)cWidth =cWidth - 190  ;//first load ;diff 18
+            document.getElementById("fmBody").style.height= cHeight + "px";
+            document.getElementById("fmBodyRight").style.width= cWidth + "px"; //fmRbody
+            //document.getElementById("info").innerHTML="body.h=" +document.body.clientHeight + ",sH="+screen.height+",dH="+document.documentElement.clientHeight +",H="+ cHeight;
+            //document.getElementById("info").innerHTML +=";;body.w=" +document.body.clientWidth + ",sW="+screen.width+",dW="+document.documentElement.clientWidth +",W="+cWidth ;
+        }
+        //window.onload=fmJLSetDiv(0);
+        window.onresize = function () {
+            fmJLSetDiv(0);
+        }
+    </script>
+    <link type=text/css href="../../rsoss/images/style.css" rel=stylesheet>
+</head>
+<body>
+<div class="fm_top">
+    <table border="0" width='100%'>
+        <tr>
+            <td width=20 height="39"></td>
+            <td>
+                <i style="font-size:22px; color:#F60; font-weight:bold;">总后台管理系统</i>
+            </td>
+            <td align=right>
+
+                <table border=0>
+                    <tr>
+                        <td>→ 欢迎您<font style="color:#600;">&nbsp;&nbsp;</font> </td>
+                        <td ><img border=0 src="../../rsoss/images/frame/arrow_top.gif" align=absmiddle><a href="../account/my/wpwm_mypsw.aspx" target="RiFrame"  >修改密码</a></td>
+                        <td><img border=0 src="../../rsoss/images/frame/arrow_top.gif" align=absmiddle><a href="help.html" target="RiFrame" >帮助中心</a></td>
+                        <td width=10></td>
+
+                        <td><img border=0 src="../../rsoss/images/frame/arrow_top.gif" align="absmiddle"><a href="../logout.aspx"  target="_top">退出管理</a></td>
+                        <td width=5></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <div id="info"></div>
+</div>
+
+<div class="fm_body" id="fmBody" >
+    <div class="LShow" id="fmBodyLeft">
+        <div class="Lbody"  >
+            <iframe  name="ifmenu" src="left.html" width="100%" height="100%" scrolling="auto" frameborder="0"></iframe>
+        </div>
+    </div>
+
+    <div class="RbodyBt" onClick="fmJLTag();"  >
+    </div>
+
+    <div class="RSmall" id="fmBodyRight">
+        <div class="Rbody" >
+            <iframe style="clear:both;" name="RiFrame" id="RiFrame" src="help.html" width="100%" height="100%" scrolling="auto"   frameborder="0"></iframe>
+        </div>
+    </div>
+</div>
+
+<div class="fm_end">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td height="30"  align="center">版权所有：网络技术有限公司</td>
+        </tr>
+    </table>
+</div>
+<script type="text/javascript" >
+    fmJLSetDiv(0);
+</script>
+</body>
+</html>
+
