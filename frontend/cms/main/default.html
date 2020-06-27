@@ -78,15 +78,13 @@
                 <i style="font-size:22px; color:#F60; font-weight:bold;">总后台管理系统</i>
             </td>
             <td align=right>
-
                 <table border=0>
                     <tr>
-                        <td>→ 欢迎您<font style="color:#600;">&nbsp;&nbsp;</font> </td>
-                        <td ><img border=0 src="../../rsoss/images/frame/arrow_top.gif" align=absmiddle><a href="../account/my/wpwm_mypsw.aspx" target="RiFrame"  >修改密码</a></td>
+                        <td>→ 欢迎您<i style="color:#600;" id="adminName">&nbsp;&nbsp;</i> </td>
+                        <td ><img border=0 src="../../rsoss/images/frame/arrow_top.gif" align=absmiddle><a href="../account/password_edit.html" target="RiFrame"  >修改密码</a></td>
                         <td><img border=0 src="../../rsoss/images/frame/arrow_top.gif" align=absmiddle><a href="help.html" target="RiFrame" >帮助中心</a></td>
                         <td width=10></td>
-
-                        <td><img border=0 src="../../rsoss/images/frame/arrow_top.gif" align="absmiddle"><a href="../logout.aspx"  target="_top">退出管理</a></td>
+                        <td><img border=0 src="../../rsoss/images/frame/arrow_top.gif" align="absmiddle"><a href="../login.html"  target="_top">退出管理</a></td>
                         <td width=5></td>
                     </tr>
                 </table>
@@ -95,7 +93,6 @@
     </table>
     <div id="info"></div>
 </div>
-
 <div class="fm_body" id="fmBody" >
     <div class="LShow" id="fmBodyLeft">
         <div class="Lbody"  >
@@ -112,7 +109,6 @@
         </div>
     </div>
 </div>
-
 <div class="fm_end">
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
@@ -122,6 +118,17 @@
 </div>
 <script type="text/javascript" >
     fmJLSetDiv(0);
+</script>
+<script type="text/javascript" src="../../rs/js/jquery.min.js"></script>
+<script type="text/javascript" src="../../rs/js/system.js"></script>
+<script type="text/javascript" src="../../rs/js/comm.js"></script>
+<script>
+    let jwtDB = jsBase.jwtCmsGet();
+    if (jwtDB){
+        let o1 = jsBase.jwtParse(jwtDB);
+        $("#adminName").html(o1.n);
+        //console.log(o1);
+    }
 </script>
 </body>
 </html>

@@ -4,22 +4,24 @@
     <meta charset="UTF-8">
     <link type=text/css href="../rsoss/images/style.css" rel=stylesheet>
     <script type="text/javascript" src="../rs/js/system.js"></script>
+    <script type="text/javascript" src="../rs/js/comm.js"></script>
     <script type="text/javascript" src="../rs/js/jquery.min.js"></script>
-
-    <script type="text/javascript" src="../rsoss/js/p/jlcheck.js"></script>
-    <script type="text/javascript" src="../rsoss/js/pga/a_login.js"></script>
-    <script type="text/javascript" src="../rsoss/js/p/md5.js"></script>
     <title>Login oss</title>
     <script>
         function login() {
             let uName = $("#username1").val();
             let pwd = $("#password1").val();
-            let clientID = 3;
+            let clientID = 0;
             let dataUrl = SystemURLAPI + "/auth-jwt/v1/login?name=" + uName + "&userID=" + pwd + "&clientID=" + clientID
             $.get(dataUrl, function (jsData, status) {
-                console.log("login数据: ", jsData);
-                console.log("状态: " + status);
-                $("#divValueLogin").html("数据:<br>" + JSON.stringify(jsData) + ",<br>状态:<br>" + status + "");
+                if (!jsData ||jsData.code != 0) {
+                    $("#InfoAlert").html("登录不成功");
+                    console.log("[ERROR]",jsData)
+                    return;
+                }
+                jsBase.jwtCmsSet(jsData.data);
+                $("#InfoAlert").html("登录成功");
+                top.location='main/default.html';
             });
         }
     </script>
@@ -56,7 +58,7 @@
                         <td height="32">&nbsp;</td>
                         <td>
                             <input type="button" name="button" id="button" value="管理登陆"
-                                   onClick="jjLogin.LoginSubmit();">
+                                   onClick="login();">
                         </td>
                     </tr>
                     <tr>
@@ -77,5 +79,14 @@
 </form>
 
 <div id=dvLog></div>
+<script>
+    let jwtDB = jsBase.jwtCmsGet();
+    if (jwtDB){
+        let o = jsBase.jwtParse(jwtDB);
+        //$("#username1").val(o.name);
+        //$("#password1").val(o.id);
+        console.log("jwt:",o);
+    }
+</script>
 </body>
 </html>
