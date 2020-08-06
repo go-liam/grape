@@ -439,3 +439,4 @@ Code Review 跟项目代码的可读性、可维护性息息相关，也是团�
 
 https://github.com/golang/go/wiki/CodeReviewComments
 https://golang.org/doc/effective_go.html
+https://draveness.me/golang-101/
