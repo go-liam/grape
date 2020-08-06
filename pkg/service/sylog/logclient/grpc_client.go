@@ -3,19 +3,20 @@ package logclient
 import (
 	"context"
 	"google.golang.org/grpc"
-	"log"
 	"grape/pkg/config"
 	pb2 "grape/proto/svlog"
+	"log"
 	"time"
 )
 
-func init()  {
+func init() {
 	address := config.ServerSvLog.Host + config.ServerSvLog.PortGRPC
 	ClientInit(address)
 }
 
 var client pb2.SvLogServiceClient
 var isConnect bool
+
 // address = localhost:9403
 func ClientInit(address string) {
 	conn, err := grpc.Dial(address, grpc.WithInsecure())
@@ -23,7 +24,7 @@ func ClientInit(address string) {
 		log.Println("[ERROR]RPC Account Service ERROR:", err)
 	}
 	client = pb2.NewSvLogServiceClient(conn) //.NewAccountServiceClient(conn)
-	isConnect =true
+	isConnect = true
 }
 
 // ClientWrite :
@@ -40,7 +41,8 @@ func ClientWrite(level int32, logID int64, msg string) {
 		return
 	}
 }
+
 // ClientWriteAsy :
 func ClientWriteAsy(level int32, logID int64, msg string) {
-	go ClientWrite(level,logID,msg)
+	go ClientWrite(level, logID, msg)
 }

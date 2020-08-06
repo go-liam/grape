@@ -14,7 +14,7 @@ var (
 func getConfig() {
 	robotToken = env.DefaultDingTalkConfigRobotToken
 	robotSecret = env.DefaultDingTalkConfigRobotSecret
-	println(robotToken,robotSecret)
+	println(robotToken, robotSecret)
 }
 
 func TestRobot_SendMessage(t *testing.T) {

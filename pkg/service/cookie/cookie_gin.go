@@ -46,19 +46,19 @@ func (sv *SvGin) Login(c *gin.Context, name string, userID int64) (int, error) {
 	return 1, nil
 }
 
-func (sv *SvGin) Info(c *gin.Context) (*jwt.CustomClaims, error){
+func (sv *SvGin) Info(c *gin.Context) (*jwt.CustomClaims, error) {
 	cookie, err := c.Cookie(sv.TokenName)
 	if err != nil {
-		return nil,err
+		return nil, err
 	}
 	return jwt.Server.ParseToken(cookie)
 }
 
 //Refresh
-func (sv *SvGin) Refresh(c *gin.Context ) (*jwt.CustomClaims, error) {
-	cookie, err := c.Cookie(sv.TokenName )
+func (sv *SvGin) Refresh(c *gin.Context) (*jwt.CustomClaims, error) {
+	cookie, err := c.Cookie(sv.TokenName)
 	if err != nil {
-		return nil,err
+		return nil, err
 	}
 	//info, _ := jwt.Server.ParseToken(cookie)
 	//if info.ExpiresAt - time.Now().Unix() < 3600*24*7 {
@@ -68,21 +68,21 @@ func (sv *SvGin) Refresh(c *gin.Context ) (*jwt.CustomClaims, error) {
 	return jwt.Server.ParseToken(refresh)
 }
 
-func (sv *SvGin) Logout(c *gin.Context )  {
+func (sv *SvGin) Logout(c *gin.Context) {
 	c.SetCookie(sv.TokenName, "", -1000, "/", sv.CookieDomain, false, false)
 }
 
 // IsBadUser
-func (sv *SvGin) CheckBadUser(c *gin.Context ) (int, *jwt.CustomClaims, error)  {
-	cookie, err := c.Cookie(sv.TokenName )
+func (sv *SvGin) CheckBadUser(c *gin.Context) (int, *jwt.CustomClaims, error) {
+	cookie, err := c.Cookie(sv.TokenName)
 	if err != nil {
-		return 0,nil,err
+		return 0, nil, err
 	}
 	//info
 	info, _ := jwt.Server.ParseToken(cookie)
-	flag := conv.ArrayInt64Contains(sv.BadUidList,conv.StringToInt64(info.UserID,0))
+	flag := conv.ArrayInt64Contains(sv.BadUidList, conv.StringToInt64(info.UserID, 0))
 	if flag {
-		return 4,nil , errors.New("bad uid")
+		return 4, nil, errors.New("bad uid")
 	}
-	return 1,info, nil
+	return 1, info, nil
 }

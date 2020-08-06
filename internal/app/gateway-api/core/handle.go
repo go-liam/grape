@@ -15,7 +15,7 @@ var urlDefault = "/"
 // handle :
 func HandleRequestAndRedirect(res http.ResponseWriter, req *http.Request) {
 	// 跨域设置
-	if router.AccessControlAllowHTTP(res,req){
+	if router.AccessControlAllowHTTP(res, req) {
 		return
 	}
 	if !auth(req) {
@@ -26,7 +26,7 @@ func HandleRequestAndRedirect(res http.ResponseWriter, req *http.Request) {
 	println("url =", url)
 
 	if url == "/" {
-		Index(res,req)
+		Index(res, req)
 		return
 	}
 	serveReverseProxy(url, res, req)
@@ -62,7 +62,7 @@ func serveReverseProxy(target string, res http.ResponseWriter, req *http.Request
 	proxy.ServeHTTP(res, req)
 }
 
-func Index(res http.ResponseWriter, req *http.Request)  {
+func Index(res http.ResponseWriter, req *http.Request) {
 	ip := request.ClientIP(req)
 	io.WriteString(res, "5-4-index,ip="+ip)
 }

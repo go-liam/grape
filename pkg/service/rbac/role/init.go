@@ -2,6 +2,6 @@ package role
 
 var Server InRole
 
-func init()  {
+func init() {
 	Server = new(SvRoleMock) // ServerMock
 }

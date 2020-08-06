@@ -12,8 +12,8 @@ const (
 	RequestParameter = 10100
 	MsRequest        = "请求参数错误"
 
-	UnActivation = 10110
-	MsUnActivation        = "账号没激活"
+	UnActivation   = 10110
+	MsUnActivation = "账号没激活"
 
 	// data
 	Database       = 11001

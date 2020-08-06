@@ -28,7 +28,7 @@ type MailInfo struct {
 	//Msg string
 }
 
-func New(userEmail string, mailPassword string, mailSMTPHost string, mailSMTPPort string, ) *Mail {
+func New(userEmail string, mailPassword string, mailSMTPHost string, mailSMTPPort string) *Mail {
 	return &Mail{
 		UserEmail:    userEmail,
 		MailSMTPPort: mailSMTPPort,

@@ -2,8 +2,8 @@ package sv
 
 import (
 	"github.com/gin-gonic/gin"
-	"log"
 	"grape/pkg/service/jwt"
+	"log"
 	"net/http"
 )
 
@@ -19,11 +19,11 @@ type RespLogin struct {
 func Login(c *gin.Context) {
 	name := c.Query("name")
 	pwd := c.Query("pwd")
-	token, exTime, uid := jwt.ServerGin.Login(name, pwd,0)
+	token, exTime, uid := jwt.ServerGin.Login(name, pwd, 0)
 	c.JSON(http.StatusOK, gin.H{
 		"code":    0,
 		"message": "OK",
-		"data":    RespLogin{Token: token, ExpiresTime: exTime, Status: 0,UserID: uid},
+		"data":    RespLogin{Token: token, ExpiresTime: exTime, Status: 0, UserID: uid},
 	})
 }
 
@@ -32,8 +32,8 @@ func CheckUser(c *gin.Context) {
 	//info
 	token := c.GetHeader(TokenName)
 	info, err := jwt.ServerGin.Info(token)
-	if err !=nil{
-		log.Printf("[ERROR] CheckUser:%+v\n ",err)
+	if err != nil {
+		log.Printf("[ERROR] CheckUser:%+v\n ", err)
 	}
 	c.JSON(http.StatusOK, gin.H{
 		"code":    0,
@@ -66,8 +66,8 @@ func CheckBadUser(c *gin.Context) {
 	//info
 	token := c.GetHeader(TokenName)
 	f, info, err := jwt.ServerGin.IsBadUser(token)
-	if err != nil{
-		log.Printf("[ERROR] CheckBadUser: %+v\n",err)
+	if err != nil {
+		log.Printf("[ERROR] CheckBadUser: %+v\n", err)
 	}
 	if f {
 		c.JSON(http.StatusOK, gin.H{

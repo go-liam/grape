@@ -6,9 +6,9 @@ import (
 	"github.com/go-liam/tracing"
 	"github.com/go-liam/tracing/config"
 	"github.com/go-liam/util/request"
-	"log"
 	"grape/pkg/middleware/limiter"
 	"grape/pkg/middleware/metric"
+	"log"
 	"net/http"
 	"os"
 	"os/signal"
@@ -32,7 +32,7 @@ func main() {
 }
 
 func SetupRouter(engine *gin.Engine) {
-	path := "/"+serverName
+	path := "/" + serverName
 	//链路跟踪
 	tracing.Init(config.DefaultConfig)
 	engine.Use(tracing.NewGinMiddlewareHandle(serverName))
@@ -48,17 +48,17 @@ func SetupRouter(engine *gin.Engine) {
 		engine.GET(path+"/metrics/v2", metric.Server.HandlerClose)
 	}
 
-	engine.GET("/",Index )
-	engine.GET(path,Index )
-	g.GET("/v1/:name",helloHandler )
+	engine.GET("/", Index)
+	engine.GET(path, Index)
+	g.GET("/v1/:name", helloHandler)
 	//404
 	engine.NoRoute(func(c *gin.Context) {
-		c.String(404, "请求方法不存在 " )
+		c.String(404, "请求方法不存在 ")
 	})
 }
 
 func Index(c *gin.Context) {
-	c.String(http.StatusOK, "Hello,It works.index "+serverName )
+	c.String(http.StatusOK, "Hello,It works.index "+serverName)
 }
 
 func helloHandler(c *gin.Context) {
@@ -66,6 +66,6 @@ func helloHandler(c *gin.Context) {
 	name, _ := os.Hostname()
 	path := c.Request.URL.Path
 	st1 := "%s: host: %s, path: %s ,token: %s ,UserID: %s ,ip:%s"
-	st := fmt.Sprintf(st1,serverName, name, path, c.Request.Header.Get("Token"), c.Request.Header.Get("UserID"), request.ClientIP(c.Request))
-	c.String(http.StatusOK, st )
+	st := fmt.Sprintf(st1, serverName, name, path, c.Request.Header.Get("Token"), c.Request.Header.Get("UserID"), request.ClientIP(c.Request))
+	c.String(http.StatusOK, st)
 }

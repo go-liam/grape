@@ -6,8 +6,8 @@ func init() {
 	sv = new(SvMock)
 }
 
-func Info(key string, versionID int64) (*ConfigItem, error)  {
-	return sv.Info(key,versionID)
+func Info(key string, versionID int64) (*ConfigItem, error) {
+	return sv.Info(key, versionID)
 }
 
 func Add(item *ConfigItem) (int64, error) {

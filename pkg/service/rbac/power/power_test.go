@@ -6,10 +6,10 @@ import (
 )
 
 func TestCheckPowerByTag(t *testing.T) {
-	list,_ := Server.List(1)
-	tag:="box-add"
-	flag := CheckPowerByTag(tag,list)
-	println("flag:",flag)
+	list, _ := Server.List(1)
+	tag := "box-add"
+	flag := CheckPowerByTag(tag, list)
+	println("flag:", flag)
 }
 
 func TestMain(m *testing.M) {
@@ -20,8 +20,8 @@ func TestMain(m *testing.M) {
 }
 
 func TestGetPowerIDByTag(t *testing.T) {
-	list,_ := Server.List(1)
-	tag:="box-add"
-	flag := GetPowerIDByTag(tag,list)
-	println("flag:",flag)
+	list, _ := Server.List(1)
+	tag := "box-add"
+	flag := GetPowerIDByTag(tag, list)
+	println("flag:", flag)
 }

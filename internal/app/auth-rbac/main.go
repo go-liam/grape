@@ -18,14 +18,14 @@ const (
 )
 
 func main() {
-	path := "/"+serverName
+	path := "/" + serverName
 	engine := gin.Default()
 	//链路跟踪
 	tracing.Init(config.DefaultConfig)
 	engine.Use(tracing.NewGinMiddlewareHandle(serverName))
 	engine.GET("/", core.Index)
 	engine.GET(path, core.Index)
-	g := engine.Group(path+"/v1/")
+	g := engine.Group(path + "/v1/")
 	// 限流
 	limit := limiter.NewLimiter(limiter.MaxNumber)
 	engine.Use(limiter.LimitHandler(limit))
@@ -46,4 +46,3 @@ func main() {
 	<-quit
 	log.Println("Shutdown Server ...")
 }
-

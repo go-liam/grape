@@ -62,7 +62,7 @@ func (sv *SvMySql) NewEngine() bool {
 		logSQL = false
 	}
 	sv.engine.LogMode(logSQL)
-	if sv.engine != nil && sv.engine.DB() != nil{
+	if sv.engine != nil && sv.engine.DB() != nil {
 		sv.engine.DB().SetConnMaxLifetime(ConnMaxLifetime * time.Second)
 		sv.engine.DB().SetMaxOpenConns(MaxOpenConns)
 		sv.engine.DB().SetMaxIdleConns(MaxIdleConns)

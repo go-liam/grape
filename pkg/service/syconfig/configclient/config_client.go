@@ -10,11 +10,11 @@ import "grape/pkg/service/syconfig"
 //}
 
 // Info ("syai",0) 获取最新的配置
-func Info(key string,versionID int64 ) (*syconfig.ConfigItem,error) {
-	return syconfig.Info(key,versionID)
+func Info(key string, versionID int64) (*syconfig.ConfigItem, error) {
+	return syconfig.Info(key, versionID)
 }
 
 // List :
-func List(key string ) ([]*syconfig.ConfigItem,error) {
+func List(key string) ([]*syconfig.ConfigItem, error) {
 	return syconfig.List(key)
 }

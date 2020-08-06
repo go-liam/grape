@@ -33,7 +33,6 @@ func LimitHandlerB2(limiter *rate.Limiter) gin.HandlerFunc {
 	}
 }
 
-
 func NewLimiter2(max int) *rate.Limiter {
 	// 每 800ms 产生 1 个 token，最多缓存 1 个 token，如果缓存满了，新的 token 会被丢弃
 	limiter := rate.NewLimiter(rate.Every(time.Duration(1000)*time.Millisecond), max)

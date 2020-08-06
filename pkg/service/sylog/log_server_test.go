@@ -10,7 +10,7 @@ func TestInit(t *testing.T) {
 }
 
 func TestWriteMsg(t *testing.T) {
-	WriteLog(conv.TimeNowInt64(),"msg", LevelInformational)
+	WriteLog(conv.TimeNowInt64(), "msg", LevelInformational)
 }
 
 //func TestDestroy(t *testing.T) {

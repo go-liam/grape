@@ -17,9 +17,9 @@ import (
 type svGRPC struct{}
 
 func (s *svGRPC) Health(ctx context.Context, in *pb.HealthReq) (*pb.HealthResp, error) {
-	mess :="client:"+ in.ClientName
+	mess := "client:" + in.ClientName
 	if len(os.Args) > 1 {
-		mess +="-server:"+ os.Args[1]
+		mess += "-server:" + os.Args[1]
 	}
 	return &pb.HealthResp{Message: mess, Code: 0, Version: "123456789012"}, nil
 }
@@ -36,7 +36,7 @@ func (s *svGRPC) Email(ctx context.Context, in *pb.EmailReq) (*pb.EmailResp, err
 }
 
 func (s *svGRPC) DingTalkMarkdown(ctx context.Context, in *pb.DingTalkReq) (*pb.DingTalkResp, error) {
-	err := config.SvDingTalk.SendMarkdownMessage(in.Title,in.Text,[]string{},in.IsAtAll)
+	err := config.SvDingTalk.SendMarkdownMessage(in.Title, in.Text, []string{}, in.IsAtAll)
 	return &pb.DingTalkResp{Code: 0, Message: "OK"}, err
 }
 

@@ -10,13 +10,13 @@ import (
 )
 
 var (
-	svNoticeClient pb2.NoticeServiceClient
+	svNoticeClient        pb2.NoticeServiceClient
 	noticeClientIsConnect = false
 )
 
 func initNotice() (int, error) {
-	if noticeClientIsConnect{
-		return 2,nil
+	if noticeClientIsConnect {
+		return 2, nil
 	}
 	address := config.ServerSvNotice.Host + config.ServerSvNotice.PortGRPC
 	conn, err := grpc.Dial(address, grpc.WithInsecure())
@@ -26,14 +26,14 @@ func initNotice() (int, error) {
 	}
 	//defer conn.Close()
 	svNoticeClient = pb2.NewNoticeServiceClient(conn)
-	noticeClientIsConnect =true
+	noticeClientIsConnect = true
 	return 1, nil
 }
 
-func NoticeEmail( info *pb2.EmailReq) (int, error) {
-	rs,err1 := initNotice()
-	if rs <=0 {
-		return rs,err1
+func NoticeEmail(info *pb2.EmailReq) (int, error) {
+	rs, err1 := initNotice()
+	if rs <= 0 {
+		return rs, err1
 	}
 	// Contact the server and print out its response.
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
@@ -47,10 +47,10 @@ func NoticeEmail( info *pb2.EmailReq) (int, error) {
 	return 1, nil
 }
 
-func NoticeDingTalkMarkdown( info *pb2.DingTalkReq) (int, error) {
-	rs,err1 := initNotice()
-	if rs <=0 {
-		return rs,err1
+func NoticeDingTalkMarkdown(info *pb2.DingTalkReq) (int, error) {
+	rs, err1 := initNotice()
+	if rs <= 0 {
+		return rs, err1
 	}
 	// Contact the server and print out its response.
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)

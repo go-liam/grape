@@ -22,7 +22,7 @@ func main() {
 	core.DateInit()
 	// start server
 	http.HandleFunc("/", core.HandleRequestAndRedirect)
-	if err := http.ListenAndServe(config2.ServerGateWayAPI.Port,nethttp.Middleware(tracer, http.DefaultServeMux)); err != nil {
+	if err := http.ListenAndServe(config2.ServerGateWayAPI.Port, nethttp.Middleware(tracer, http.DefaultServeMux)); err != nil {
 		log.Printf("[ERROR] %+v\n", err)
 	}
 	quit := make(chan os.Signal)

@@ -18,9 +18,9 @@ func TestHTTPIndex(t *testing.T) {
 	tsIndex()
 }
 
-func tsIndex()  {
+func tsIndex() {
 	sv := new(tshttp.HTTPTest)
-	url := tsHTTPAddress+"/"
+	url := tsHTTPAddress + "/"
 	data := `
 		{
 			"ID":1,
@@ -28,7 +28,7 @@ func tsIndex()  {
 		}
 		`
 	reader := strings.NewReader(data)
-	code, back, _ := sv.HTTPData(tshttp.MethodHTTPGET,url,reader,"","")
-	println("code:",code)
+	code, back, _ := sv.HTTPData(tshttp.MethodHTTPGET, url, reader, "", "")
+	println("code:", code)
 	println(back)
 }

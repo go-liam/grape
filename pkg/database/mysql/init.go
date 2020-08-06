@@ -13,7 +13,7 @@ var (
 	ServerWX  *SvMySql
 )
 
-const formatSt  = "%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=true&loc=Local"
+const formatSt = "%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=true&loc=Local"
 
 func init() {
 	if config.EnvConfig.ProjectEnv == env.ConstEnvUnit { // "unit"

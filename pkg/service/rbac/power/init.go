@@ -2,6 +2,6 @@ package power
 
 var Server InPower
 
-func init()  {
+func init() {
 	Server = new(SvPowerMock)
 }

@@ -6,15 +6,15 @@ import (
 )
 
 func TestListByIDs(t *testing.T) {
-	list ,_:= Server.List()
-	ls := ListByIDs([]int{1,2},list)
-	for _,v:= range ls {
-		log.Printf("v=%+v\n",v )
+	list, _ := Server.List()
+	ls := ListByIDs([]int{1, 2}, list)
+	for _, v := range ls {
+		log.Printf("v=%+v\n", v)
 	}
 }
 
 func TestListPowerIDsByIDs(t *testing.T) {
-	list ,_:= Server.List()
-	ls := ListPowerIDsByIDs( []int{1,2},list )
-	log.Printf("v=%+v\n",ls )
+	list, _ := Server.List()
+	ls := ListPowerIDsByIDs([]int{1, 2}, list)
+	log.Printf("v=%+v\n", ls)
 }

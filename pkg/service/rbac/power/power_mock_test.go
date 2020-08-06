@@ -12,7 +12,7 @@ func TestPower_List(t *testing.T) {
 	group2 := []int{1, 2, 3, 4}
 	join := conv.ArrayIntJoin(group1, group2)
 	check := conv.ArrayIntContains(join, pid)
-	println("用户权限：= ",check)
+	println("用户权限：= ", check)
 }
 
 func TestSvPowerMock_List(t *testing.T) {
@@ -20,16 +20,16 @@ func TestSvPowerMock_List(t *testing.T) {
 }
 
 func TestSvPowerMock_Add(t *testing.T) {
-	item:= new(ModelPower)
+	item := new(ModelPower)
 	ServerMock.Add(item)
 }
 
 func TestSvPowerMock_Update(t *testing.T) {
-	item:= new(ModelPower)
+	item := new(ModelPower)
 	ServerMock.Edit(item)
 }
 
 func TestSvPowerMock_Delete(t *testing.T) {
-	item:= new(ModelPower)
+	item := new(ModelPower)
 	ServerMock.Delete(item)
 }

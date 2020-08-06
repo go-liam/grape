@@ -25,6 +25,6 @@ func sendTest() {
 	i.FromName = "帅哥007"
 	i.Subject = "我是我-标题10"
 	i.Type = TypeMailHtml
-	sv := New(env.MailConfig.UserEmail,env.MailConfig.MailPassword,env.MailConfig.MailSMTPHost,env.MailConfig.MailSMTPPort )
+	sv := New(env.MailConfig.UserEmail, env.MailConfig.MailPassword, env.MailConfig.MailSMTPHost, env.MailConfig.MailSMTPPort)
 	sv.Send(i)
 }

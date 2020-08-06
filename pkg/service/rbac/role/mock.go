@@ -9,7 +9,7 @@ func init() {
 }
 
 type SvRoleMock struct {
-	list []*ModelRole
+	list    []*ModelRole
 	hadData bool
 }
 
@@ -18,11 +18,10 @@ func (sv *SvRoleMock) dataInit() {
 		sv.hadData = true
 		sv.list = make([]*ModelRole, 0)
 		sv.list = append(sv.list, &ModelRole{RoleID: 1, RoleName: "name1", PowerIDS: "[1,2,3]"})
-		sv.list = append(sv.list,  &ModelRole{RoleID: 2, RoleName: "name1", PowerIDS: "[2,3]"})
-		sv.list = append(sv.list,  &ModelRole{RoleID: 3, RoleName: "name1", PowerIDS: "[4,5]"})
+		sv.list = append(sv.list, &ModelRole{RoleID: 2, RoleName: "name1", PowerIDS: "[2,3]"})
+		sv.list = append(sv.list, &ModelRole{RoleID: 3, RoleName: "name1", PowerIDS: "[4,5]"})
 	}
 }
-
 
 func (sv *SvRoleMock) List() ([]*ModelRole, error) {
 	sv.dataInit()
@@ -35,7 +34,6 @@ func (sv *SvRoleMock) Add(item *ModelRole) (int, error) {
 	return 1, nil
 }
 
-
 func (sv *SvRoleMock) Edit(item *ModelRole) (int, error) {
 	i := 0
 	for _, v := range sv.list {
@@ -46,7 +44,7 @@ func (sv *SvRoleMock) Edit(item *ModelRole) (int, error) {
 	}
 	return 1, nil
 }
-func (sv *SvRoleMock) UpdatePower (item*ModelRole)(int,error)  {
+func (sv *SvRoleMock) UpdatePower(item *ModelRole) (int, error) {
 	i := 0
 	for _, v := range sv.list {
 		if v.RoleID == item.RoleID {
@@ -67,7 +65,6 @@ func (sv *SvRoleMock) Delete(item *ModelRole) (int, error) {
 	sv.list = ls
 	return 1, nil
 }
-
 
 func (sv *SvRoleMock) FindOne(roleID int) (*ModelRole, error) {
 	for _, v := range sv.list {

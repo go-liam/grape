@@ -7,14 +7,14 @@ type ModelTable struct {
 }
 
 func Health() int {
-	println("Mysql:Server.URL=",Server.URL)
+	println("Mysql:Server.URL=", Server.URL)
 	item := new(ModelTable)
 	sql := "select 1 as ID  "
-	if Server.IsConnect{
+	if Server.IsConnect {
 		Server.Engine().Raw(sql).Scan(item)
-	}else {
+	} else {
 		Server.NewEngine()
 	}
-	log.Printf("[INFO] =%+v\n",item)
+	log.Printf("[INFO] =%+v\n", item)
 	return item.ID
 }

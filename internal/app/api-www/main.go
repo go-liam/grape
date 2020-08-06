@@ -13,9 +13,9 @@ import (
 )
 
 const (
-	port = ":7203"
-	serverName ="api-www"
-	path = "/"+serverName
+	port       = ":7203"
+	serverName = "api-www"
+	path       = "/" + serverName
 )
 
 func main() {
@@ -35,8 +35,8 @@ func SetupRouter(engine *gin.Engine) {
 	//链路跟踪
 	tracing.Init(trace.DefaultConfig)
 	engine.Use(tracing.NewGinMiddlewareHandle(serverName))
-	engine.GET("/",Index )
-	engine.GET(path,Index )
+	engine.GET("/", Index)
+	engine.GET(path, Index)
 	g := engine.Group(path)
 	// 限流
 	//limit := limiter.NewLimiter(limiter.MaxNumber)
@@ -48,14 +48,14 @@ func SetupRouter(engine *gin.Engine) {
 	} else {
 		engine.GET(path+"/metrics/v2", metric.Server.HandlerClose)
 	}
-	g.GET("/",Index )
+	g.GET("/", Index)
 	g.GET("ip", core.ClientIPHeader)
 	//404
 	engine.NoRoute(func(c *gin.Context) {
-		c.String(404, "请求方法不存在 " )
+		c.String(404, "请求方法不存在 ")
 	})
 }
 
 func Index(c *gin.Context) {
-	c.String(http.StatusOK, "1-Hello,It works.index "+serverName )
+	c.String(http.StatusOK, "1-Hello,It works.index "+serverName)
 }

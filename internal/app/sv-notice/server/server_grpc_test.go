@@ -17,7 +17,7 @@ const (
 	defaultName   = "client:"
 )
 
-func init()  {
+func init() {
 	go RunServerGRPC(tsGRPCPort)
 }
 
@@ -72,7 +72,7 @@ func testEmail() {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 	r, err := c.Email(ctx, &pb2.EmailReq{
-		To:       env.DefaultNoticeEmailTo  ,
+		To:       env.DefaultNoticeEmailTo,
 		FromName: "xxxFrom",
 		Subject:  "你好！",
 		Type:     "html",

@@ -5,6 +5,6 @@ import (
 )
 
 func TestNameNotice(t *testing.T) {
-	v1:= EnvConfig.ProjectEnv
-	println("EnvConfig:",v1)
+	v1 := EnvConfig.ProjectEnv
+	println("EnvConfig:", v1)
 }

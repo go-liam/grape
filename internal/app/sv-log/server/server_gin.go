@@ -12,8 +12,8 @@ import (
 )
 
 const (
-	portGin    = ":7403"
-	path = "/"+ serverName
+	portGin = ":7403"
+	path    = "/" + serverName
 )
 
 func RunServerGin() {
@@ -30,7 +30,7 @@ func SetupRouter(engine *gin.Engine) {
 	//engine.Use(tracing.NewGinMiddlewareHandle(serverName))
 	//设置路由中间件
 	engine.GET("/", Index)
-	engine.GET(path,Index )
+	engine.GET(path, Index)
 	g := engine.Group(path)
 	// 监控
 	if metric.Server.IsOpen {
@@ -45,7 +45,7 @@ func SetupRouter(engine *gin.Engine) {
 
 func Index(c *gin.Context) {
 	hostName, _ := os.Hostname()
-	c.String(http.StatusOK, serverName+", running on " +hostName)
+	c.String(http.StatusOK, serverName+", running on "+hostName)
 }
 
 type ModeWriteReq struct {
@@ -59,8 +59,8 @@ func writeCore(c *gin.Context) {
 	req := new(ModeWriteReq)
 	//println(string(body))
 	json.Unmarshal(body, &req)
-	if req != nil && req.LogID > 0{
-		go svlog.WriteLog(req.LogID,req.Msg,req.Level)
+	if req != nil && req.LogID > 0 {
+		go svlog.WriteLog(req.LogID, req.Msg, req.Level)
 	}
-	c.JSON(http.StatusOK, response.APIResponseData(0,"OK",nil))
+	c.JSON(http.StatusOK, response.APIResponseData(0, "OK", nil))
 }

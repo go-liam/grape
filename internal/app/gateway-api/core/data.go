@@ -8,10 +8,10 @@ type SiteItem struct {
 }
 
 var list []*config.SiteItem
+
 //var httpSt = "http://"
 //var serverIP = "192.168.31.235"
 
 func DateInit() {
 	list = config.GateWayDateInit()
 }
-

@@ -11,7 +11,7 @@ import (
 
 const (
 	portGRPC = ":9405"
-	partGin    = ":7405"
+	partGin  = ":7405"
 )
 
 func main() {

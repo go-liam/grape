@@ -19,7 +19,7 @@ type redisConfig struct {
 }
 
 func init() {
-	RedisConfig = new(redisConfig )
+	RedisConfig = new(redisConfig)
 	en.IgnorePrefix()
 	err := en.Fill(RedisConfig)
 	log.Printf("[INFO] RedisConfig :%+v\n", RedisConfig)
@@ -27,4 +27,3 @@ func init() {
 		log.Printf("[ERROR] RedisConfig :%+v\n", err)
 	}
 }
-

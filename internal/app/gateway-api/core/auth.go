@@ -8,7 +8,7 @@ import (
 	"net/http"
 )
 
-var badIpList = [...] string{"190.0.0.0"}
+var badIpList = [...]string{"190.0.0.0"}
 
 // 鉴权，黑名单,封IP
 func auth(req *http.Request) bool {
@@ -20,7 +20,7 @@ func auth(req *http.Request) bool {
 }
 
 func isBadIP(ip string) bool {
-	for _,v := range  badIpList{
+	for _, v := range badIpList {
 		if v == ip {
 			return true
 		}
@@ -28,12 +28,12 @@ func isBadIP(ip string) bool {
 	return false
 }
 
-func setUserIDHead( req *http.Request )  {
+func setUserIDHead(req *http.Request) {
 	token := req.Header.Get("tokenjwt")
-	if token !=""{
-		info,_ := jwt.Server.ParseToken(token)
-		if info != nil && conv.StringToInt64(info.UserID,0) > 0{
-			req.Header.Set("UserID",  info.UserID)
+	if token != "" {
+		info, _ := jwt.Server.ParseToken(token)
+		if info != nil && conv.StringToInt64(info.UserID, 0) > 0 {
+			req.Header.Set("UserID", info.UserID)
 		}
 	}
 }

@@ -62,7 +62,7 @@ func LimitHandlerIP() gin.HandlerFunc {
 		ip := request.ClientIP(c.Request)
 		//log.Println("ip:", ip)
 		for _, v := range ips {
-			if strings.Compare( v , ip) ==0 {
+			if strings.Compare(v, ip) == 0 {
 				c.Status(403)
 				c.Abort()
 				return

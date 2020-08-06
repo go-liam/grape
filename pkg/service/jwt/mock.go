@@ -19,7 +19,7 @@ func init() {
 }
 
 func (sv *SvMock) UpdateOrAdd(item *ModelUserToken) (bool, error) {
-	sv.DeleteByUserIDAndClient(item.UserID,item.ClientID)
+	sv.DeleteByUserIDAndClient(item.UserID, item.ClientID)
 	//for _, v := range sv.list {
 	//	if v.UserID == item.UserID && item.ClientID == v.ClientID {
 	//		v= item
@@ -50,7 +50,7 @@ func (sv *SvMock) DeleteAllByUserID(userID int64) (bool, error) {
 	return true, nil
 }
 
-func (sv *SvMock) DeleteByUserIDAndClient(userID int64,clientID int) (bool, error) {
+func (sv *SvMock) DeleteByUserIDAndClient(userID int64, clientID int) (bool, error) {
 	ls := make([]*ModelUserToken, 0)
 	for _, v := range sv.list {
 		if v.UserID == userID && v.ClientID == clientID {

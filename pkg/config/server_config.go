@@ -40,8 +40,8 @@ func init() {
 	ServerAPIWWW = &modelServer{Name: "api-www", Port: ":7203", Host: "api-www"}
 	ServerAPIWX = &modelServer{Name: "api-wx", Port: ":7204", Host: "api-wx"}
 
-	ServerAuthJWT = &modelServer{Name: "auth-jwt", Port: ":7301", Host: "auth-jwt" ,PortGRPC: ":9301"}
-	ServerAuthRBAC = &modelServer{Name: "auth-rbac", Port: ":7302", Host: "auth-rbac" ,PortGRPC: ":9302"}
+	ServerAuthJWT = &modelServer{Name: "auth-jwt", Port: ":7301", Host: "auth-jwt", PortGRPC: ":9301"}
+	ServerAuthRBAC = &modelServer{Name: "auth-rbac", Port: ":7302", Host: "auth-rbac", PortGRPC: ":9302"}
 
 	ServerSvAI = &modelServer{Name: "sv-ai", Port: ":7401", Host: "sv-ai", PortGRPC: ":9401"}
 	ServerSvConfig = &modelServer{Name: "sv-config", Port: ":7402", Host: "sv-config", PortGRPC: ":9402"}

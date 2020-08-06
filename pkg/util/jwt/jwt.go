@@ -14,7 +14,7 @@ const (
 
 var Server *JWT
 
-func init()  {
+func init() {
 	Server = NewJWT("")
 }
 
@@ -37,17 +37,17 @@ type JWT struct {
 // 客户端类型:
 const (
 	ClientTypeDefault = 0
-	ClientTypeWeb = 1
+	ClientTypeWeb     = 1
 	ClientTypeAndroid = 2
-	ClientTypeIphone = 3
-	ClientTypePad = 4
+	ClientTypeIphone  = 3
+	ClientTypePad     = 4
 )
 
 // CustomClaims 载荷，可以加一些自己需要的信息
 type CustomClaims struct {
-	UserID string  `json:"id"` // userID,18位长度，用int64 js取值会有问题
-	Name   string `json:"n"` // 用户名
-	ClientType int `json:"type"` // 客户端类型
+	UserID     string `json:"id"`   // userID,18位长度，用int64 js取值会有问题
+	Name       string `json:"n"`    // 用户名
+	ClientType int    `json:"type"` // 客户端类型
 	jwtgo.StandardClaims
 }
 
@@ -95,9 +95,9 @@ func (j *JWT) ParseToken(tokenString string) (*CustomClaims, error) {
 // RefreshToken 更新token,认加 x 分钟
 func (j *JWT) RefreshToken(tokenString string, second int32) (string, error) {
 	info, err2 := j.ParseToken(tokenString)
-	if err2 != nil{
-		return "",err2
+	if err2 != nil {
+		return "", err2
 	}
-	info.ExpiresAt =  time.Now().Add(time.Second  * time.Duration(second)).Unix()
+	info.ExpiresAt = time.Now().Add(time.Second * time.Duration(second)).Unix()
 	return j.CreateToken(info)
 }

@@ -13,7 +13,7 @@ import (
 const (
 	partGin    = ":7407"
 	serverName = "sv-user"
-	path = "/"+serverName
+	path       = "/" + serverName
 )
 
 func RunServerGin() {
@@ -34,18 +34,18 @@ func SetupRouter(engine *gin.Engine) {
 		engine.GET(path+"/metrics/v2", metric.Server.HandlerClose)
 	}
 	//设置路由中间件
-	engine.GET("/",Index )
-	engine.GET(path,Index )
-	g.GET("v1/:name",configCore )
+	engine.GET("/", Index)
+	engine.GET(path, Index)
+	g.GET("v1/:name", configCore)
 }
 
 func Index(c *gin.Context) {
 	hostName, _ := os.Hostname()
-	c.String(http.StatusOK, serverName+", running on " +hostName)
+	c.String(http.StatusOK, serverName+", running on "+hostName)
 }
 
 func configCore(c *gin.Context) {
-	name:= c.Param("name")
+	name := c.Param("name")
 	jsonSt := `
 {
   "name": "%s",
@@ -61,7 +61,7 @@ func configCore(c *gin.Context) {
 }
 `
 	jsonSt = fmt.Sprintf(jsonSt, name)
-	var obj  map[string]interface{}
+	var obj map[string]interface{}
 	conv.JsonStringToStruct(jsonSt, &obj)
-	c.JSON(http.StatusOK, response.APIResponseData(0,"OK",obj))
+	c.JSON(http.StatusOK, response.APIResponseData(0, "OK", obj))
 }

@@ -3,10 +3,10 @@ package env
 // 默认数据, env 设置
 var (
 	// test data
-	DefaultNoticeEmailTo             = ""
+	DefaultNoticeEmailTo = ""
 	// mail
-	DefaultMailConfigUserEmail       = ""
-	DefaultMailConfigMailPassword    = ""
+	DefaultMailConfigUserEmail    = ""
+	DefaultMailConfigMailPassword = ""
 	//DefaultMailConfigMailSMTPHost    = ""
 	//ding
 	DefaultDingTalkConfigRobotToken  = ""

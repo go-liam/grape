@@ -34,7 +34,6 @@ import (
 //	}
 //}
 
-
 func main() {
 	println(":run server")
 	go server.RunServerGin()

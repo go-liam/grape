@@ -10,11 +10,11 @@ func init() {
 
 // SvPowerMock :
 type SvPowerMock struct {
-	list []*ModelPower
+	list    []*ModelPower
 	hadData bool
 }
 
-func (sv *SvPowerMock) dataInit()  {
+func (sv *SvPowerMock) dataInit() {
 	if !sv.hadData {
 		sv.hadData = true
 		sv.list = make([]*ModelPower, 0)
@@ -61,7 +61,6 @@ func (sv *SvPowerMock) Edit(item *ModelPower) (int, error) {
 	}
 	return 1, nil
 }
-
 
 func (sv *SvPowerMock) FindOne(powerID int) (*ModelPower, error) {
 	sv.dataInit()

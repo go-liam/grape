@@ -9,25 +9,25 @@ import (
 )
 
 type ModelIP struct {
-	IP string
+	IP      string
 	Request interface{}
-	Header interface{}
+	Header  interface{}
 }
 
 func ClientIPHeader(c *gin.Context) {
-	i :=new(ModelIP)
-	i.IP =  ClientIP(c.Request)
+	i := new(ModelIP)
+	i.IP = ClientIP(c.Request)
 	//i.Request = c.Request
 	//log.Println(strings.Split(c.r.LocalAddr().String(), ":")[0])
 	//i.ServerIP = strings.Split(c.Request.LocalAddr().String(), ":")[0])
 	i.Header = c.Request.Header
-	c.JSON(http.StatusOK, i )
+	c.JSON(http.StatusOK, i)
 }
 
 // ClientIP 尽最大努力实现获取客户端 IP 的算法。
 // 解析 X-Real-IP 和 X-Forwarded-For 以便于反向代理（nginx 或 haproxy）可以正常工作。
 func ClientIP(r *http.Request) string {
-	log.Printf("header: %+v\n",r )
+	log.Printf("header: %+v\n", r)
 	xForwardedFor := r.Header.Get("X-Forwarded-For")
 	ip := strings.TrimSpace(strings.Split(xForwardedFor, ",")[0])
 	if ip != "" {

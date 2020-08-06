@@ -24,16 +24,15 @@ const (
 var (
 	port       = ":7301"
 	serverName = "auth-jwt"
-	path =  "/"+serverName
+	path       = "/" + serverName
 )
 
-var badUid = []int64{1,2,3,119} // 黑名单
-
+var badUid = []int64{1, 2, 3, 119} // 黑名单
 
 func main() {
 	engine := gin.Default()
 	engine.GET("/", Index)
-	engine.GET(path,Index )
+	engine.GET(path, Index)
 	RouterUser(engine)
 	RouterServer(engine)
 	engine.Run(port)
@@ -51,8 +50,8 @@ func Index(c *gin.Context) {
 	})
 }
 
-func RouterUser(engine *gin.Engine)  {
-	g1 := engine.Group(path+"/v1/")
+func RouterUser(engine *gin.Engine) {
+	g1 := engine.Group(path + "/v1/")
 	//链路跟踪
 	tracing.Init(config.DefaultConfig)
 	g1.Use(tracing.NewGinMiddlewareHandle(serverName))
@@ -73,8 +72,8 @@ func RouterUser(engine *gin.Engine)  {
 	g1.GET("check", single.CheckBadUser)
 }
 
-func RouterServer(engine *gin.Engine)  {
-	g := engine.Group(path+"/sv/v1/")
+func RouterServer(engine *gin.Engine) {
+	g := engine.Group(path + "/sv/v1/")
 	g.GET("login", sv.Login)
 	g.GET("info", sv.CheckUser)
 	g.GET("refresh", sv.Refresh)
@@ -82,6 +81,6 @@ func RouterServer(engine *gin.Engine)  {
 	g.GET("check", sv.CheckBadUser)
 	//404
 	engine.NoRoute(func(c *gin.Context) {
-		c.String(404, "请求方法不存在 " )
+		c.String(404, "请求方法不存在 ")
 	})
 }
