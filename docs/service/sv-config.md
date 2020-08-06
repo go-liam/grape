@@ -13,4 +13,4 @@
 
 ## 运行
 
-[查看](../../app/sv-config/readme.md)
+[查看](../../internal/app/sv-config/readme.md)

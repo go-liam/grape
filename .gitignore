@@ -15,7 +15,7 @@ target/
 #go.sum
 public/cert
 coverage.data
-app/*/build
+internal/app/*/build
 deploy/*/build/*
 temp-demo
 

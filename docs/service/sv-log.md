@@ -35,4 +35,4 @@
 
 ## 运行
 
-[查看app/sv-log/readme.md](../../app/sv-log/readme.md)
+[查看app/sv-log/readme.md](../../internal/app/sv-log/readme.md)
