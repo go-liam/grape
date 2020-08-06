@@ -1,9 +1,9 @@
 package config
 
 import (
-	"grape/pkg/config/env"
-	"grape/pkg/service/svnotice/dingtalk"
-	"grape/pkg/service/svnotice/email"
+	"grape/internal/pkg/config/env"
+	"grape/internal/pkg/service/svnotice/dingtalk"
+	"grape/internal/pkg/service/svnotice/email"
 	"log"
 )
 

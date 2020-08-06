@@ -1,6 +1,6 @@
 package core
 
-import "grape/pkg/config"
+import "grape/internal/pkg/config"
 
 type SiteItem struct {
 	Path string

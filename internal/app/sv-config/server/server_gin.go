@@ -3,7 +3,7 @@ package server
 import (
 	"github.com/gin-gonic/gin"
 	"grape/internal/app/sv-config/client"
-	"grape/pkg/middleware/metric"
+	"grape/internal/pkg/middleware/metric"
 	"net/http"
 	"os"
 )

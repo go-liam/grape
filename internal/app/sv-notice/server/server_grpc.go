@@ -6,7 +6,7 @@ import (
 	"google.golang.org/grpc/reflection"
 	pb "grape/api/proto/notice"
 	"grape/internal/app/sv-notice/config"
-	"grape/pkg/service/svnotice/email"
+	"grape/internal/pkg/service/svnotice/email"
 	"log"
 	"net"
 	"os"

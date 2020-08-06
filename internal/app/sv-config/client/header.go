@@ -3,7 +3,7 @@ package client
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/go-liam/util/response"
-	"grape/pkg/service/syconfig/configclient"
+	"grape/internal/pkg/service/syconfig/configclient"
 	"net/http"
 )
 

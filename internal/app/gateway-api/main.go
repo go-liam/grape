@@ -5,7 +5,7 @@ import (
 	"github.com/go-liam/tracing/jaeger"
 	"github.com/opentracing-contrib/go-stdlib/nethttp"
 	"grape/internal/app/gateway-api/core"
-	config2 "grape/pkg/config"
+	config2 "grape/internal/pkg/config"
 	"log"
 	"net/http"
 	"os"

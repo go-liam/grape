@@ -3,8 +3,8 @@ package single
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/go-liam/util/conv"
-	"grape/pkg/service/jwt"
-	jwt2 "grape/pkg/util/jwt"
+	"grape/internal/pkg/service/jwt"
+	jwt2 "grape/internal/pkg/util/jwt"
 	"log"
 	"net/http"
 )

@@ -4,7 +4,7 @@ import (
 	"context"
 	"google.golang.org/grpc"
 	pb2 "grape/api/proto/svlog"
-	"grape/pkg/config"
+	"grape/internal/pkg/config"
 	"log"
 	"os"
 	"testing"

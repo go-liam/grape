@@ -3,7 +3,7 @@ package core
 import (
 	"github.com/go-liam/util/conv"
 	"github.com/go-liam/util/request"
-	"grape/pkg/util/jwt"
+	"grape/internal/pkg/util/jwt"
 	"log"
 	"net/http"
 )

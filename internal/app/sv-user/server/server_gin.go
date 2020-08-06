@@ -5,7 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/go-liam/util/conv"
 	"github.com/go-liam/util/response"
-	"grape/pkg/middleware/metric"
+	"grape/internal/pkg/middleware/metric"
 	"net/http"
 	"os"
 )

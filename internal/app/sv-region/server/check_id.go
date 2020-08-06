@@ -1,6 +1,6 @@
 package server
 
-import "grape/pkg/config"
+import "grape/internal/pkg/config"
 
 func IpCheck(ip string) (int, string) {
 	if ip == "127.0.0.1" {

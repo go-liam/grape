@@ -2,7 +2,7 @@ package sv
 
 import (
 	"github.com/gin-gonic/gin"
-	"grape/pkg/service/jwt"
+	"grape/internal/pkg/service/jwt"
 	"log"
 	"net/http"
 )

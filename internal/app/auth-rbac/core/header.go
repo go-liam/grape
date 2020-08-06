@@ -3,8 +3,8 @@ package core
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/go-liam/util/conv"
-	"grape/pkg/service/rbac/power"
-	"grape/pkg/service/rbac/user"
+	"grape/internal/pkg/service/rbac/power"
+	"grape/internal/pkg/service/rbac/user"
 	"net/http"
 )
 
