@@ -47,15 +47,15 @@ build-file:
 	rm -rf build | echo "no build dir"; \
 	mkdir build; \
     mkdir ./build/log ; \
-    mkdir ./build/public ; \
-    mkdir ./build/public/${DEPLOY_SERVER_NAME} ; \
-    cp -R ../../public/${DEPLOY_SERVER_NAME}/* ./build/public/${DEPLOY_SERVER_NAME} | echo "no copy dir" ; \
+    mkdir ./build/assets ; \
+    mkdir ./build/assets/${DEPLOY_SERVER_NAME} ; \
+    cp -R ../../assets/${DEPLOY_SERVER_NAME}/* ./build/assets/${DEPLOY_SERVER_NAME} | echo "no copy dir" ; \
 	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags '-w -s' -o build/main ../../app/${DEPLOY_SERVER_NAME}/main.go;\
 	echo "build-file finish";
 
 build-copy-cert:
 	cd ${BASEDIR} ; \
-    cp -R ../../public/cert/* ./build/public/cert ; \
+    cp -R ../../assets/cert/* ./build/assets/cert ; \
 	echo "build-copy-cert";
 
 test-temp:
