@@ -3,8 +3,8 @@ package svgrpc
 import (
 	"context"
 	"google.golang.org/grpc"
+	pb2 "grape/api/proto/notice"
 	"grape/pkg/config"
-	pb2 "grape/proto/notice"
 	"log"
 	"time"
 )

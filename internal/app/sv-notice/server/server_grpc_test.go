@@ -3,8 +3,8 @@ package server
 import (
 	"context"
 	"google.golang.org/grpc"
+	pb2 "grape/api/proto/notice"
 	"grape/pkg/config/env"
-	pb2 "grape/proto/notice"
 	"log"
 	"os"
 	"testing"

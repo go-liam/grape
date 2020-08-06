@@ -1,0 +1,60 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sv-log
+  labels:
+    app: sv-log
+spec:
+  type: ClusterIP
+#  externalTrafficPolicy: Local
+  ports:
+    - name: http
+      port: 7042
+      targetPort: 7042
+  selector:
+    app: sv-log
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sv-log-v1
+  labels:
+    app: sv-log
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sv-log
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: sv-log
+        version: v1
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: sv-log
+          image: liam1803/s1-sv-log:v1.0.0
+          ports:
+            - name: http
+              containerPort: 7042
+          env:
+            - name: PROJECT_ENV
+              value: "dev"
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: sv-log
+spec:
+  hosts:
+    - "mn-sv-log.mygs.com" # temp
+  gateways:
+    - gateway-api/makeblock-gateway-api
+  http:
+    - route:
+        - destination:
+            host: sv-log
+            port:
+              number: 7042

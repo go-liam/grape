@@ -14,9 +14,11 @@ target/
 
 #go.sum
 public/cert
+assets/cert
 coverage.data
 internal/app/*/build
 deploy/*/build/*
+deployments/*/build/*
 temp-demo
 
 ## private

@@ -4,7 +4,7 @@ import (
 	"context"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
-	pb "grape/proto/config"
+	pb "grape/api/proto/config"
 	"log"
 	"net"
 )

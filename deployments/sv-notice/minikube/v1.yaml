@@ -1,0 +1,59 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sv-notice
+  labels:
+    app: sv-notice
+spec:
+  type: NodePort
+  ports:
+    - name: http
+      port: 7405
+      targetPort: 7405
+  selector:
+    app: sv-notice
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sv-notice-v1
+  labels:
+    app: sv-notice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sv-notice
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: sv-notice
+        version: v1
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: sv-notice
+          image: liam1803/s1-sv-notice:v1.0.1
+          ports:
+            - name: http
+              containerPort: 7405
+          env:
+            - name: PROJECT_ENV
+              value: "dev"
+            - name: TEMP_STRING
+              value: "test1"
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: sv-notice-ingress
+spec:
+  rules:
+    - host: mn-sv-notice.mygs.com
+      http:
+        paths:
+          - path:
+            backend:
+              serviceName: sv-notice
+              servicePort: 7405

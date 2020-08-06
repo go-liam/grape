@@ -32,7 +32,7 @@ docker-compose down
 
 curl http://localhost:6001
 ```
-[调试](../deploy/docker/readme.md)
+[调试](../deployments/docker/readme.md)
 
 ### minikube
 

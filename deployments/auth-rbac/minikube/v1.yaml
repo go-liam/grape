@@ -1,0 +1,59 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: auth-rbac
+  labels:
+    app: auth-rbac
+spec:
+  type: NodePort
+  ports:
+    - name: http
+      port: 7302
+      targetPort: 7302
+  selector:
+    app: auth-rbac
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-rbac-v1
+  labels:
+    app: auth-rbac
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth-rbac
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: auth-rbac
+        version: v1
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: auth-rbac
+          image: liam1803/s1-auth-rbac:v1.0.1
+          ports:
+            - name: http
+              containerPort: 7302
+          env:
+            - name: PROJECT_ENV
+              value: "test"
+            - name: TEMP_STRING
+              value: "test1"
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: mn-auth-rbac-ingress
+spec:
+  rules:
+    - host: k8s.mygs.com
+      http:
+        paths:
+          - path:
+            backend:
+              serviceName: auth-rbac
+              servicePort: 7302

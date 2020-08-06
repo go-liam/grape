@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package notice;
+
+message HealthReq {
+	string clientName = 1;
+}
+
+message HealthResp {
+	int32 code = 1;
+	string serverName = 2;
+	string version = 3;
+	string message = 4;
+}
+
+message EmailReq {
+	string to = 1;
+	string fromName = 2;
+    string subject = 3;
+    string type = 4;
+    string body = 5;
+}
+
+message EmailResp {
+	int32 code = 1;
+	string  message = 2;
+}
+
+message DingTalkReq {
+	string token = 1;
+	string robotSecret = 2;
+	string title = 3;
+	string text = 4;
+    bool isAtAll = 5;
+}
+
+message DingTalkResp {
+	int32 code = 1;
+	string  message = 2;
+}
+
+service NoticeService {
+    rpc Health(HealthReq) returns (HealthResp);
+	rpc Email(EmailReq) returns (EmailResp);
+    rpc DingTalkMarkdown(DingTalkReq) returns (DingTalkResp);
+}

@@ -4,8 +4,8 @@ import (
 	"context"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
+	pb "grape/api/proto/svlog"
 	"grape/pkg/service/sylog"
-	pb "grape/proto/svlog"
 	"log"
 	"net"
 )

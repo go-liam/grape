@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package ai;
+
+message SayHelloReq {
+	string name = 1;
+}
+
+message SayHelloResp {
+	int32 code = 1;
+	string  message = 2;
+}
+
+message HealthReq {
+	string clientName = 1;
+}
+
+message HealthResp {
+	int32 code = 1;
+	string serverName = 2;
+	string version = 3;
+	string message = 4;
+}
+
+service DemoService {
+	rpc SayHello(SayHelloReq) returns (SayHelloResp);
+	rpc Health(HealthReq) returns (HealthResp);
+}
