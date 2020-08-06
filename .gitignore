@@ -19,7 +19,7 @@ coverage.data
 internal/app/*/build
 deploy/*/build/*
 deployments/*/build/*
-temp-demo
+examples/temp-demo
 
 ## private
 private_my_*.go
