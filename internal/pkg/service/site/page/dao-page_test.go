@@ -9,7 +9,7 @@ import (
 )
 
 func TestSrvPage_Create(t *testing.T) {
-	item := new(PageModel)
+	item := new(Model)
 	item.LanguageID = 1
 	item.Extended = `{"x":1,"b":"xxx"}`
 	item.Title = "title"
@@ -40,7 +40,7 @@ func TestSrvPage_FindMulti(t *testing.T) {
 }
 
 func TestSrvPage_Update(t *testing.T) {
-	item := new(PageModel)
+	item := new(Model)
 	item.Extended = `{"x":1,"b":"xxx"}`
 	item.Title = "title"
 	item.ID = 1
@@ -50,10 +50,10 @@ func TestSrvPage_Update(t *testing.T) {
 }
 
 func TestSrvPage_UpdateState(t *testing.T) {
-	item := new(PageModel)
+	item := new(Model)
 	item.ID = 1
 	item.Status = 1
-	v, err := new(SrvPage).UpdateState(item)
+	v, err := new(SrvPage).UpdateStatus(item)
 	log.Printf("v:=%+v\n", v)
 	log.Printf("err:=%+v\n", err)
 }

@@ -9,7 +9,7 @@ import (
 )
 
 func TestSrvNotice_Create(t *testing.T) {
-	item := new(NoticeModel)
+	item := new(Model)
 	item.LanguageID = 1
 	item.Extended = `{"x":1,"b":"xxx"}`
 	item.Title = "title"
@@ -38,7 +38,7 @@ func TestSrvNotice_FindMulti(t *testing.T) {
 }
 
 func TestSrvNotice_Update(t *testing.T) {
-	item := new(NoticeModel)
+	item := new(Model)
 	item.Extended = `{"x":1,"b":"xxx2"}`
 	item.Title = "title"
 	item.ID = 1
@@ -50,7 +50,7 @@ func TestSrvNotice_Update(t *testing.T) {
 }
 
 func TestSrvNotice_UpdateState(t *testing.T) {
-	item := new(NoticeModel)
+	item := new(Model)
 	item.ID = 1
 	item.Status = 1
 	v, err := new(SrvNotice).UpdateState(item)

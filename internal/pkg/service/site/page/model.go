@@ -4,7 +4,7 @@ package page
 import models "grape/internal/pkg/model"
 
 // 页面
-type PageModel struct {
+type Model struct {
 	models.BaseModel
 	SiteID      int    `json:"siteID" gorm:"column:site_id" ` // 网站ID
 	MenuID      int    `json:"menuID" gorm:"column:menu_id" ` // 菜单ID
@@ -15,6 +15,6 @@ type PageModel struct {
 	Content     string `json:"content" gorm:"column:content" `   // 内容
 }
 
-func (sv *PageModel) TableName() string {
+func (sv *Model) TableName() string {
 	return "ws_page"
 }

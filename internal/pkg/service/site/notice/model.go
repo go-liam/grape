@@ -4,7 +4,7 @@ package notice
 import models "grape/internal/pkg/model"
 
 // 通知
-type NoticeModel struct {
+type Model struct {
 	models.BaseModel
 	SiteID   int    `json:"siteID" gorm:"column:site_id" ` // 网站ID
 	Title    string `json:"title" gorm:"column:title" `
@@ -13,6 +13,6 @@ type NoticeModel struct {
 	Content  string `json:"content" gorm:"column:content" `   // 内容
 }
 
-func (sv *NoticeModel) TableName() string {
+func (sv *Model) TableName() string {
 	return "ws_notice"
 }
