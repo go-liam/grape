@@ -23,6 +23,7 @@ type MenuModel struct {
 	Name     string `json:"name" gorm:"column:name" `          // 菜单名
 	ParentID int    `json:"parentID" gorm:"column:parent_id" ` // 父亲ID
 	Level    int    `json:"level" gorm:"column:level" `        //级别
+	Extended string `json:"extended" gorm:"column:extended" `  // 扩展的
 }
 
 func (sv *MenuModel) TableName() string {
