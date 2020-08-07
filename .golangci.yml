@@ -1,0 +1,83 @@
+# docs for golangci-lint:  https://golangci-lint.run/
+run:
+  # timeout for analysis, e.g. 30s, 5m, default is 1m
+  timeout: 1m
+  # include test files or not, default is true
+  tests: true
+  # skip dirs
+  skip-dirs:
+    - deploy
+    - cmd
+    - test
+    - docs
+    - assets
+    - build
+    - scripts
+    - examples/httptest
+  #  skip-files:
+
+# replace default linter with whitelist
+linters:
+  disable-all: true
+  enable:
+    - gocyclo           # computes and checks the cyclomatic complexity of functions
+    - bodyclose         # checks whether HTTP response body is closed successfully
+    - deadcode          # finds unused code
+    - unconvert         # remove unnecessary type conversions
+    - unparam           # reports unused function parameters
+    - unused            # checks Go code for unused constants, variables, functions and types
+    - depguard          # checks if package imports are in a list of acceptable packages
+    - dupl              # code clone detection
+    - goconst           # finds repeated strings that could be replaced by a constant
+    - gomnd             # detect magic numbers
+    - gofmt             # gofmt checks whether code was gofmt-ed
+    - gosec             # inspects source code for security problems
+    - gosimple          # simplifying a code
+    - govet             # examines Go source code and reports suspicious constructs
+    - ineffassign       # detects when assignments to existing variables are not used
+    - lll               # reports long lines
+    - misspell          # finds commonly misspelled English words in comments
+    - staticcheck       # go vet on steroids
+    - structcheck       # finds unused struct fields
+    - typecheck         # like the front-end of a Go compiler, parses and type-checks Go code
+#   - interfacer        # suggests narrower interface types
+#   - maligned          # tool to detect Go structs that would take less memory if their fields were sorted
+
+linters-settings:
+  dupl:
+    threshold: 200
+  lll:
+    line-length: 170
+  gocyclo:
+    min-complexity: 10
+  golint:
+    min-confidence: 0.85
+  govet:
+    check-shadowing: true
+  maligned:
+    suggest-new: true
+  goconst:
+    min-len: 2
+    min-occurrences: 2
+  unused:
+    check-exported: false
+  gomnd:
+    settings:
+      mnd:
+        # the list of enabled checks, see https://github.com/tommy-muehle/go-mnd/#checks for description.
+        checks: argument,case,condition,operation,return,assign
+  gofmt:
+    # simplify code: gofmt with `-s` option, true by default
+    simplify: true
+
+issues:
+  # Excluding configuration per-path, per-linter, per-text and per-source
+  exclude-rules:
+    # Exclude some linters from running on tests files.
+    - path: _test\.go
+      linters:
+        - errcheck
+        - dupl
+        - gosec
+        - mnd
+        - gofmt

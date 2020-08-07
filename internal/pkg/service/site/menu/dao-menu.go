@@ -1,4 +1,4 @@
-package site
+package menu
 
 import (
 	"grape/internal/pkg/database/mysql"

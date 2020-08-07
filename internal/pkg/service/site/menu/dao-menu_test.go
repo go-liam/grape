@@ -1,4 +1,4 @@
-package site
+package menu
 
 import (
 	"github.com/go-liam/util/uuid"

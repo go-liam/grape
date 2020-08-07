@@ -1,4 +1,4 @@
-package site
+package notice
 
 import (
 	"fmt"
