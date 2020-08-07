@@ -22,7 +22,7 @@ func main() {
 	core.SetupRouter(engine)
 
 	engine.Run(core.Port)
-	quit := make(chan os.Signal)
+	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, os.Interrupt)
 	<-quit
 	log.Println("Shutdown Server ...")

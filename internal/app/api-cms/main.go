@@ -23,7 +23,7 @@ func main() {
 	// 设置路由
 	SetupRouter(engine)
 	engine.Run(port)
-	quit := make(chan os.Signal)
+	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, os.Interrupt)
 	<-quit
 	log.Println("Shutdown Server ...")

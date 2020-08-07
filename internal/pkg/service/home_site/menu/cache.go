@@ -22,7 +22,7 @@ func (e *SrvMenu) CacheMulti() ([]*Model, error) {
 		}
 	}
 	got, _ = e.FindMulti()
-	if got != nil && len(got) > 0 {
+	if len(got) > 0 {
 		byteValue, _ := json.Marshal(&got)
 		redis.Server.Set(key, byteValue, redisSecondTime)
 	}

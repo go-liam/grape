@@ -35,4 +35,8 @@ const (
 
 	// http
 	HTTPSourceData = 21001
+
+	//http
+	Int200 = 200
+	Int404 = 404
 )

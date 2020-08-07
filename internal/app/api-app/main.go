@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/go-liam/tracing"
 	"github.com/go-liam/tracing/config"
+	"grape/configs/errorcode"
 	"grape/internal/pkg/middleware/limiter"
 	"grape/internal/pkg/middleware/metric"
 	"log"
@@ -23,7 +24,7 @@ func main() {
 	// 设置路由
 	SetupRouter(engine)
 	engine.Run(port)
-	quit := make(chan os.Signal)
+	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, os.Interrupt)
 	<-quit
 	log.Println("Shutdown Server ...")
@@ -51,7 +52,7 @@ func SetupRouter(engine *gin.Engine) {
 	g.GET("/v1/:name", Index)
 	//404
 	engine.NoRoute(func(c *gin.Context) {
-		c.String(404, "请求方法不存在 ")
+		c.String(errorcode.Int404, "请求方法不存在 ")
 	})
 }
 

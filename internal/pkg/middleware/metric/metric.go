@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
+	"grape/configs/errorcode"
 	"net/http"
 	"strconv"
 	"strings"
@@ -97,6 +98,5 @@ func (sv *SvMetric) Handler() http.Handler {
 
 // HandlerClose ：
 func (sv *SvMetric) HandlerClose(c *gin.Context) {
-	c.String(200, "is close")
-	return
+	c.String(errorcode.Int200, "is close")
 }

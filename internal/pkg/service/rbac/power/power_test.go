@@ -1,7 +1,6 @@
 package power
 
 import (
-	"log"
 	"testing"
 )
 
@@ -12,12 +11,12 @@ func TestCheckPowerByTag(t *testing.T) {
 	println("flag:", flag)
 }
 
-func TestMain(m *testing.M) {
-	log.Println("begin----power")
-	Server = ServerMock
-	m.Run()
-	log.Println("end---power")
-}
+//func TestMain(m *testing.M) {
+//	log.Println("begin----power")
+//	Server = ServerMock
+//	m.Run()
+//	log.Println("end---power")
+//}
 
 func TestGetPowerIDByTag(t *testing.T) {
 	list, _ := Server.List(1)
