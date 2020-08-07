@@ -2,23 +2,11 @@ package mysql
 
 import (
 	"database/sql"
-	"errors"
 	"github.com/DATA-DOG/go-sqlmock"
+	"github.com/jinzhu/gorm"
+	"grape/configs"
+	"grape/configs/env"
 )
-
-const (
-	ErrDbErrResult   = "数据库错误"
-	ErrDbUnfulfilled = "there were unfulfilled expectations:"
-
-	ConstSuccess  = "ok"
-	ConstFail     = "fail"
-	ConstWant0    = 0
-	ConstWantOne  = 1
-	ConstWantMore = 2
-	ConstWantName = "tsName"
-)
-
-var ErrorDBConnect = errors.New("数据库错误")
 
 func MockEngine(server *SvMySql) (*sql.DB, sqlmock.Sqlmock, error) {
 	db, mock, err := sqlmock.New()
@@ -27,4 +15,17 @@ func MockEngine(server *SvMySql) (*sql.DB, sqlmock.Sqlmock, error) {
 	}
 	server.EngineMock(db)
 	return db, mock, err
+}
+
+func (sv *SvMySql) EngineMock(db *sql.DB) {
+	var err error
+	sv.engine, err = gorm.Open("mysql", db)
+	if err != nil {
+		panic(err)
+	}
+	if configs.EnvConfig.ProjectEnv != env.ConstEnvUnit {
+		sv.engine.LogMode(true)
+	}
+	sv.IsConnect = true
+	//println("[INFO] EngineMock")
 }

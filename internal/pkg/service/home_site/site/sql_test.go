@@ -4,6 +4,7 @@ import (
 	"errors"
 	"github.com/DATA-DOG/go-sqlmock"
 	"github.com/stretchr/testify/assert"
+	"grape/configs/testdata"
 	"grape/internal/pkg/database/mysql"
 	"testing"
 )
@@ -14,11 +15,11 @@ const (
 
 var (
 	tsRow  = []string{"id", "title"}
-	tsItem = &Model{Title: mysql.ConstWantName, Description: ""}
+	tsItem = &Model{Title: testdata.ConstWantString, Description: ""}
 )
 
 func init() {
-	tsItem.ID = mysql.ConstWantOne
+	tsItem.ID = testdata.ConstWantOne
 }
 
 func TestSqlSite_Create(t *testing.T) {
@@ -26,27 +27,27 @@ func TestSqlSite_Create(t *testing.T) {
 	defer db.Close()
 	sql := "INSERT INTO `ws_site`" // regexp.QuoteMeta("SELECT * from cp_admin")
 
-	t.Run(mysql.ConstFail, func(t *testing.T) {
+	t.Run(testdata.ConstFail, func(t *testing.T) {
 		mock.ExpectBegin()
 		mock.ExpectExec(sql).
-			WillReturnError(mysql.ErrorDBConnect)
+			WillReturnError(testdata.ErrorDBConnect)
 		mock.ExpectRollback()
 		got, err := Server.Create(tsItem)
 		assert.NotNil(t, err)
 		assert.NotEqual(t, tsItem.ID, got)
 	})
 
-	t.Run(mysql.ConstSuccess, func(t *testing.T) {
+	t.Run(testdata.ConstSuccess, func(t *testing.T) {
 		mock.ExpectBegin()
-		mock.ExpectExec(sql).WillReturnResult(sqlmock.NewResult(mysql.ConstWantOne, mysql.ConstWantOne))
+		mock.ExpectExec(sql).WillReturnResult(sqlmock.NewResult(testdata.ConstWantOne, testdata.ConstWantOne))
 		mock.ExpectCommit()
 		got, err := Server.Create(tsItem)
 		assert.Nil(t, err)
-		assert.EqualValues(t, mysql.ConstWantOne, got)
+		assert.EqualValues(t, testdata.ConstWantOne, got)
 	})
 
 	if err := mock.ExpectationsWereMet(); err != nil {
-		t.Errorf("%s %s", mysql.ErrDbUnfulfilled, err)
+		t.Errorf("%s %s", testdata.ErrDbUnfulfilled, err)
 	}
 }
 
@@ -55,15 +56,15 @@ func TestDao_FindOne(t *testing.T) {
 	defer db.Close()
 	sql := sqlFindOne
 
-	t.Run(mysql.ConstFail, func(t *testing.T) {
+	t.Run(testdata.ConstFail, func(t *testing.T) {
 		mock.ExpectQuery(sql).
-			WillReturnError(errors.New(mysql.ErrDbErrResult))
+			WillReturnError(errors.New(testdata.ErrDbErrResult))
 		got, err := Server.FindOne(tsItem.ID)
 		assert.NotNil(t, err)
 		assert.EqualValues(t, 0, got.ID)
 	})
 
-	t.Run(mysql.ConstSuccess, func(t *testing.T) {
+	t.Run(testdata.ConstSuccess, func(t *testing.T) {
 		mock.ExpectQuery(sql). //WithArgs(item.ID).
 					WillReturnRows(sqlmock.NewRows(tsRow).
 						AddRow(tsItem.ID, tsItem.Title))
@@ -73,7 +74,7 @@ func TestDao_FindOne(t *testing.T) {
 	})
 
 	if err := mock.ExpectationsWereMet(); err != nil {
-		t.Errorf("%s %s", mysql.ErrDbUnfulfilled, err)
+		t.Errorf("%s %s", testdata.ErrDbUnfulfilled, err)
 	}
 }
 
@@ -82,25 +83,25 @@ func TestDao_FindMulti(t *testing.T) {
 	defer db.Close()
 	sql := sqlFindOne // regexp.QuoteMeta("SELECT * from cp_admin")
 
-	t.Run(mysql.ConstFail, func(t *testing.T) {
+	t.Run(testdata.ConstFail, func(t *testing.T) {
 		mock.ExpectQuery(sql).
-			WillReturnError(errors.New(mysql.ErrDbErrResult))
+			WillReturnError(errors.New(testdata.ErrDbErrResult))
 		got, err := Server.FindMulti()
 		assert.NotNil(t, err)
 		assert.NotEqual(t, tsItem.ID, len(got))
 	})
 
-	t.Run(mysql.ConstSuccess, func(t *testing.T) {
+	t.Run(testdata.ConstSuccess, func(t *testing.T) {
 		mock.ExpectQuery(sql). //WithArgs(item.ID).
 					WillReturnRows(sqlmock.NewRows(tsRow).
 						AddRow(tsItem.ID, tsItem.Title))
 		got, err := Server.FindMulti()
 		assert.Nil(t, err)
-		assert.EqualValues(t, mysql.ConstWantOne, len(got))
+		assert.EqualValues(t, testdata.ConstWantOne, len(got))
 	})
 
 	if err := mock.ExpectationsWereMet(); err != nil {
-		t.Errorf("%s %s", mysql.ErrDbUnfulfilled, err)
+		t.Errorf("%s %s", testdata.ErrDbUnfulfilled, err)
 	}
 }
 
@@ -110,27 +111,27 @@ func TestDao_Update(t *testing.T) {
 	//sql :=  regexp.QuoteMeta("update `cp_admin` ")
 	sql := "update ws_site " //
 
-	t.Run(mysql.ConstFail, func(t *testing.T) {
+	t.Run(testdata.ConstFail, func(t *testing.T) {
 		//mock.ExpectBegin()
 		mock.ExpectExec(sql).
-			WillReturnError(mysql.ErrorDBConnect)
+			WillReturnError(testdata.ErrorDBConnect)
 		//mock.ExpectRollback()
 		got, err := Server.Update(tsItem)
 		assert.NotNil(t, err)
 		assert.NotEqual(t, tsItem.ID, got)
 	})
 
-	t.Run(mysql.ConstSuccess, func(t *testing.T) {
+	t.Run(testdata.ConstSuccess, func(t *testing.T) {
 		//mock.ExpectBegin()
-		mock.ExpectExec(sql).WillReturnResult(sqlmock.NewResult(mysql.ConstWantOne, mysql.ConstWantOne))
+		mock.ExpectExec(sql).WillReturnResult(sqlmock.NewResult(testdata.ConstWantOne, testdata.ConstWantOne))
 		//mock.ExpectCommit()
 		got, err := Server.Update(tsItem)
 		assert.Nil(t, err)
-		assert.EqualValues(t, mysql.ConstWantOne, got)
+		assert.EqualValues(t, testdata.ConstWantOne, got)
 	})
 
 	if err := mock.ExpectationsWereMet(); err != nil {
-		t.Errorf("%s %s", mysql.ErrDbUnfulfilled, err)
+		t.Errorf("%s %s", testdata.ErrDbUnfulfilled, err)
 	}
 }
 
@@ -140,26 +141,26 @@ func TestDao_UpdateStatus(t *testing.T) {
 	//sql :=  regexp.QuoteMeta("update `cp_admin` ")
 	sql := "update ws_site " //
 
-	t.Run(mysql.ConstFail, func(t *testing.T) {
+	t.Run(testdata.ConstFail, func(t *testing.T) {
 		//mock.ExpectBegin()
 		mock.ExpectExec(sql).
-			WillReturnError(mysql.ErrorDBConnect)
+			WillReturnError(testdata.ErrorDBConnect)
 		//mock.ExpectRollback()
 		got, err := Server.UpdateStatus(tsItem)
 		assert.NotNil(t, err)
 		assert.NotEqual(t, tsItem.ID, got)
 	})
 
-	t.Run(mysql.ConstSuccess, func(t *testing.T) {
+	t.Run(testdata.ConstSuccess, func(t *testing.T) {
 		//mock.ExpectBegin()
-		mock.ExpectExec(sql).WillReturnResult(sqlmock.NewResult(mysql.ConstWantOne, mysql.ConstWantOne))
+		mock.ExpectExec(sql).WillReturnResult(sqlmock.NewResult(testdata.ConstWantOne, testdata.ConstWantOne))
 		//mock.ExpectCommit()
 		got, err := Server.UpdateStatus(tsItem)
 		assert.Nil(t, err)
-		assert.EqualValues(t, mysql.ConstWantOne, got)
+		assert.EqualValues(t, testdata.ConstWantOne, got)
 	})
 
 	if err := mock.ExpectationsWereMet(); err != nil {
-		t.Errorf("%s %s", mysql.ErrDbUnfulfilled, err)
+		t.Errorf("%s %s", testdata.ErrDbUnfulfilled, err)
 	}
 }

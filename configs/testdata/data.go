@@ -1,7 +1,19 @@
 package testdata
 
-var (
-	//DingTalkConfigRobotToken = "4fc5802ab76ad19377457b961f4d8841a4**"
-	//DingTalkConfigRobotSecret ="SEC52300a280cbbb18103f433ce4a8d66882ab7840**"
-	//NoticeEmailTo = "liam.**@***.com"
+import "errors"
+
+const (
+	ErrDbErrResult   = "数据库错误"
+	ErrDbUnfulfilled = "there were unfulfilled expectations:"
+
+	ConstSuccess  = "ok"
+	ConstFail     = "fail"
+
+	ConstWant0    = 0
+	ConstWantOne  = 1
+	ConstWantTwo = 2
+
+	ConstWantString = "tsName"
 )
+
+var ErrorDBConnect = errors.New("数据库错误")

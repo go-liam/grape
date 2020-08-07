@@ -1,10 +1,8 @@
 package mysql
 
 import (
-	"database/sql"
 	"github.com/jinzhu/gorm"
 	"grape/configs"
-	"grape/configs/env"
 	"log"
 	"time"
 	// 引用数据库驱动初始化
@@ -31,19 +29,6 @@ func (sv *SvMySql) Engine() *gorm.DB {
 		sv.AutoConnect()
 	}
 	return sv.engine
-}
-
-func (sv *SvMySql) EngineMock(db *sql.DB) {
-	var err error
-	sv.engine, err = gorm.Open("mysql", db)
-	if err != nil {
-		panic(err)
-	}
-	if configs.EnvConfig.ProjectEnv != env.ConstEnvUnit {
-		sv.engine.LogMode(true)
-	}
-	sv.IsConnect = true
-	//println("[INFO] EngineMock")
 }
 
 // AutoConnect :
