@@ -5,11 +5,11 @@ BASEDIR = $(shell pwd)
 config:
 	echo ${BASEDIR}
 
-test:
+utest:
 	cd ${BASEDIR}; \
 	go mod tidy; \
 	export PROJECT_ENV="unit" ; \
-    go test $(`go list ./... | grep -v /proto/ | grep -v /temp-demo/ | grep -v /frontend/ `) -coverprofile=coverage.data ./...  ;  \
+    go test $(`go list ./... | grep -v /api/ | grep -v /docs/ | grep -v /website/ | grep -v /scripts/ | grep -v /assets/ | grep -v /web/  | grep -v /deployments/ `) -coverprofile=coverage.data ./...  ;  \
 
 
 
