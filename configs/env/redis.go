@@ -14,8 +14,8 @@ type redisConfig struct {
 	// redis
 	RedisHost   string `env:"REDIS_HOST" default:"localhost"`
 	RedisPort   string `env:"REDIS_PORT" default:"6379"`
-	RedisPwd    string `env:"REDIS_PWD" default:"block123"`
-	RedisPrefix string `env:"REDIS_PREFIX" default:"b|"`
+	RedisPwd    string `env:"REDIS_PWD" default:"Makeblock123"`
+	RedisPrefix string `env:"REDIS_PREFIX" default:"gra|"`
 }
 
 func init() {

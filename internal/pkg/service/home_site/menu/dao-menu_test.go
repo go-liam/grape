@@ -1,7 +1,6 @@
 package menu
 
 import (
-	"github.com/go-liam/util/uuid"
 	"log"
 	"testing"
 )
@@ -10,8 +9,8 @@ func TestSrvMenu_Create(t *testing.T) {
 	item := new(Model)
 	item.LanguageID = 1
 	item.Extended = `{"x":1,"b":"xxx"}`
-	item.Name = "title"
-	item.ID = uuid.AutoInt64ID()
+	item.Name = "title-menu-2"
+	//item.ID = uuid.AutoInt64ID()
 	v, err := new(SrvMenu).Create(item)
 	log.Printf("v:=%+v\n", v)
 	log.Printf("err:=%+v\n", err)

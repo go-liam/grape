@@ -10,7 +10,7 @@ import (
 const redisSecondTime = 32
 
 func (e *SrvNotice) CacheOne(id int64) (*Model, error) {
-	key := fmt.Sprintf("%s_site_pg_%d", env.RedisConfig.RedisPrefix, id)
+	key := fmt.Sprintf("%s_site_no_%d", env.RedisConfig.RedisPrefix, id)
 	v, err := redis.Server.GetBytes(key)
 	var info *Model
 	var err2 error
