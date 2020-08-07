@@ -9,10 +9,10 @@ import (
 
 const redisSecondTime = 32
 
-func (e *SrvMenu) CacheMulti() ([]*MenuModel, error) {
+func (e *SrvMenu) CacheMulti() ([]*Model, error) {
 	key := fmt.Sprintf("%s_menu_ls", env.RedisConfig.RedisPrefix)
 	v, err := redis.Server.GetBytes(key)
-	var got []*MenuModel
+	var got []*Model
 	var err2 error
 	if err == nil {
 		err2 = json.Unmarshal(v, &got)

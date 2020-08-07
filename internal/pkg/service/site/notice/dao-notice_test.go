@@ -53,7 +53,7 @@ func TestSrvNotice_UpdateState(t *testing.T) {
 	item := new(Model)
 	item.ID = 1
 	item.Status = 1
-	v, err := new(SrvNotice).UpdateState(item)
+	v, err := new(SrvNotice).UpdateStatus(item)
 	log.Printf("v:=%+v\n", v)
 	log.Printf("err:=%+v\n", err)
 }

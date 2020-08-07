@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-var ServerNotice = new(SrvNotice)
+var Server = new(SrvNotice)
 
 type SrvNotice struct {
 }
@@ -46,7 +46,7 @@ func (e *SrvNotice) Update(item *Model) (int64, error) {
 	return v.RowsAffected, v.Error
 }
 
-func (e *SrvNotice) UpdateState(item *Model) (int64, error) {
+func (e *SrvNotice) UpdateStatus(item *Model) (int64, error) {
 	item.UpdatedAt = time.Now().Unix()
 	sql := "update ws_notice set `status` = ?,updated_at=? where `id` = ? "
 	v := mysql.ServerAPI.Engine().Exec(sql, item.Status, item.UpdatedAt, item.ID)

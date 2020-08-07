@@ -4,7 +4,7 @@ package menu
 import models "grape/internal/pkg/model"
 
 // 菜单
-type MenuModel struct {
+type Model struct {
 	models.BaseModel
 	SiteID   int    `json:"siteID" gorm:"column:site_id" `     // 网站ID
 	Name     string `json:"name" gorm:"column:name" `          // 菜单名
@@ -13,6 +13,6 @@ type MenuModel struct {
 	Extended string `json:"extended" gorm:"column:extended" `  // 扩展的
 }
 
-func (sv *MenuModel) TableName() string {
+func (sv *Model) TableName() string {
 	return "ws_menu"
 }

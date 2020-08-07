@@ -7,7 +7,7 @@ import (
 )
 
 func TestSrvMenu_Create(t *testing.T) {
-	item := new(MenuModel)
+	item := new(Model)
 	item.LanguageID = 1
 	item.Extended = `{"x":1,"b":"xxx"}`
 	item.Name = "title"
@@ -31,7 +31,7 @@ func TestSrvMenu_FindMulti(t *testing.T) {
 }
 
 func TestSrvMenu_Update(t *testing.T) {
-	item := new(MenuModel)
+	item := new(Model)
 	item.Extended = `{"x":1,"b":"xxx"}`
 	item.Name = "title"
 	item.ID = 1
@@ -41,10 +41,10 @@ func TestSrvMenu_Update(t *testing.T) {
 }
 
 func TestSrvMenu_UpdateState(t *testing.T) {
-	item := new(MenuModel)
+	item := new(Model)
 	item.ID = 1
 	item.Status = 1
-	v, err := new(SrvMenu).UpdateState(item)
+	v, err := new(SrvMenu).UpdateStatus(item)
 	log.Printf("v:=%+v\n", v)
 	log.Printf("err:=%+v\n", err)
 }
