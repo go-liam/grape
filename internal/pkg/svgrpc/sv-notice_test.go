@@ -2,7 +2,7 @@ package svgrpc
 
 import (
 	pb2 "grape/api/proto/notice"
-	"grape/internal/pkg/config/env"
+	"grape/configs/env"
 	"log"
 	"testing"
 )

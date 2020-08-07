@@ -4,8 +4,8 @@ import (
 	"github.com/go-liam/tracing/config"
 	"github.com/go-liam/tracing/jaeger"
 	"github.com/opentracing-contrib/go-stdlib/nethttp"
+	"grape/configs"
 	"grape/internal/app/gateway-api/core"
-	config2 "grape/internal/pkg/config"
 	"log"
 	"net/http"
 	"os"
@@ -13,7 +13,7 @@ import (
 )
 
 func main() {
-	println(config2.ServerGateWayAPI.Name, " running on port:", config2.ServerGateWayAPI.Port)
+	println(configs.ServerGateWayAPI.Name, " running on port:", configs.ServerGateWayAPI.Port)
 	//链路跟踪
 	sv := new(jaeger.SvJeager)
 	sv.Init(config.DefaultConfig)
@@ -22,7 +22,7 @@ func main() {
 	core.DateInit()
 	// start server
 	http.HandleFunc("/", core.HandleRequestAndRedirect)
-	if err := http.ListenAndServe(config2.ServerGateWayAPI.Port, nethttp.Middleware(tracer, http.DefaultServeMux)); err != nil {
+	if err := http.ListenAndServe(configs.ServerGateWayAPI.Port, nethttp.Middleware(tracer, http.DefaultServeMux)); err != nil {
 		log.Printf("[ERROR] %+v\n", err)
 	}
 	quit := make(chan os.Signal)

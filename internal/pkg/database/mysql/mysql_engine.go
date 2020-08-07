@@ -3,8 +3,8 @@ package mysql
 import (
 	"database/sql"
 	"github.com/jinzhu/gorm"
-	"grape/internal/pkg/config"
-	"grape/internal/pkg/config/env"
+	"grape/configs"
+	"grape/configs/env"
 	"log"
 	"time"
 	// 引用数据库驱动初始化
@@ -39,7 +39,7 @@ func (sv *SvMySql) EngineMock(db *sql.DB) {
 	if err != nil {
 		panic(err)
 	}
-	if config.EnvConfig.ProjectEnv != env.ConstEnvUnit {
+	if configs.EnvConfig.ProjectEnv != env.ConstEnvUnit {
 		sv.engine.LogMode(true)
 	}
 	sv.IsConnect = true
@@ -73,7 +73,7 @@ func (sv *SvMySql) NewEngine() bool {
 		return false
 	}
 	logSQL := true
-	if config.EnvConfig.ProjectEnv == "prod" {
+	if configs.EnvConfig.ProjectEnv == "prod" {
 		logSQL = false
 	}
 	sv.engine.LogMode(logSQL)

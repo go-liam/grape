@@ -3,7 +3,7 @@ package redis
 import (
 	"fmt"
 	redis2 "github.com/go-liam/cache/redis"
-	"grape/internal/pkg/config/env"
+	"grape/configs/env"
 )
 
 var Server = new(redis2.SvRedis) //cache.InCache

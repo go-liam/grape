@@ -4,14 +4,14 @@ import (
 	"context"
 	"google.golang.org/grpc"
 	pb2 "grape/api/proto/svlog"
-	"grape/internal/pkg/config"
+	"grape/configs"
 	"log"
 	"os"
 	"testing"
 	"time"
 )
 
-var portGRPCTest = config.ServerSvLog.PortGRPC // ":9403"
+var portGRPCTest = configs.ServerSvLog.PortGRPC // ":9403"
 
 //func TestMain(m *testing.M) {
 //	println("test- TestMain")

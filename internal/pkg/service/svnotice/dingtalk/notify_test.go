@@ -1,7 +1,7 @@
 package dingtalk
 
 import (
-	"grape/internal/pkg/config/env"
+	"grape/configs/env"
 	"log"
 	"testing"
 )

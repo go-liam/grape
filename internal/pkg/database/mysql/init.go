@@ -2,8 +2,8 @@ package mysql
 
 import (
 	"fmt"
-	"grape/internal/pkg/config"
-	"grape/internal/pkg/config/env"
+	"grape/configs"
+	"grape/configs/env"
 )
 
 var (
@@ -16,7 +16,7 @@ var (
 const formatSt = "%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=true&loc=Local"
 
 func init() {
-	if config.EnvConfig.ProjectEnv == env.ConstEnvUnit { // "unit"
+	if configs.EnvConfig.ProjectEnv == env.ConstEnvUnit { // "unit"
 		unitTest()
 	} else {
 		initNew()

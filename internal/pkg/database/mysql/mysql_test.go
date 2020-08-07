@@ -2,7 +2,7 @@ package mysql
 
 import (
 	"fmt"
-	"grape/internal/pkg/config/env"
+	"grape/configs/env"
 	"log"
 	"testing"
 )

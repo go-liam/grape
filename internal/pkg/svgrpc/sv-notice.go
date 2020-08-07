@@ -4,7 +4,7 @@ import (
 	"context"
 	"google.golang.org/grpc"
 	pb2 "grape/api/proto/notice"
-	"grape/internal/pkg/config"
+	"grape/configs"
 	"log"
 	"time"
 )
@@ -18,7 +18,7 @@ func initNotice() (int, error) {
 	if noticeClientIsConnect {
 		return 2, nil
 	}
-	address := config.ServerSvNotice.Host + config.ServerSvNotice.PortGRPC
+	address := configs.ServerSvNotice.Host + configs.ServerSvNotice.PortGRPC
 	conn, err := grpc.Dial(address, grpc.WithInsecure())
 	if err != nil {
 		log.Printf("did not connect: %v", err)

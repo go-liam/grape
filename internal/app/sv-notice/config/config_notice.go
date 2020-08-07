@@ -1,7 +1,7 @@
 package config
 
 import (
-	"grape/internal/pkg/config/env"
+	"grape/configs/env"
 	"grape/internal/pkg/service/svnotice/dingtalk"
 	"grape/internal/pkg/service/svnotice/email"
 	"log"

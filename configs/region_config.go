@@ -1,4 +1,4 @@
-package config
+package configs
 
 var (
 	// 区域域名

@@ -4,13 +4,13 @@ import (
 	"context"
 	"google.golang.org/grpc"
 	pb2 "grape/api/proto/svlog"
-	"grape/internal/pkg/config"
+	"grape/configs"
 	"log"
 	"time"
 )
 
 func init() {
-	address := config.ServerSvLog.Host + config.ServerSvLog.PortGRPC
+	address := configs.ServerSvLog.Host + configs.ServerSvLog.PortGRPC
 	ClientInit(address)
 }
 

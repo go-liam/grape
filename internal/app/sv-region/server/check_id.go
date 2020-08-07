@@ -1,22 +1,24 @@
 package server
 
-import "grape/internal/pkg/config"
+import (
+	"grape/configs"
+)
 
 func IpCheck(ip string) (int, string) {
 	if ip == "127.0.0.1" {
-		return config.RegionIDLocal, config.RegionHostLocal
+		return configs.RegionIDLocal, configs.RegionHostLocal
 	}
 	if ip == "192.168.0.1" {
-		return config.RegionIDTest, config.RegionHostTest
+		return configs.RegionIDTest, configs.RegionHostTest
 	}
-	return config.RegionIDDefault, config.RegionHostDefault
+	return configs.RegionIDDefault, configs.RegionHostDefault
 }
 
 func UserIDCheck(uid int64) (int, string) {
 	if uid < 100 {
-		return config.RegionIDLocal, config.RegionHostLocal
+		return configs.RegionIDLocal, configs.RegionHostLocal
 	} else if uid < 200 {
-		return config.RegionIDTest, config.RegionHostTest
+		return configs.RegionIDTest, configs.RegionHostTest
 	}
-	return config.RegionIDDefault, config.RegionHostDefault
+	return configs.RegionIDDefault, configs.RegionHostDefault
 }
