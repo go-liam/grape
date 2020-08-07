@@ -48,7 +48,7 @@ func TestSrvSite_UpdateState(t *testing.T) {
 	item := new(Model)
 	item.ID = 1
 	item.Status = 1
-	v, err := new(SrvSite).UpdateState(item)
+	v, err := new(SrvSite).UpdateStatus(item)
 	log.Printf("v:=%+v\n", v)
 	log.Printf("err:=%+v\n", err)
 }

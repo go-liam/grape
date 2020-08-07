@@ -38,7 +38,7 @@ func (e *SrvSite) Update(item *Model) (int64, error) {
 	return v.RowsAffected, v.Error
 }
 
-func (e *SrvSite) UpdateState(item *Model) (int64, error) {
+func (e *SrvSite) UpdateStatus(item *Model) (int64, error) {
 	item.UpdatedAt = time.Now().Unix()
 	sql := "update ws_site set `status` = ?,updated_at=? where `id` = ? "
 	v := mysql.ServerAPI.Engine().Exec(sql, item.Status, item.UpdatedAt, item.ID)
