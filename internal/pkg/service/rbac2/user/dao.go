@@ -40,7 +40,7 @@ func (e *SrvUser) FindMulti(page *response.Pagination, s *models.ListParameter) 
 
 func (e *SrvUser) Update(item *Model) (int64, error) {
 	item.UpdatedAt = time.Now().Unix()
-	sql := "update rb_user set extended=?,updated_at=?,flag=?,author=?,remark=?,role_ids= ? where `id` = ? "
+	sql := "update rb_user set extended=?,updated_at=?,flag=?,remark=?,role_ids= ? where `id` = ? "
 	v := mysql.ServerAPI.Engine().Exec(sql, item.Extended, item.UpdatedAt, item.Flag, item.Remark, item.RoleIDs,
 		item.ID)
 	return v.RowsAffected, v.Error
