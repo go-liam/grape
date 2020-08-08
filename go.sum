@@ -78,8 +78,8 @@ github.com/go-liam/tracing v1.0.1 h1:A5bIASDzvZKUDly7GqXQQwTp0SryxXPkBCIzaiQfuZ4
 github.com/go-liam/tracing v1.0.1/go.mod h1:h3DVpNQrQ7+S7C+bsciNxvw6/042QtcofhEKC/DaPis=
 github.com/go-liam/util v1.0.0 h1:CXW/WmD1N0bfMiVTOxiSOozY7Pv9mMNQnS6e5JK2cyc=
 github.com/go-liam/util v1.0.0/go.mod h1:5TXRTNvf30Qyu62yBjOiubM20hkYD4yBEfVULsyY0ks=
-github.com/go-liam/util v1.0.9 h1:oH01btx2a42UqUWRs93bNW/Vr8yi4Tzxhn3h09/MhII=
-github.com/go-liam/util v1.0.9/go.mod h1:5TXRTNvf30Qyu62yBjOiubM20hkYD4yBEfVULsyY0ks=
+github.com/go-liam/util v1.0.13 h1:i4zXe54wLfv1cTc/CAdFoZyKO0WgihlQsjsi9h/8toA=
+github.com/go-liam/util v1.0.13/go.mod h1:5TXRTNvf30Qyu62yBjOiubM20hkYD4yBEfVULsyY0ks=
 github.com/go-logfmt/logfmt v0.3.0/go.mod h1:Qt1PoO58o5twSAckw1HlFXLmHsOX5/0LbT9GBnD5lWE=
 github.com/go-logfmt/logfmt v0.4.0 h1:MP4Eh7ZCb31lleYCFuwm0oe4/YGak+5l1vA2NOE80nA=
 github.com/go-logfmt/logfmt v0.4.0/go.mod h1:3RMwSq7FuexP4Kalkev3ejPJsZTpXXBr9+V4qmtdjCk=

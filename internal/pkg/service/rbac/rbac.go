@@ -15,7 +15,7 @@ func UserInfo(userID int64) (*user.ModelUser, error) {
 	if info.RoleFlag == 1 {
 		return info, nil
 	}
-	roleIDs := conv.StringToIntArray(info.RoleIDs)
+	roleIDs := conv.StringToInt64Array(info.RoleIDs)
 	if roleIDs == nil || len(roleIDs) <= 0 {
 		return info, nil
 	}

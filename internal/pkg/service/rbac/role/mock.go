@@ -9,45 +9,45 @@ func init() {
 }
 
 type SvRoleMock struct {
-	list    []*ModelRole
+	list    []*Model
 	hadData bool
 }
 
 func (sv *SvRoleMock) dataInit() {
 	if !sv.hadData {
 		sv.hadData = true
-		sv.list = make([]*ModelRole, 0)
-		sv.list = append(sv.list, &ModelRole{RoleID: 1, RoleName: "name1", PowerIDS: "[1,2,3]"})
-		sv.list = append(sv.list, &ModelRole{RoleID: 2, RoleName: "name1", PowerIDS: "[2,3]"})
-		sv.list = append(sv.list, &ModelRole{RoleID: 3, RoleName: "name1", PowerIDS: "[4,5]"})
+		sv.list = make([]*Model, 0)
+		sv.list = append(sv.list, &Model{ID: 1, Name: "name1", PowerIDS: "[1,2,3]"})
+		sv.list = append(sv.list, &Model{ID: 2, Name: "name1", PowerIDS: "[2,3]"})
+		sv.list = append(sv.list, &Model{ID: 3, Name: "name1", PowerIDS: "[4,5]"})
 	}
 }
 
-func (sv *SvRoleMock) List() ([]*ModelRole, error) {
+func (sv *SvRoleMock) List() ([]*Model, error) {
 	sv.dataInit()
 	return sv.list, nil
 }
 
-func (sv *SvRoleMock) Add(item *ModelRole) (int, error) {
+func (sv *SvRoleMock) Add(item *Model) (int, error) {
 	sv.dataInit()
 	sv.list = append(sv.list, item)
 	return 1, nil
 }
 
-func (sv *SvRoleMock) Edit(item *ModelRole) (int, error) {
+func (sv *SvRoleMock) Edit(item *Model) (int, error) {
 	i := 0
 	for _, v := range sv.list {
-		if v.RoleID == item.RoleID {
+		if v.ID == item.ID {
 			sv.list[i] = item
 		}
 		i++
 	}
 	return 1, nil
 }
-func (sv *SvRoleMock) UpdatePower(item *ModelRole) (int, error) {
+func (sv *SvRoleMock) UpdatePower(item *Model) (int, error) {
 	i := 0
 	for _, v := range sv.list {
-		if v.RoleID == item.RoleID {
+		if v.ID == item.ID {
 			sv.list[i].PowerIDS = item.PowerIDS
 		}
 		i++
@@ -55,10 +55,10 @@ func (sv *SvRoleMock) UpdatePower(item *ModelRole) (int, error) {
 	return 1, nil
 }
 
-func (sv *SvRoleMock) Delete(item *ModelRole) (int, error) {
-	ls := make([]*ModelRole, 0)
+func (sv *SvRoleMock) Delete(item *Model) (int, error) {
+	ls := make([]*Model, 0)
 	for _, v := range sv.list {
-		if v.RoleID != item.RoleID {
+		if v.ID != item.ID {
 			ls = append(ls, v)
 		}
 	}
@@ -66,9 +66,9 @@ func (sv *SvRoleMock) Delete(item *ModelRole) (int, error) {
 	return 1, nil
 }
 
-func (sv *SvRoleMock) FindOne(roleID int) (*ModelRole, error) {
+func (sv *SvRoleMock) FindOne(roleID int64) (*Model, error) {
 	for _, v := range sv.list {
-		if v.RoleID == roleID {
+		if v.ID == roleID {
 			return v, nil
 		}
 	}

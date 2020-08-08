@@ -1,10 +1,10 @@
 package role
 
 type InRole interface {
-	List() ([]*ModelRole, error)
-	Add(item *ModelRole) (int, error)
-	Edit(item *ModelRole) (int, error)
-	UpdatePower(item *ModelRole) (int, error)
-	Delete(item *ModelRole) (int, error)
-	FindOne(roleID int) (*ModelRole, error)
+	List() ([]*Model, error)
+	Add(item *Model) (int, error)
+	Edit(item *Model) (int, error)
+	UpdatePower(item *Model) (int, error)
+	Delete(item *Model) (int, error)
+	FindOne(roleID int64) (*Model, error)
 }
