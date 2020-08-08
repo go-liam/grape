@@ -33,7 +33,7 @@ func (e *SrvMenu) FindMulti() ([]*Model, error) {
 
 func (e *SrvMenu) Update(item *Model) (int64, error) {
 	item.UpdatedAt = time.Now().Unix()
-	sql := "update ws_menu set `Name` = ?,extended=?,updated_at=? where `id` = ? "
+	sql := "update ws_menu set `name` = ?,extended=?,updated_at=? where `id` = ? "
 	v := mysql.ServerAPI.Engine().Exec(sql, item.Name, item.Extended, item.UpdatedAt, item.ID)
 	return v.RowsAffected, v.Error
 }
