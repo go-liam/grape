@@ -1,7 +1,7 @@
 package role
 
-var Server InRole
+var Server2 InRole
 
 func init() {
-	Server = new(SvRoleMock) // ServerMock
+	Server2 = new(SvRoleMock) // ServerMock
 }

@@ -19,7 +19,7 @@ func Info(userID int64) (*ModelUser, error) {
 		return info, nil
 	}
 	// role-> powers
-	lsRole, _ := role.Server.List()
+	lsRole, _ := role.Server2.List()
 	info.PowerIDs = role.ListPowerIDsByIDs(roleIDs, lsRole)
 	return info, nil
 }

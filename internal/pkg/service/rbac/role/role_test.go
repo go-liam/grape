@@ -6,7 +6,7 @@ import (
 )
 
 func TestListByIDs(t *testing.T) {
-	list, _ := Server.List()
+	list, _ := Server2.List()
 	ls := ListByIDs([]int64{1, 2}, list)
 	for _, v := range ls {
 		log.Printf("v=%+v\n", v)
@@ -14,7 +14,7 @@ func TestListByIDs(t *testing.T) {
 }
 
 func TestListPowerIDsByIDs(t *testing.T) {
-	list, _ := Server.List()
+	list, _ := Server2.List()
 	ls := ListPowerIDsByIDs([]int64{1, 2}, list)
 	log.Printf("v=%+v\n", ls)
 }
