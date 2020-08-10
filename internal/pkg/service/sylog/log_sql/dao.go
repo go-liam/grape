@@ -37,7 +37,7 @@ func (e *SrvLog) Create(item *Model) (int64, error) {
 func (e *SrvLog) FindMulti(page *response.Pagination, s *models.ListParameter) ([]*Model, error) {
 	var result []*Model
 	sqlLimit := fmt.Sprintf(" limit %d , %d  ", (page.Current-1)*page.PageSize, page.PageSize)
-	sqlWhere := " 1=1 "+ s.WhereSt
+	sqlWhere := " 1=1 " + s.WhereSt
 	sql := "select * from lg_log where " + sqlWhere + s.OrderSt + sqlLimit
 	mysql.ServerAPI.Engine().Model(&Model{}).Where(sqlWhere).Count(&page.Total)
 	v := mysql.ServerAPI.Engine().Raw(sql).Scan(&result)
