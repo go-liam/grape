@@ -16,4 +16,3 @@ type Model struct {
 func (sv *Model) TableName() string {
 	return "um_money"
 }
-
