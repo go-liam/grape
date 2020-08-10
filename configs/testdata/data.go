@@ -13,6 +13,7 @@ const (
 	ConstWantOne  = 1
 	ConstWantTwo = 2
 	ConstWantBigInt = 1597027173
+	ConstSecondTime = 1597027175
 
 	ConstWantString = "tsName"
 	ConstWantString2 = "Name-nul"
