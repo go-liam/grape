@@ -1,4 +1,4 @@
-package core
+package config
 
 const (
 	Port       = ":7203"

@@ -10,13 +10,13 @@ import (
 )
 
 func main() {
-	println("run api port ", core.Port)
+	println("run api port ", config.Port)
 	engine := gin.New()
 	// 设置路由
 	router.SetupRouter(engine)
 	router.SetupRouterMetric(engine)
 
-	engine.Run(core.Port)
+	engine.Run(config.Port)
 	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, os.Interrupt)
 	<-quit

@@ -27,5 +27,5 @@ func setupRouterCMS(engine *gin.Engine) {
 }
 
 func Index(c *gin.Context) {
-	c.String(http.StatusOK, "1-Hello,It works.index "+core.ServerName)
+	c.String(http.StatusOK, "1-Hello,It works.index "+config.ServerName)
 }
