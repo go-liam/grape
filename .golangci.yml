@@ -7,13 +7,14 @@ run:
   # skip dirs
   skip-dirs:
     - deploy
+    - deployments
     - cmd
     - test
     - docs
     - assets
     - build
     - scripts
-    - examples/httptest
+    - examples
   #  skip-files:
 
 # replace default linter with whitelist

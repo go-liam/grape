@@ -10,8 +10,9 @@ import (
 )
 
 type SrvInfo struct {
-	id  int64
-	srv *site.SrvSite
+	id   int64
+	srv  site.Site //*site.SrvSite
+	info *site.Model
 }
 
 func GetInfoGin(c *gin.Context) {
@@ -25,7 +26,7 @@ func (e *SrvInfo) GetInfo() *response.APIResponse {
 	if e.id <= 0 {
 		return &response.APIResponse{Code: errorcode.RequestParameter, Message: errorcode.MsRequest, Data: response.DataItemNil}
 	}
-	got, _ := e.srv.FindOne(e.id)
-	back := GetRespModel(got)
+	e.info, _ = e.srv.FindOne(e.id)
+	back := GetRespModel(e.info)
 	return &response.APIResponse{Code: errorcode.Success, Message: errorcode.MsSuccess, Data: back}
 }

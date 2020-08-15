@@ -11,6 +11,7 @@ require (
 	github.com/go-liam/cache v1.0.0
 	github.com/go-liam/tracing v1.0.1
 	github.com/go-liam/util v1.0.16
+	github.com/golang/mock v1.3.1
 	github.com/golang/protobuf v1.3.5
 	github.com/jinzhu/gorm v1.9.14
 	github.com/opentracing-contrib/go-stdlib v0.0.0-20190519235532-cf7a6c988dc9
