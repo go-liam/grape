@@ -49,11 +49,3 @@ func GetRespModel(i *site.Model) *RespModel {
 	o.Extended = conv.StringToInterface(i.Extended)
 	return o
 }
-
-func GetIDs(ls []string) []int64 {
-	o := make([]int64, 0)
-	for _, v := range ls {
-		o = append(o, conv.StringToInt64(v, 0))
-	}
-	return o
-}
