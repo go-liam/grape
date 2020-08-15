@@ -5,6 +5,7 @@
 package mock_site
 
 import (
+	response "github.com/go-liam/util/response"
 	gomock "github.com/golang/mock/gomock"
 	site "grape/internal/pkg/data/home_site/site"
 	reflect "reflect"
@@ -33,6 +34,21 @@ func (m *MockSite) EXPECT() *MockSiteMockRecorder {
 	return m.recorder
 }
 
+// Create mocks base method
+func (m *MockSite) Create(item *site.Model) (int64, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "Create", item)
+	ret0, _ := ret[0].(int64)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// Create indicates an expected call of Create
+func (mr *MockSiteMockRecorder) Create(item interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Create", reflect.TypeOf((*MockSite)(nil).Create), item)
+}
+
 // FindOne mocks base method
 func (m *MockSite) FindOne(id int64) (*site.Model, error) {
 	m.ctrl.T.Helper()
@@ -46,4 +62,64 @@ func (m *MockSite) FindOne(id int64) (*site.Model, error) {
 func (mr *MockSiteMockRecorder) FindOne(id interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "FindOne", reflect.TypeOf((*MockSite)(nil).FindOne), id)
+}
+
+// FindMulti mocks base method
+func (m *MockSite) FindMulti(page *response.Pagination, s *response.ListParameter) ([]*site.Model, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "FindMulti", page, s)
+	ret0, _ := ret[0].([]*site.Model)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// FindMulti indicates an expected call of FindMulti
+func (mr *MockSiteMockRecorder) FindMulti(page, s interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "FindMulti", reflect.TypeOf((*MockSite)(nil).FindMulti), page, s)
+}
+
+// Update mocks base method
+func (m *MockSite) Update(item *site.Model) (int64, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "Update", item)
+	ret0, _ := ret[0].(int64)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// Update indicates an expected call of Update
+func (mr *MockSiteMockRecorder) Update(item interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Update", reflect.TypeOf((*MockSite)(nil).Update), item)
+}
+
+// UpdateStatusByIDs mocks base method
+func (m *MockSite) UpdateStatusByIDs(status int, ls []int64) (int64, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "UpdateStatusByIDs", status, ls)
+	ret0, _ := ret[0].(int64)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// UpdateStatusByIDs indicates an expected call of UpdateStatusByIDs
+func (mr *MockSiteMockRecorder) UpdateStatusByIDs(status, ls interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateStatusByIDs", reflect.TypeOf((*MockSite)(nil).UpdateStatusByIDs), status, ls)
+}
+
+// CacheOne mocks base method
+func (m *MockSite) CacheOne(id int64) (*site.Model, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "CacheOne", id)
+	ret0, _ := ret[0].(*site.Model)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// CacheOne indicates an expected call of CacheOne
+func (mr *MockSiteMockRecorder) CacheOne(id interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CacheOne", reflect.TypeOf((*MockSite)(nil).CacheOne), id)
 }
