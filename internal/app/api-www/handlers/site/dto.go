@@ -1,5 +1,11 @@
 package site
 
+import (
+	"github.com/go-liam/util/conv"
+	"github.com/go-liam/util/uuid"
+	"grape/internal/pkg/data/home_site/site"
+)
+
 type ReqModel struct {
 	ID          int64       ` json:"id"`           // id
 	LanguageID  int         `json:"languageID"  `  // 语言ID:1中文,2英语
@@ -19,4 +25,28 @@ type RespModel struct {
 	Email       string      `json:"email"  `       //邮箱
 	Description string      `json:"description"  ` //描述
 	Extended    interface{} `json:"extended" `     // 扩展的
+}
+
+func GetModel(i *ReqModel) *site.Model {
+	o := new(site.Model)
+	o.Title = i.Title
+	o.Status = 1
+	o.ID = uuid.AutoInt64ID()
+	o.Email = i.Email
+	o.Description = i.Description
+	o.LanguageID = i.LanguageID
+	o.Extended = conv.StructToJsonString(i.Extended)
+	return o
+}
+
+func GetRespModel(i *site.Model) *RespModel {
+	o := new(RespModel)
+	o.Title = i.Title
+	o.Status = 1
+	o.ID = uuid.AutoInt64ID()
+	o.Email = i.Email
+	o.Description = i.Description
+	o.LanguageID = i.LanguageID
+	o.Extended = conv.StringToInterface(i.Extended)
+	return o
 }
