@@ -36,6 +36,8 @@ func (e *SrvAdd) Add() *response.APIResponse {
 	item.ID = conv.StringToInt64(e.req.ID, 0) //uuid.AutoInt64ID()
 	item.Status = commom.StatusDefault
 	e.result, _ = e.srv.Create(item)
-	//e.req.ID = conv.Int64ToString(item.ID)
-	return &response.APIResponse{Code: errorcode.Success, Message: errorcode.MsSuccess, Data: e.req}
+	if e.result > 0 {
+		return &response.APIResponse{Code: errorcode.Success, Message: errorcode.MsSuccess, Data: e.req}
+	}
+	return &response.APIResponse{Code: errorcode.Database, Message: errorcode.MsDatabase, Data: e.req}
 }

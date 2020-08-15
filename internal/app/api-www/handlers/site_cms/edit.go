@@ -30,5 +30,8 @@ func (e *SrvEdit) EditSite() *response.APIResponse {
 	}
 	item := GetModel(e.req)
 	e.result, _ = e.srv.Update(item)
-	return &response.APIResponse{Code: errorcode.Success, Message: errorcode.MsSuccess, Data: e.req}
+	if e.result > 0 {
+		return &response.APIResponse{Code: errorcode.Success, Message: errorcode.MsSuccess, Data: e.req}
+	}
+	return &response.APIResponse{Code: errorcode.Database, Message: errorcode.MsDatabase, Data: e.req}
 }
