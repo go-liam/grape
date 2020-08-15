@@ -14,8 +14,9 @@ import (
 )
 
 type SrvAdd struct {
-	req *ReqModel
-	srv *site.SrvSite
+	req    *ReqModel
+	srv    site.Service
+	result int64
 }
 
 func AddGin(c *gin.Context) {
@@ -23,6 +24,7 @@ func AddGin(c *gin.Context) {
 	body, _ := ioutil.ReadAll(c.Request.Body)
 	json.Unmarshal(body, &srv.req)
 	srv.srv = site.Server
+	srv.req.ID = uuid.UUID()
 	c.JSON(http.StatusOK, srv.Add())
 }
 
@@ -31,9 +33,9 @@ func (e *SrvAdd) Add() *response.APIResponse {
 		return &response.APIResponse{Code: errorcode.RequestParameter, Message: errorcode.MsRequest, Data: response.DataItemNil}
 	}
 	item := GetModel(e.req)
-	item.ID = uuid.AutoInt64ID()
+	item.ID = conv.StringToInt64(e.req.ID, 0) //uuid.AutoInt64ID()
 	item.Status = commom.StatusDefault
-	e.srv.Create(item)
-	e.req.ID = conv.Int64ToString(item.ID)
+	e.result, _ = e.srv.Create(item)
+	//e.req.ID = conv.Int64ToString(item.ID)
 	return &response.APIResponse{Code: errorcode.Success, Message: errorcode.MsSuccess, Data: e.req}
 }

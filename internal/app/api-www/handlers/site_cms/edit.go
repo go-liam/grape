@@ -11,8 +11,9 @@ import (
 )
 
 type SrvEdit struct {
-	req *ReqModel
-	srv *site.SrvSite
+	req    *ReqModel
+	srv    site.Service
+	result int64
 }
 
 func EditGin(c *gin.Context) {
@@ -28,6 +29,6 @@ func (e *SrvEdit) EditSite() *response.APIResponse {
 		return &response.APIResponse{Code: errorcode.RequestParameter, Message: errorcode.MsRequest, Data: response.DataItemNil}
 	}
 	item := GetModel(e.req)
-	e.srv.Update(item)
+	e.result, _ = e.srv.Update(item)
 	return &response.APIResponse{Code: errorcode.Success, Message: errorcode.MsSuccess, Data: e.req}
 }

@@ -10,7 +10,8 @@ import (
 )
 
 type SrvList struct {
-	srv      *site.SrvSite
+	srv      site.Service
+	list     []*site.Model
 	pageSize int // 分页
 	current  int // 分页
 }
@@ -32,9 +33,9 @@ func (e *SrvList) GetList() *response.APIResponse {
 	back := new(RespList)
 	back.Pagination = &response.Pagination{PageSize: e.pageSize, Current: e.current}
 	s := &response.ListParameter{WhereSt: " and 1=1 ", OrderSt: " order by id "}
-	got, _ := e.srv.FindMulti(back.Pagination, s)
+	e.list, _ = e.srv.FindMulti(back.Pagination, s)
 	ls := make([]*RespModel, 0)
-	for _, v := range got {
+	for _, v := range e.list {
 		ls = append(ls, GetRespModel(v))
 	}
 	back.List = ls

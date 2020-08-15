@@ -12,8 +12,9 @@ import (
 )
 
 type SrvUpdateStatus struct {
-	srv *site.SrvSite
-	req *reqStatus
+	srv    site.Service
+	req    *reqStatus
+	result int64
 }
 
 type reqStatus struct {
@@ -34,6 +35,6 @@ func (e *SrvUpdateStatus) UpdateStatus() *response.APIResponse {
 		return &response.APIResponse{Code: errorcode.RequestParameter, Message: errorcode.MsRequest, Data: response.DataItemNil}
 	}
 	ids := conv.ArrayStringToInt64(e.req.IDs)
-	e.srv.UpdateStatusByIDs(e.req.Status, ids)
-	return &response.APIResponse{Code: errorcode.Success, Message: errorcode.MsSuccess, Data: e.req}
+	e.result, _ = e.srv.UpdateStatusByIDs(e.req.Status, ids)
+	return &response.APIResponse{Code: errorcode.Success, Message: errorcode.MsSuccess, Data: response.DataItemNil}
 }

@@ -5,21 +5,20 @@ import (
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
 	"grape/configs/testdata"
-	"grape/internal/pkg/data/home_site/site"
 	"grape/test/mock/www/mock_site"
 	"testing"
 )
 
-func TestInfo_GetInfo(t *testing.T) {
+func TestSite_UpdateStatus(t *testing.T) {
 	ctrl, _ := gomock.WithContext(context.Background(), t)
 	defer ctrl.Finish()
 	m := mock_site.NewMockService(ctrl)
-	back := &site.Model{ID: 1, CreatedAt: 1}
+	ids := []int64{1}
 
-	m.EXPECT().FindOne(back.ID).Return(back, nil).AnyTimes()
-	e := new(SrvInfo)
+	m.EXPECT().UpdateStatusByIDs(1, ids).Return(int64(1), nil).AnyTimes()
+	e := new(SrvUpdateStatus)
 	e.srv = m
-	e.id = back.ID
-	e.GetInfo()
-	assert.EqualValues(t, testdata.ConstWantOne, e.info.ID)
+	e.req = &reqStatus{Status: 1, IDs: []string{"1"}}
+	e.UpdateStatus()
+	assert.EqualValues(t, testdata.ConstWantOne, e.result)
 }

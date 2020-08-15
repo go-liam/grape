@@ -10,16 +10,18 @@ import (
 	"testing"
 )
 
-func TestInfo_GetInfo(t *testing.T) {
+func TestSite_Add(t *testing.T) {
 	ctrl, _ := gomock.WithContext(context.Background(), t)
 	defer ctrl.Finish()
 	m := mock_site.NewMockService(ctrl)
-	back := &site.Model{ID: 1, CreatedAt: 1}
-
-	m.EXPECT().FindOne(back.ID).Return(back, nil).AnyTimes()
-	e := new(SrvInfo)
+	item := &site.Model{
+		ID:    1,
+		Title: testdata.ConstWantString,
+	}
+	m.EXPECT().Create(item).Return(int64(1), nil).AnyTimes()
+	e := new(SrvAdd)
 	e.srv = m
-	e.id = back.ID
-	e.GetInfo()
-	assert.EqualValues(t, testdata.ConstWantOne, e.info.ID)
+	e.req = &ReqModel{ID: "1", Title: testdata.ConstWantString}
+	e.Add()
+	assert.EqualValues(t, testdata.ConstWantOne, e.result)
 }
