@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
-	"grape/internal/app/api-www/core"
+	"grape/internal/app/api-www/config"
 	"grape/internal/app/api-www/router"
 	"log"
 	"os"

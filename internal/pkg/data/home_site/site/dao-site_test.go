@@ -1,6 +1,7 @@
 package site
 
 import (
+	"github.com/go-liam/util/response"
 	"log"
 	"testing"
 )
@@ -26,7 +27,9 @@ func TestSrvSite_FindOne(t *testing.T) {
 }
 
 func TestSrvSite_FindMulti(t *testing.T) {
-	v, err := new(SrvSite).FindMulti()
+	page := &response.Pagination{PageSize: 10, Current: 1}
+	s := &response.ListParameter{WhereSt: " and 1=1 ", OrderSt: " order by id "}
+	v, err := new(SrvSite).FindMulti(page, s)
 	log.Printf("v:=%+v\n", v)
 	log.Printf("err:=%+v\n", err)
 }

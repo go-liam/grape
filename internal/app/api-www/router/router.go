@@ -3,7 +3,7 @@ package router
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/go-liam/tracing"
-	"grape/internal/app/api-www/core"
+	"grape/internal/app/api-www/config"
 	"grape/internal/pkg/middleware/metric"
 	"grape/internal/pkg/middleware/trace"
 )

@@ -1,4 +1,4 @@
-package site
+package site_cms
 
 import (
 	"encoding/json"
@@ -10,28 +10,24 @@ import (
 	"net/http"
 )
 
-type SrvSiteAdd struct {
+type SrvEdit struct {
 	req *ReqModel
 	srv *site.SrvSite
 }
 
-func CreateGin(c *gin.Context) {
-	srv := new(SrvSiteAdd)
+func EditGin(c *gin.Context) {
+	srv := new(SrvEdit)
 	body, _ := ioutil.ReadAll(c.Request.Body)
 	json.Unmarshal(body, &srv.req)
 	srv.srv = site.Server
-	c.JSON(http.StatusOK, srv.CreateSite())
+	c.JSON(http.StatusOK, srv.EditSite())
 }
 
-func (e *SrvSiteAdd) CreateSite() *response.APIResponse {
+func (e *SrvEdit) EditSite() *response.APIResponse {
 	if e.req.Title == "" {
 		return &response.APIResponse{Code: errorcode.RequestParameter, Message: errorcode.MsRequest, Data: response.DataItemNil}
 	}
 	item := GetModel(e.req)
-	id, err := e.srv.Create(item)
-	if err != nil {
-		return &response.APIResponse{Code: errorcode.Database, Message: errorcode.MsDatabase, Data: response.DataItemNil}
-	}
-	e.req.ID = id
+	e.srv.Update(item)
 	return &response.APIResponse{Code: errorcode.Success, Message: errorcode.MsSuccess, Data: e.req}
 }

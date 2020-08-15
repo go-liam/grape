@@ -19,19 +19,19 @@ func TestCMSWWW_Site_Info(t *testing.T) {
 }
 
 func TestCMSWWW_Site_list(t *testing.T) {
-	back, _ := router.RouteTestTool(router2.SetupRouterTest(), "GET", urlCms+"sites", nil, testdata.UserKey, testdata.AdminKey)
+	p := "pageSize=2&current=1"
+	back, _ := router.RouteTestTool(router2.SetupRouterTest(), "GET", urlCms+"sites?"+p, nil, testdata.UserKey, testdata.AdminKey)
 	println(back)
 }
 
 func TestCMSWWW_Site_Create(t *testing.T) {
 	data := `
 {
-  "name": "laborum-name",
-  "description": "description exercitation commodo nisi ea",
-  "teacherID": 3,
-  "channelID": 2,
-  "auditorNum" :10,
-  "totalNum":20
+  "languageID": 1,
+  "title": "description exercitation commodo nisi ea",
+  "email": "email",
+  "description": "description",
+  "extended" :{"a":1,"b":"xxx"}
 }
 	`
 	reader := strings.NewReader(data)
@@ -40,11 +40,29 @@ func TestCMSWWW_Site_Create(t *testing.T) {
 }
 
 func TestCMSWWW_Site_Update(t *testing.T) {
-	back, _ := router.RouteTestTool(router2.SetupRouterTest(), "PUT", urlCms+"site", nil, testdata.UserKey, testdata.AdminKey)
+	data := `
+{
+  "languageID": 1,
+  "title": "description up",
+  "email": "email",
+  "description": "description",
+  "extended" :{"a":1,"b":"xxx"},
+	"id":"1"
+}
+	`
+	reader := strings.NewReader(data)
+	back, _ := router.RouteTestTool(router2.SetupRouterTest(), "PUT", urlCms+"site", reader, testdata.UserKey, testdata.AdminKey)
 	println(back)
 }
 
 func TestCMSWWW_Site_updateStatus(t *testing.T) {
-	back, _ := router.RouteTestTool(router2.SetupRouterTest(), "PATCH", urlCms+"site", nil, testdata.UserKey, testdata.AdminKey)
+	data := `
+{
+  "IDs": ["1","2","85866711131123602"],
+  "status": 1
+}
+	`
+	reader := strings.NewReader(data)
+	back, _ := router.RouteTestTool(router2.SetupRouterTest(), "PATCH", urlCms+"site", reader, testdata.UserKey, testdata.AdminKey)
 	println(back)
 }
