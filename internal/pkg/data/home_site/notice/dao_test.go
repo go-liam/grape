@@ -2,7 +2,6 @@ package notice
 
 import (
 	"github.com/go-liam/util/response"
-	models "grape/internal/pkg/model"
 	"log"
 	"testing"
 )

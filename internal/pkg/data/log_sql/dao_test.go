@@ -3,7 +3,6 @@ package log_sql
 import (
 	"github.com/go-liam/util/response"
 	"github.com/go-liam/util/uuid"
-	models "grape/internal/pkg/model"
 	"log"
 	"testing"
 )

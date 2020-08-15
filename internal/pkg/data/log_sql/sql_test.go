@@ -7,7 +7,6 @@ import (
 	"github.com/stretchr/testify/assert"
 	"grape/configs/testdata"
 	"grape/internal/pkg/database/mysql"
-	models "grape/internal/pkg/model"
 	"regexp"
 	"testing"
 )

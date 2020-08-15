@@ -9,9 +9,10 @@ type Model struct {
 	Remark     string `gorm:"column:remark"  json:"remark"`         // 备注
 	Extended   string `gorm:"column:extended" json:"extended"`      // 扩展的
 	UserID     int64  `gorm:"column:user_id" json:"userID"`         // uid
-	ChannelID  int    `gorm:"column:channel_id" json:"channelID"`   // 充值 渠道ID
 	Amount     int    `gorm:"column:amount" json:"amount"`          // 数额（分）人民币
 	LastAmount int    `gorm:"column:last_amount" json:"lastAmount"` // 上次个人账户 数额
+	Type       int    `gorm:"column:type" json:"type"`              // 充值类型 **
+	OrderID    int64  `gorm:"column:order_id" json:"orderID"`       // 订单ID
 }
 
 func (sv *Model) TableName() string {

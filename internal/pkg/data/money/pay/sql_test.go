@@ -1,4 +1,4 @@
-package notice
+package pay
 
 import (
 	"errors"
@@ -12,22 +12,18 @@ import (
 )
 
 const (
-	sqlFindOne = "select .+ from ws_notice"
+	sqlFindOne = "select .+ from um_pay"
 )
 
 var (
-	tsRow  = []string{"id", "title"}
-	tsItem = &Model{Title: testdata.ConstWantString, Content: ""}
+	tsRow  = []string{"id", "created_at"}
+	tsItem = &Model{ID: testdata.ConstWantOne, CreatedAt: 0}
 )
 
-func init() {
-	tsItem.ID = testdata.ConstWantOne
-}
-
-func TestSqlSite_Create(t *testing.T) {
+func TestSqlPay_Create(t *testing.T) {
 	db, mock, _ := mysql.MockEngine(mysql.ServerAPI) //getMockDB(t)
 	defer db.Close()
-	sql := "INSERT INTO `ws_notice`" // regexp.QuoteMeta("SELECT * from cp_admin")
+	sql := "INSERT INTO `um_pay`" // regexp.QuoteMeta("SELECT * from cp_admin")
 
 	t.Run(testdata.ConstFail, func(t *testing.T) {
 		mock.ExpectBegin()
@@ -53,7 +49,7 @@ func TestSqlSite_Create(t *testing.T) {
 	}
 }
 
-func TestDao_FindOne(t *testing.T) {
+func TestSqlPay_FindOne(t *testing.T) {
 	db, mock, _ := mysql.MockEngine(mysql.ServerAPI) //getMockDB(t)
 	defer db.Close()
 	sql := sqlFindOne
@@ -69,7 +65,7 @@ func TestDao_FindOne(t *testing.T) {
 	t.Run(testdata.ConstSuccess, func(t *testing.T) {
 		mock.ExpectQuery(sql). //WithArgs(item.ID).
 					WillReturnRows(sqlmock.NewRows(tsRow).
-						AddRow(tsItem.ID, tsItem.Title))
+						AddRow(tsItem.ID, tsItem.CreatedAt))
 		got, err := Server.FindOne(tsItem.ID)
 		assert.Nil(t, err)
 		assert.EqualValues(t, tsItem.ID, got.ID)
@@ -80,11 +76,11 @@ func TestDao_FindOne(t *testing.T) {
 	}
 }
 
-func TestDao_FindMulti(t *testing.T) {
+func TestSqlPay_FindMulti(t *testing.T) {
 	db, mock, _ := mysql.MockEngine(mysql.ServerAPI) //getMockDB(t)
 	defer db.Close()
 	sql := sqlFindOne // regexp.QuoteMeta("SELECT * from cp_admin")
-	sqlCount := regexp.QuoteMeta("SELECT count(*) FROM `ws_notice`")
+	sqlCount := regexp.QuoteMeta("SELECT count(*) FROM `um_pay`")
 	page := &response.Pagination{PageSize: 10, Current: 1}
 	s := &response.ListParameter{WhereSt: " 1=1 ", OrderSt: " order by id "}
 
@@ -101,10 +97,10 @@ func TestDao_FindMulti(t *testing.T) {
 	t.Run(testdata.ConstSuccess, func(t *testing.T) {
 		mock.ExpectQuery(sqlCount). //WithArgs(item.ID).
 						WillReturnRows(sqlmock.NewRows(tsRow).
-							AddRow(tsItem.ID, tsItem.Title))
+							AddRow(tsItem.ID, tsItem.CreatedAt))
 		mock.ExpectQuery(sql). //WithArgs(item.ID).
 					WillReturnRows(sqlmock.NewRows(tsRow).
-						AddRow(tsItem.ID, tsItem.Title))
+						AddRow(tsItem.ID, tsItem.CreatedAt))
 		got, err := Server.FindMulti(page, s)
 		assert.Nil(t, err)
 		assert.EqualValues(t, testdata.ConstWantOne, len(got))
@@ -115,11 +111,11 @@ func TestDao_FindMulti(t *testing.T) {
 	}
 }
 
-func TestDao_Update(t *testing.T) {
+func TestSqlPay_Update(t *testing.T) {
 	db, mock, _ := mysql.MockEngine(mysql.ServerAPI) //getMockDB(t)
 	defer db.Close()
 	//sql :=  regexp.QuoteMeta("update `cp_admin` ")
-	sql := "update ws_notice " //
+	sql := "update um_pay " //
 
 	t.Run(testdata.ConstFail, func(t *testing.T) {
 		//mock.ExpectBegin()
@@ -145,11 +141,11 @@ func TestDao_Update(t *testing.T) {
 	}
 }
 
-func TestDao_UpdateStatus(t *testing.T) {
+func TestSqlPay_UpdateStatus(t *testing.T) {
 	db, mock, _ := mysql.MockEngine(mysql.ServerAPI) //getMockDB(t)
 	defer db.Close()
 	//sql :=  regexp.QuoteMeta("update `cp_admin` ")
-	sql := "update ws_notice " //
+	sql := "update um_pay " //
 
 	t.Run(testdata.ConstFail, func(t *testing.T) {
 		//mock.ExpectBegin()
