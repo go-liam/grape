@@ -1,4 +1,4 @@
-package api_www
+package handlers
 
 import (
 	"grape/configs/testdata"

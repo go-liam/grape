@@ -20,3 +20,8 @@ const (
 )
 
 var ErrorDBConnect = errors.New("数据库错误")
+
+const (
+	UserKey = "jsrseida"
+	AdminKey = "box2CELUbG1rVYcbzO32R7WEj0oE9ECu"
+)
