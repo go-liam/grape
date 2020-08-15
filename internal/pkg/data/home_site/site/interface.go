@@ -2,7 +2,7 @@ package site
 
 import "github.com/go-liam/util/response"
 
-type Site interface {
+type Service interface {
 	Create(item *Model) (int64, error)
 	FindOne(id int64) (*Model, error)
 	FindMulti(page *response.Pagination, s *response.ListParameter) ([]*Model, error)

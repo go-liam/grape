@@ -11,7 +11,7 @@ import (
 
 type SrvInfo struct {
 	id   int64
-	srv  site.Site //*site.SrvSite
+	srv  site.Service //*site.SrvSite
 	info *site.Model
 }
 

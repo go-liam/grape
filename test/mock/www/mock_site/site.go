@@ -11,31 +11,31 @@ import (
 	reflect "reflect"
 )
 
-// MockSite is a mock of Site interface
-type MockSite struct {
+// MockService is a mock of Service interface
+type MockService struct {
 	ctrl     *gomock.Controller
-	recorder *MockSiteMockRecorder
+	recorder *MockServiceMockRecorder
 }
 
-// MockSiteMockRecorder is the mock recorder for MockSite
-type MockSiteMockRecorder struct {
-	mock *MockSite
+// MockServiceMockRecorder is the mock recorder for MockService
+type MockServiceMockRecorder struct {
+	mock *MockService
 }
 
-// NewMockSite creates a new mock instance
-func NewMockSite(ctrl *gomock.Controller) *MockSite {
-	mock := &MockSite{ctrl: ctrl}
-	mock.recorder = &MockSiteMockRecorder{mock}
+// NewMockService creates a new mock instance
+func NewMockService(ctrl *gomock.Controller) *MockService {
+	mock := &MockService{ctrl: ctrl}
+	mock.recorder = &MockServiceMockRecorder{mock}
 	return mock
 }
 
 // EXPECT returns an object that allows the caller to indicate expected use
-func (m *MockSite) EXPECT() *MockSiteMockRecorder {
+func (m *MockService) EXPECT() *MockServiceMockRecorder {
 	return m.recorder
 }
 
 // Create mocks base method
-func (m *MockSite) Create(item *site.Model) (int64, error) {
+func (m *MockService) Create(item *site.Model) (int64, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Create", item)
 	ret0, _ := ret[0].(int64)
@@ -44,13 +44,13 @@ func (m *MockSite) Create(item *site.Model) (int64, error) {
 }
 
 // Create indicates an expected call of Create
-func (mr *MockSiteMockRecorder) Create(item interface{}) *gomock.Call {
+func (mr *MockServiceMockRecorder) Create(item interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Create", reflect.TypeOf((*MockSite)(nil).Create), item)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Create", reflect.TypeOf((*MockService)(nil).Create), item)
 }
 
 // FindOne mocks base method
-func (m *MockSite) FindOne(id int64) (*site.Model, error) {
+func (m *MockService) FindOne(id int64) (*site.Model, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "FindOne", id)
 	ret0, _ := ret[0].(*site.Model)
@@ -59,13 +59,13 @@ func (m *MockSite) FindOne(id int64) (*site.Model, error) {
 }
 
 // FindOne indicates an expected call of FindOne
-func (mr *MockSiteMockRecorder) FindOne(id interface{}) *gomock.Call {
+func (mr *MockServiceMockRecorder) FindOne(id interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "FindOne", reflect.TypeOf((*MockSite)(nil).FindOne), id)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "FindOne", reflect.TypeOf((*MockService)(nil).FindOne), id)
 }
 
 // FindMulti mocks base method
-func (m *MockSite) FindMulti(page *response.Pagination, s *response.ListParameter) ([]*site.Model, error) {
+func (m *MockService) FindMulti(page *response.Pagination, s *response.ListParameter) ([]*site.Model, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "FindMulti", page, s)
 	ret0, _ := ret[0].([]*site.Model)
@@ -74,13 +74,13 @@ func (m *MockSite) FindMulti(page *response.Pagination, s *response.ListParamete
 }
 
 // FindMulti indicates an expected call of FindMulti
-func (mr *MockSiteMockRecorder) FindMulti(page, s interface{}) *gomock.Call {
+func (mr *MockServiceMockRecorder) FindMulti(page, s interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "FindMulti", reflect.TypeOf((*MockSite)(nil).FindMulti), page, s)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "FindMulti", reflect.TypeOf((*MockService)(nil).FindMulti), page, s)
 }
 
 // Update mocks base method
-func (m *MockSite) Update(item *site.Model) (int64, error) {
+func (m *MockService) Update(item *site.Model) (int64, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Update", item)
 	ret0, _ := ret[0].(int64)
@@ -89,13 +89,13 @@ func (m *MockSite) Update(item *site.Model) (int64, error) {
 }
 
 // Update indicates an expected call of Update
-func (mr *MockSiteMockRecorder) Update(item interface{}) *gomock.Call {
+func (mr *MockServiceMockRecorder) Update(item interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Update", reflect.TypeOf((*MockSite)(nil).Update), item)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Update", reflect.TypeOf((*MockService)(nil).Update), item)
 }
 
 // UpdateStatusByIDs mocks base method
-func (m *MockSite) UpdateStatusByIDs(status int, ls []int64) (int64, error) {
+func (m *MockService) UpdateStatusByIDs(status int, ls []int64) (int64, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "UpdateStatusByIDs", status, ls)
 	ret0, _ := ret[0].(int64)
@@ -104,13 +104,13 @@ func (m *MockSite) UpdateStatusByIDs(status int, ls []int64) (int64, error) {
 }
 
 // UpdateStatusByIDs indicates an expected call of UpdateStatusByIDs
-func (mr *MockSiteMockRecorder) UpdateStatusByIDs(status, ls interface{}) *gomock.Call {
+func (mr *MockServiceMockRecorder) UpdateStatusByIDs(status, ls interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateStatusByIDs", reflect.TypeOf((*MockSite)(nil).UpdateStatusByIDs), status, ls)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateStatusByIDs", reflect.TypeOf((*MockService)(nil).UpdateStatusByIDs), status, ls)
 }
 
 // CacheOne mocks base method
-func (m *MockSite) CacheOne(id int64) (*site.Model, error) {
+func (m *MockService) CacheOne(id int64) (*site.Model, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "CacheOne", id)
 	ret0, _ := ret[0].(*site.Model)
@@ -119,7 +119,7 @@ func (m *MockSite) CacheOne(id int64) (*site.Model, error) {
 }
 
 // CacheOne indicates an expected call of CacheOne
-func (mr *MockSiteMockRecorder) CacheOne(id interface{}) *gomock.Call {
+func (mr *MockServiceMockRecorder) CacheOne(id interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CacheOne", reflect.TypeOf((*MockSite)(nil).CacheOne), id)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CacheOne", reflect.TypeOf((*MockService)(nil).CacheOne), id)
 }
