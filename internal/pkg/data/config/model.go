@@ -1,4 +1,4 @@
-package config_sql
+package config
 
 type Model struct {
 	ID        int64  `gorm:"column:id;primary_key" json:"id"`     // id

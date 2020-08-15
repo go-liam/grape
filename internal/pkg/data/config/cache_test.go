@@ -1,4 +1,4 @@
-package config_sql
+package config
 
 import (
 	"log"

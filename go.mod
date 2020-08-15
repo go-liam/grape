@@ -10,7 +10,7 @@ require (
 	github.com/gin-gonic/gin v1.6.2
 	github.com/go-liam/cache v1.0.0
 	github.com/go-liam/tracing v1.0.1
-	github.com/go-liam/util v1.0.13
+	github.com/go-liam/util v1.0.15
 	github.com/golang/protobuf v1.3.5
 	github.com/jinzhu/gorm v1.9.14
 	github.com/opentracing-contrib/go-stdlib v0.0.0-20190519235532-cf7a6c988dc9
