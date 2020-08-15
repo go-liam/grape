@@ -87,7 +87,7 @@ func TestDao_FindMulti(t *testing.T) {
 	sql := sqlFindOne // regexp.QuoteMeta("SELECT * from cp_admin")
 	sqlCount := regexp.QuoteMeta("SELECT count(*) FROM `ws_notice`")
 	page := &response.Pagination{PageSize: 10, Current: 1}
-	s := &models.ListParameter{WhereSt: " 1=1 ", OrderSt: " order by id "}
+	s := &response.ListParameter{WhereSt: " 1=1 ", OrderSt: " order by id "}
 
 	t.Run(testdata.ConstFail, func(t *testing.T) {
 		mock.ExpectQuery(sqlCount).

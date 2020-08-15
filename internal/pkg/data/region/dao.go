@@ -27,7 +27,7 @@ func (e *SrvRegion) FindOne(id int64) (*Model, error) {
 }
 
 // whereSt: " and id>1 " ,orderSt =" order by ID "
-func (e *SrvRegion) FindMulti(page *response.Pagination, s *models.ListParameter) ([]*Model, error) {
+func (e *SrvRegion) FindMulti(page *response.Pagination, s *response.ListParameter) ([]*Model, error) {
 	var result []*Model
 	sqlLimit := fmt.Sprintf(" limit %d , %d  ", (page.Current-1)*page.PageSize, page.PageSize)
 	sqlWhere := " 1 = 1 " + s.WhereSt + " "

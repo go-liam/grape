@@ -1,4 +1,4 @@
-package config
+package change_log
 
 import (
 	"errors"
@@ -7,13 +7,12 @@ import (
 	"github.com/stretchr/testify/assert"
 	"grape/configs/testdata"
 	"grape/internal/pkg/database/mysql"
-	models "grape/internal/pkg/model"
 	"regexp"
 	"testing"
 )
 
 const (
-	sqlFindOne = "select .+ from cf_configs"
+	sqlFindOne = "select .+ from um_change"
 )
 
 var (
@@ -21,10 +20,10 @@ var (
 	tsItem = &Model{ID: testdata.ConstWantOne, CreatedAt: 0}
 )
 
-func TestSqlConfig_Create(t *testing.T) {
+func TestSqlChange_Create(t *testing.T) {
 	db, mock, _ := mysql.MockEngine(mysql.ServerAPI) //getMockDB(t)
 	defer db.Close()
-	sql := "INSERT INTO `cf_configs`" // regexp.QuoteMeta("SELECT * from cp_admin")
+	sql := "INSERT INTO `um_change`" // regexp.QuoteMeta("SELECT * from cp_admin")
 
 	t.Run(testdata.ConstFail, func(t *testing.T) {
 		mock.ExpectBegin()
@@ -50,7 +49,7 @@ func TestSqlConfig_Create(t *testing.T) {
 	}
 }
 
-func TestDao_FindOne(t *testing.T) {
+func TestSqlChange_FindOne(t *testing.T) {
 	db, mock, _ := mysql.MockEngine(mysql.ServerAPI) //getMockDB(t)
 	defer db.Close()
 	sql := sqlFindOne
@@ -77,11 +76,11 @@ func TestDao_FindOne(t *testing.T) {
 	}
 }
 
-func TestDao_FindMulti(t *testing.T) {
+func TestSqlChange_FindMulti(t *testing.T) {
 	db, mock, _ := mysql.MockEngine(mysql.ServerAPI) //getMockDB(t)
 	defer db.Close()
 	sql := sqlFindOne // regexp.QuoteMeta("SELECT * from cp_admin")
-	sqlCount := regexp.QuoteMeta("SELECT count(*) FROM `cf_configs`")
+	sqlCount := regexp.QuoteMeta("SELECT count(*) FROM `um_change`")
 	page := &response.Pagination{PageSize: 10, Current: 1}
 	s := &response.ListParameter{WhereSt: " 1=1 ", OrderSt: " order by id "}
 
@@ -112,11 +111,11 @@ func TestDao_FindMulti(t *testing.T) {
 	}
 }
 
-func TestDao_Update(t *testing.T) {
+func TestSqlChange_Update(t *testing.T) {
 	db, mock, _ := mysql.MockEngine(mysql.ServerAPI) //getMockDB(t)
 	defer db.Close()
 	//sql :=  regexp.QuoteMeta("update `cp_admin` ")
-	sql := "update cf_configs " //
+	sql := "update um_change " //
 
 	t.Run(testdata.ConstFail, func(t *testing.T) {
 		//mock.ExpectBegin()
@@ -142,11 +141,11 @@ func TestDao_Update(t *testing.T) {
 	}
 }
 
-func TestDao_UpdateStatus(t *testing.T) {
+func TestSqlChange_UpdateStatus(t *testing.T) {
 	db, mock, _ := mysql.MockEngine(mysql.ServerAPI) //getMockDB(t)
 	defer db.Close()
 	//sql :=  regexp.QuoteMeta("update `cp_admin` ")
-	sql := "update cf_configs " //
+	sql := "update um_change " //
 
 	t.Run(testdata.ConstFail, func(t *testing.T) {
 		//mock.ExpectBegin()

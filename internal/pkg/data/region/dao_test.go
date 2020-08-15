@@ -26,7 +26,7 @@ func TestSrvRegion_FindOne(t *testing.T) {
 
 func TestSrvRegion_FindMulti(t *testing.T) {
 	page := &response.Pagination{PageSize: 10, Current: 1}
-	s := &models.ListParameter{WhereSt: " and 1=1 ", OrderSt: " order by user_id "}
+	s := &response.ListParameter{WhereSt: " and 1=1 ", OrderSt: " order by user_id "}
 	v, err := new(SrvRegion).FindMulti(page, s)
 	log.Printf("v:=%+v\n", v)
 	log.Printf("err:=%+v\n", err)

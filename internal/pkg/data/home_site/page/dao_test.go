@@ -32,7 +32,7 @@ func TestSrvPage_FindOne(t *testing.T) {
 
 func TestSrvPage_FindMulti(t *testing.T) {
 	page := &response.Pagination{PageSize: 10, Current: 1}
-	s := &models.ListParameter{WhereSt: " and 1=1 ", OrderSt: " order by id "}
+	s := &response.ListParameter{WhereSt: " and 1=1 ", OrderSt: " order by id "}
 	v, err := new(SrvPage).FindMulti(page, s)
 	log.Printf("v:=%+v\n", v)
 	log.Printf("err:=%+v\n", err)

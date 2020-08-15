@@ -1,5 +1,6 @@
 package recharge
 
+// 充值日志
 type Model struct {
 	ID         int64  `gorm:"column:id;primary_key" json:"id"`      // id
 	CreatedAt  int64  `gorm:"column:created_at" json:"created_at"`  // 创建时间戳
@@ -14,5 +15,5 @@ type Model struct {
 }
 
 func (sv *Model) TableName() string {
-	return "um_money"
+	return "um_recharge"
 }
