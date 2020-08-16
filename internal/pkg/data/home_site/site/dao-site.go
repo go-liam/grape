@@ -27,7 +27,7 @@ func (e *SrvSite) FindOne(id int64) (*Model, error) {
 	return item, v.Error
 }
 
-//func (e *SrvSite) FindMulti() ([]*Model, error) {
+//func (e *SrvSite) FindMultiByNil() ([]*Model, error) {
 //	var result []*Model
 //	sql := "select * from ws_site where status < 44 "
 //	v := mysql.ServerAPI.Engine().Raw(sql).Scan(&result)

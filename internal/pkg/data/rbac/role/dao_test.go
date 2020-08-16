@@ -23,7 +23,7 @@ func TestSrvRole_FindOne(t *testing.T) {
 }
 
 func TestSrvRole_FindMulti(t *testing.T) {
-	v, err := new(SrvRole).FindMulti()
+	v, err := new(SrvRole).FindMultiByNil()
 	log.Printf("v:=%+v\n", v)
 	log.Printf("err:=%+v\n", err)
 }
