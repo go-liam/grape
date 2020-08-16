@@ -10,7 +10,7 @@ import (
 	"testing"
 )
 
-func TestInfo_GetInfo(t *testing.T) {
+func TestGetInfo(t *testing.T) {
 	ctrl, _ := gomock.WithContext(context.Background(), t)
 	defer ctrl.Finish()
 	m := mock_site.NewMockService(ctrl)

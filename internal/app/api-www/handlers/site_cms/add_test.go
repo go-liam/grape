@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestSite_Add(t *testing.T) {
+func TestAdd(t *testing.T) {
 	e := new(SrvAdd)
 
 	t.Run(testdata.ConstFail, func(t *testing.T) {

@@ -21,10 +21,10 @@ func EditGin(c *gin.Context) {
 	body, _ := ioutil.ReadAll(c.Request.Body)
 	json.Unmarshal(body, &srv.req)
 	srv.srv = site.Server
-	c.JSON(http.StatusOK, srv.EditSite())
+	c.JSON(http.StatusOK, srv.Edit())
 }
 
-func (e *SrvEdit) EditSite() *response.APIResponse {
+func (e *SrvEdit) Edit() *response.APIResponse {
 	if e.req.Title == "" {
 		return &response.APIResponse{Code: errorcode.RequestParameter, Message: errorcode.MsRequest, Data: response.DataItemNil}
 	}

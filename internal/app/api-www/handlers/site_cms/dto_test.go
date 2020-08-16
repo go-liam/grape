@@ -7,14 +7,14 @@ import (
 	"testing"
 )
 
-func TestName_GetModel(t *testing.T) {
+func TestGetModel(t *testing.T) {
 	i := new(ReqModel)
 	i.ID = "1"
 	v := GetModel(i)
 	assert.EqualValues(t, testdata.ConstWantOne, v.ID)
 }
 
-func TestName_GetRespModel(t *testing.T) {
+func TestGetRespModel(t *testing.T) {
 	i := new(site.Model)
 	i.Status = 1
 	v := GetRespModel(i)

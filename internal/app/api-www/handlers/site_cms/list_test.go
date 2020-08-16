@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-func TestSite_GetList(t *testing.T) {
+func TestGetList(t *testing.T) {
 	ctrl, _ := gomock.WithContext(context.Background(), t)
 	defer ctrl.Finish()
 	m := mock_site.NewMockService(ctrl)

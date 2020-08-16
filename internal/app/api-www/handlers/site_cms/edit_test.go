@@ -11,12 +11,12 @@ import (
 	"testing"
 )
 
-func TestSite_EditSite(t *testing.T) {
+func TestEditSite(t *testing.T) {
 	e := new(SrvEdit)
 
 	t.Run(testdata.ConstFail, func(t *testing.T) {
 		e.req = new(ReqModel)
-		got := e.EditSite()
+		got := e.Edit()
 		assert.EqualValues(t, errorcode.RequestParameter, got.Code)
 	})
 
@@ -32,7 +32,7 @@ func TestSite_EditSite(t *testing.T) {
 		m.EXPECT().Update(item).Return(int64(1), nil).AnyTimes()
 		e.srv = m
 		e.req = &ReqModel{ID: "1", Title: testdata.ConstWantString}
-		e.EditSite()
+		e.Edit()
 		assert.EqualValues(t, testdata.ConstWantOne, e.result)
 	})
 
@@ -45,7 +45,7 @@ func TestSite_EditSite(t *testing.T) {
 		m.EXPECT().Update(item).Return(int64(0), nil).AnyTimes()
 		e.srv = m
 		e.req = &ReqModel{ID: "1", Title: testdata.ConstWantString}
-		e.EditSite()
+		e.Edit()
 		assert.EqualValues(t, 0, e.result)
 	})
 }
