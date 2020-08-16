@@ -1,4 +1,4 @@
-package change_log
+package change
 
 import "github.com/go-liam/util/response"
 

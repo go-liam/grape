@@ -1,4 +1,4 @@
-package change_log
+package change
 
 // 用户账号日志
 type Model struct {

@@ -1,4 +1,4 @@
-package log_sql
+package sylog
 
 type Model struct {
 	ID        int64  `gorm:"column:id;primary_key" json:"id"`  // id

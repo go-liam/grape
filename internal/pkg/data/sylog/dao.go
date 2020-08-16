@@ -1,4 +1,4 @@
-package log_sql
+package sylog
 
 import (
 	"fmt"
