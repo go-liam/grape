@@ -27,12 +27,12 @@ func (e *SrvRegion) FindOne(id int64) (*Model, error) {
 }
 
 // whereSt: " and id>1 " ,orderSt =" order by ID "
-func (e *SrvRegion) FindMulti(page *response.Pagination, s *response.ListParameter) ([]*Model, error) {
+func (e *SrvRegion) FindMulti(p *response.Pagination, s *response.ListParameter) ([]*Model, error) {
 	var result []*Model
-	sqlLimit := fmt.Sprintf(" limit %d , %d  ", (page.Current-1)*page.PageSize, page.PageSize)
+	sqlLimit := fmt.Sprintf(" limit %d , %d  ", (p.Current-1)*p.PageSize, p.PageSize)
 	sqlWhere := " 1 = 1 " + s.WhereSt + " "
 	sql := "select * from ar_user_region where " + sqlWhere + s.OrderSt + sqlLimit
-	mysql.ServerAPI.Engine().Model(&Model{}).Where(sqlWhere).Count(&page.Total)
+	mysql.ServerAPI.Engine().Model(&Model{}).Where(sqlWhere).Count(&p.Total)
 	v := mysql.ServerAPI.Engine().Raw(sql).Scan(&result)
 	return result, v.Error
 }

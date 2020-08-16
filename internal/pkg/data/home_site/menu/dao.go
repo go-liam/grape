@@ -34,12 +34,12 @@ func (e *SrvMenu) FindMultiByNil() ([]*Model, error) {
 	return result, v.Error
 }
 
-func (e *SrvMenu) FindMulti(page *response.Pagination, s *response.ListParameter) ([]*Model, error) {
+func (e *SrvMenu) FindMulti(p *response.Pagination, s *response.ListParameter) ([]*Model, error) {
 	var result []*Model
-	sqlLimit := fmt.Sprintf(" limit %d , %d  ", (page.Current-1)*page.PageSize, page.PageSize)
+	sqlLimit := fmt.Sprintf(" limit %d , %d  ", (p.Current-1)*p.PageSize, p.PageSize)
 	sqlWhere := " status < 44 " + s.WhereSt
 	sql := "select * from ws_menu where " + sqlWhere + s.OrderSt + sqlLimit
-	mysql.ServerAPI.Engine().Model(&Model{}).Where(sqlWhere).Count(&page.Total)
+	mysql.ServerAPI.Engine().Model(&Model{}).Where(sqlWhere).Count(&p.Total)
 	v := mysql.ServerAPI.Engine().Raw(sql).Scan(&result)
 	return result, v.Error
 }
