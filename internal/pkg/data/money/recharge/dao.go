@@ -2,6 +2,7 @@ package recharge
 
 import (
 	"fmt"
+	"github.com/go-liam/util/conv"
 	"github.com/go-liam/util/response"
 	"grape/internal/pkg/database/mysql"
 	"time"
@@ -48,5 +49,13 @@ func (e *SrvRecharge) UpdateStatus(item *Model) (int64, error) {
 	item.UpdatedAt = time.Now().Unix()
 	sql := "update um_recharge set `status` = ?,updated_at=? where `id` = ? "
 	v := mysql.ServerAPI.Engine().Exec(sql, item.Status, item.UpdatedAt, item.ID)
+	return v.RowsAffected, v.Error
+}
+
+func (e *SrvRecharge) UpdateStatusByIDs(status int, ls []int64) (int64, error) {
+	updatedAt := time.Now().Unix()
+	ids := conv.ArrayToString(ls, ",")
+	sql := fmt.Sprintf("update um_recharge set `status` = ?,updated_at=? where `id` in (%s) ", ids)
+	v := mysql.ServerAPI.Engine().Exec(sql, status, updatedAt)
 	return v.RowsAffected, v.Error
 }

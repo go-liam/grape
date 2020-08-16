@@ -24,7 +24,7 @@ func TestSrvMenu_FindOne(t *testing.T) {
 }
 
 func TestSrvMenu_FindMulti(t *testing.T) {
-	v, err := new(SrvMenu).FindMulti()
+	v, err := new(SrvMenu).FindMultiByNil()
 	log.Printf("v:=%+v\n", v)
 	log.Printf("err:=%+v\n", err)
 }

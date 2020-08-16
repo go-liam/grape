@@ -1,6 +1,9 @@
 package power
 
 import (
+	"fmt"
+	"github.com/go-liam/util/conv"
+	"github.com/go-liam/util/response"
 	"grape/internal/pkg/database/mysql"
 	"time"
 )
@@ -24,9 +27,19 @@ func (e *SrvPower) FindOne(id int64) (*Model, error) {
 	return item, v.Error
 }
 
-func (e *SrvPower) FindMulti() ([]*Model, error) {
+func (e *SrvPower) FindMultiByNil() ([]*Model, error) {
 	var result []*Model
 	sql := "select * from rb_power where status < 44 "
+	v := mysql.ServerAPI.Engine().Raw(sql).Scan(&result)
+	return result, v.Error
+}
+
+func (e *SrvPower) FindMulti(page *response.Pagination, s *response.ListParameter) ([]*Model, error) {
+	var result []*Model
+	sqlLimit := fmt.Sprintf(" limit %d , %d  ", (page.Current-1)*page.PageSize, page.PageSize)
+	sqlWhere := " status < 44 " + s.WhereSt
+	sql := "select * from rb_power where " + sqlWhere + s.OrderSt + sqlLimit
+	mysql.ServerAPI.Engine().Model(&Model{}).Where(sqlWhere).Count(&page.Total)
 	v := mysql.ServerAPI.Engine().Raw(sql).Scan(&result)
 	return result, v.Error
 }
@@ -42,5 +55,13 @@ func (e *SrvPower) UpdateStatus(item *Model) (int64, error) {
 	item.UpdatedAt = time.Now().Unix()
 	sql := "update rb_power set `status` = ?,updated_at=? where `id` = ? "
 	v := mysql.ServerAPI.Engine().Exec(sql, item.Status, item.UpdatedAt, item.ID)
+	return v.RowsAffected, v.Error
+}
+
+func (e *SrvPower) UpdateStatusByIDs(status int, ls []int64) (int64, error) {
+	updatedAt := time.Now().Unix()
+	ids := conv.ArrayToString(ls, ",")
+	sql := fmt.Sprintf("update rb_power set `status` = ?,updated_at=? where `id` in (%s) ", ids)
+	v := mysql.ServerAPI.Engine().Exec(sql, status, updatedAt)
 	return v.RowsAffected, v.Error
 }

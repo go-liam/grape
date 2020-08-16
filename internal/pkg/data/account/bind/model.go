@@ -1,6 +1,6 @@
 package bind
 
-type ModelBind struct {
+type Model struct {
 	ID        int64 `gorm:"column:id;primary_key" json:"id"`    //log id
 	CreatedAt int64 `gorm:"column:created_at" json:"createdAt"` // 创建时间戳
 	UserID    int64 `gorm:"column:user_id" json:"userID"`       // uid
@@ -9,6 +9,6 @@ type ModelBind struct {
 	Name string `gorm:"column:name"  json:"name"` // 绑定名称
 }
 
-func (sv *ModelBind) TableName() string {
+func (sv *Model) TableName() string {
 	return "uc_user_bind"
 }

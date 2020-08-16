@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/go-liam/util/response"
 	"grape/internal/pkg/database/mysql"
+	"log"
 	"time"
 )
 
@@ -12,8 +13,8 @@ var Server = new(SrvLog)
 type SrvLog struct {
 }
 
-func (e *SrvLog) Init(config string) error {
-	println(config)
+func (e *SrvLog) SetConfig(item *ConfigModel) error {
+	log.Printf("[INFO]log-config-%+v\n", item)
 	return nil
 }
 

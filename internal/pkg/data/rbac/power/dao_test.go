@@ -23,7 +23,7 @@ func TestSrvPower_FindOne(t *testing.T) {
 }
 
 func TestSrvPower_FindMulti(t *testing.T) {
-	v, err := new(SrvPower).FindMulti()
+	v, err := new(SrvPower).FindMultiByNil()
 	log.Printf("v:=%+v\n", v)
 	log.Printf("err:=%+v\n", err)
 }

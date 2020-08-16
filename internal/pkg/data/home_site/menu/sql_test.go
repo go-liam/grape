@@ -86,7 +86,7 @@ func TestDao_FindMulti(t *testing.T) {
 	t.Run(testdata.ConstFail, func(t *testing.T) {
 		mock.ExpectQuery(sql).
 			WillReturnError(errors.New(testdata.ErrDbErrResult))
-		got, err := Server.FindMulti()
+		got, err := Server.FindMultiByNil()
 		assert.NotNil(t, err)
 		assert.NotEqual(t, tsItem.ID, len(got))
 	})
@@ -95,7 +95,7 @@ func TestDao_FindMulti(t *testing.T) {
 		mock.ExpectQuery(sql). //WithArgs(item.ID).
 					WillReturnRows(sqlmock.NewRows(tsRow).
 						AddRow(tsItem.ID, tsItem.Name))
-		got, err := Server.FindMulti()
+		got, err := Server.FindMultiByNil()
 		assert.Nil(t, err)
 		assert.EqualValues(t, testdata.ConstWantOne, len(got))
 	})

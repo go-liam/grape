@@ -7,7 +7,7 @@ import (
 )
 
 func TestSrvBind_Create(t *testing.T) {
-	item := new(ModelBind)
+	item := new(Model)
 	//item.ID = uuid.AutoInt64ID()
 	item.UserID = 1
 	item.Name = testdata.ConstWantString

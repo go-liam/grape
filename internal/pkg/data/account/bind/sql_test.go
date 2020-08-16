@@ -15,7 +15,7 @@ const (
 
 var (
 	tsRow  = []string{"id", "created_at"}
-	tsItem = &ModelBind{ID: testdata.ConstWantOne, CreatedAt: 0, Type: 1, Name: testdata.ConstWantString}
+	tsItem = &Model{ID: testdata.ConstWantOne, CreatedAt: 0, Type: 1, Name: testdata.ConstWantString}
 )
 
 func TestSqlBind_Create(t *testing.T) {
@@ -28,7 +28,7 @@ func TestSqlBind_Create(t *testing.T) {
 		mock.ExpectExec(sql).
 			WillReturnError(testdata.ErrorDBConnect)
 		mock.ExpectRollback()
-		got, err := ServerBind.Create(tsItem)
+		got, err := Server.Create(tsItem)
 		assert.NotNil(t, err)
 		assert.NotEqual(t, tsItem.ID, got)
 	})
@@ -37,7 +37,7 @@ func TestSqlBind_Create(t *testing.T) {
 		mock.ExpectBegin()
 		mock.ExpectExec(sql).WillReturnResult(sqlmock.NewResult(testdata.ConstWantOne, testdata.ConstWantOne))
 		mock.ExpectCommit()
-		got, err := ServerBind.Create(tsItem)
+		got, err := Server.Create(tsItem)
 		assert.Nil(t, err)
 		assert.EqualValues(t, testdata.ConstWantOne, got)
 	})
@@ -55,7 +55,7 @@ func TestDao_FindOne(t *testing.T) {
 	t.Run(testdata.ConstFail, func(t *testing.T) {
 		mock.ExpectQuery(sql).
 			WillReturnError(errors.New(testdata.ErrDbErrResult))
-		got, err := ServerBind.FindOne(tsItem.Type, tsItem.Name)
+		got, err := Server.FindOne(tsItem.Type, tsItem.Name)
 		assert.NotNil(t, err)
 		assert.EqualValues(t, 0, got.ID)
 	})
@@ -64,7 +64,7 @@ func TestDao_FindOne(t *testing.T) {
 		mock.ExpectQuery(sql). //WithArgs(item.ID).
 					WillReturnRows(sqlmock.NewRows(tsRow).
 						AddRow(tsItem.ID, tsItem.CreatedAt))
-		got, err := ServerBind.FindOne(tsItem.Type, tsItem.Name)
+		got, err := Server.FindOne(tsItem.Type, tsItem.Name)
 		assert.Nil(t, err)
 		assert.EqualValues(t, tsItem.ID, got.ID)
 	})

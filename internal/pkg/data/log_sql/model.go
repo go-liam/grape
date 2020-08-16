@@ -11,3 +11,7 @@ type Model struct {
 func (sv *Model) TableName() string {
 	return "lg_log"
 }
+
+type ConfigModel struct {
+	URL string
+}
