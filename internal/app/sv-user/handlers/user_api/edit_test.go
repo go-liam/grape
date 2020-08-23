@@ -1,4 +1,4 @@
-package user_cms
+package user_api
 
 import (
 	"context"
@@ -11,12 +11,12 @@ import (
 	"testing"
 )
 
-func TestAdd(t *testing.T) {
-	e := new(SrvAdd)
+func TestEditSite(t *testing.T) {
+	e := new(SrvEdit)
 
 	t.Run(testdata.ConstFail, func(t *testing.T) {
 		e.req = new(ReqModel)
-		got := e.Add()
+		got := e.Edit()
 		assert.EqualValues(t, errorcode.RequestParameter, got.Code)
 	})
 
@@ -29,11 +29,10 @@ func TestAdd(t *testing.T) {
 			ID:   1,
 			Name: testdata.ConstWantString,
 		}
-		m.EXPECT().Create(item).Return(int64(1), nil).AnyTimes()
-
+		m.EXPECT().Update(item).Return(int64(1), nil).AnyTimes()
 		e.srv = m
 		e.req = &ReqModel{ID: "1", Name: testdata.ConstWantString}
-		e.Add()
+		e.Edit()
 		assert.EqualValues(t, testdata.ConstWantOne, e.result)
 	})
 
@@ -43,11 +42,10 @@ func TestAdd(t *testing.T) {
 			ID:   1,
 			Name: testdata.ConstWantString,
 		}
-		m.EXPECT().Create(item).Return(int64(0), nil).AnyTimes()
-
+		m.EXPECT().Update(item).Return(int64(0), nil).AnyTimes()
 		e.srv = m
 		e.req = &ReqModel{ID: "1", Name: testdata.ConstWantString}
-		e.Add()
+		e.Edit()
 		assert.EqualValues(t, 0, e.result)
 	})
 }
