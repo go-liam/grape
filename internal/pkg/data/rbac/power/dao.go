@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-//var Server2 = new(SrvPower)
+var Server = new(SrvPower)
 
 type SrvPower struct {
 }

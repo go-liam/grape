@@ -11,8 +11,8 @@ type ReqModel struct {
 	Title       string      `json:"title"  `       //标题
 	Description string      `json:"description"  ` //描述
 	Extended    interface{} `json:"extended" `     // 扩展的
-	MenuID      int    `json:"menuID"  `
-	SiteID      int    `json:"siteID"  `
+	MenuID      int         `json:"menuID"  `
+	SiteID      int         `json:"siteID"  `
 }
 
 type RespModel struct {
@@ -24,8 +24,8 @@ type RespModel struct {
 	Title       string      `json:"title"  `       //标题
 	Description string      `json:"description"  ` //描述
 	Extended    interface{} `json:"extended" `     // 扩展的
-	MenuID      int    `json:"menuID"  `
-	SiteID      int    `json:"siteID"  `
+	MenuID      int         `json:"menuID"  `
+	SiteID      int         `json:"siteID"  `
 }
 
 func GetModel(i *ReqModel) *page.Model {

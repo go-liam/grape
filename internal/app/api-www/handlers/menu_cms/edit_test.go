@@ -26,7 +26,7 @@ func TestEditSite(t *testing.T) {
 	t.Run(testdata.ConstSuccess, func(t *testing.T) {
 		m := mock_menu.NewMockService(ctrl)
 		item := &menu.Model{
-			ID:    1,
+			ID:   1,
 			Name: testdata.ConstWantString,
 		}
 		m.EXPECT().Update(item).Return(int64(1), nil).AnyTimes()
@@ -39,7 +39,7 @@ func TestEditSite(t *testing.T) {
 	t.Run(testdata.ConstFail, func(t *testing.T) {
 		m := mock_menu.NewMockService(ctrl)
 		item := &menu.Model{
-			ID:    1,
+			ID:   1,
 			Name: testdata.ConstWantString,
 		}
 		m.EXPECT().Update(item).Return(int64(0), nil).AnyTimes()

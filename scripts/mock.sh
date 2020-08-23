@@ -35,5 +35,5 @@ mockgen -destination ./test/mock/rbac/mock_user/mock.go -package mock_user -sour
 mockgen -destination ./test/mock/region/mock_region/mock.go -package mock_region -source ./internal/pkg/data/region/interface.go
 
 # sylog
-mockgen -destination ./test/mock/sylog/mock_log/mock.go -package mock_log -source ./internal/pkg/data/sylog/interface.go
+mockgen -destination ./test/mock/sylog/mock_sylog/mock.go -package mock_sylog -source ./internal/pkg/data/sylog/interface.go
 

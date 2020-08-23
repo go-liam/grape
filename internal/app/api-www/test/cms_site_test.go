@@ -8,7 +8,6 @@ import (
 	"testing"
 )
 
-
 func TestCMSWWW_Site_Info(t *testing.T) {
 	back, _ := router.RouteTestTool(router2.SetupRouterTest(), "GET", urlCms+"site/1", nil, testdata.UserKey, testdata.AdminKey)
 	println(back)

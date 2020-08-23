@@ -6,26 +6,26 @@ import (
 )
 
 type ReqModel struct {
-	ID          string      ` json:"id"`           // id
-	LanguageID  int         `json:"languageID"  `  // 语言ID:1中文,2英语
-	Extended    interface{} `json:"extended" `     // 扩展的
-	SiteID   int64  `json:"siteID"  `     // 网站ID
-	Name     string `json:"name"  `          // 菜单名
-	ParentID int64  `json:"parentID"  ` // 父亲ID
-	Level    int    `json:"level"  `        //级别
+	ID         string      ` json:"id"`          // id
+	LanguageID int         `json:"languageID"  ` // 语言ID:1中文,2英语
+	Extended   interface{} `json:"extended" `    // 扩展的
+	SiteID     int64       `json:"siteID"  `     // 网站ID
+	Name       string      `json:"name"  `       // 菜单名
+	ParentID   int64       `json:"parentID"  `   // 父亲ID
+	Level      int         `json:"level"  `      //级别
 }
 
 type RespModel struct {
-	ID          string      ` json:"id"`           // id
-	CreatedAt   int64       ` json:"createdAt"`    // 创建时间戳
-	UpdatedAt   int64       ` json:"updatedAt"`    // 更新时间戳
-	Status      int8        `json:"status"  `      // 44 删除, 1 启用, 4 禁用
-	LanguageID  int         `json:"languageID"  `  // 语言ID:1中文,2英语
-	Extended    interface{} `json:"extended" `     // 扩展的
-	SiteID   int64  `json:"siteID"  `     // 网站ID
-	Name     string `json:"name"  `          // 菜单名
-	ParentID int64  `json:"parentID"  ` // 父亲ID
-	Level    int    `json:"level"  `        //级别
+	ID         string      ` json:"id"`          // id
+	CreatedAt  int64       ` json:"createdAt"`   // 创建时间戳
+	UpdatedAt  int64       ` json:"updatedAt"`   // 更新时间戳
+	Status     int8        `json:"status"  `     // 44 删除, 1 启用, 4 禁用
+	LanguageID int         `json:"languageID"  ` // 语言ID:1中文,2英语
+	Extended   interface{} `json:"extended" `    // 扩展的
+	SiteID     int64       `json:"siteID"  `     // 网站ID
+	Name       string      `json:"name"  `       // 菜单名
+	ParentID   int64       `json:"parentID"  `   // 父亲ID
+	Level      int         `json:"level"  `      //级别
 }
 
 func GetModel(i *ReqModel) *menu.Model {

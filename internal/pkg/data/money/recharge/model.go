@@ -11,7 +11,7 @@ type Model struct {
 	UserID     int64  `gorm:"column:user_id" json:"userID"`         // uid
 	Amount     int    `gorm:"column:amount" json:"amount"`          // 数额（分）人民币
 	LastAmount int    `gorm:"column:last_amount" json:"lastAmount"` // 上次个人账户 数额
-	Type       int    `gorm:"column:type" json:"type"`              // 充值类型 **
+	Type       int8   `gorm:"column:type" json:"type"`              // 充值类型 **
 	OrderID    int64  `gorm:"column:order_id" json:"orderID"`       // 订单ID
 }
 

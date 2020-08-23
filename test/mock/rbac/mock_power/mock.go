@@ -65,18 +65,18 @@ func (mr *MockServiceMockRecorder) FindOne(id interface{}) *gomock.Call {
 }
 
 // FindMulti mocks base method
-func (m *MockService) FindMulti(page *response.Pagination, s *response.ListParameter) ([]*power.Model, error) {
+func (m *MockService) FindMulti(p *response.Pagination, s *response.ListParameter) ([]*power.Model, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "FindMulti", page, s)
+	ret := m.ctrl.Call(m, "FindMulti", p, s)
 	ret0, _ := ret[0].([]*power.Model)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
 // FindMulti indicates an expected call of FindMulti
-func (mr *MockServiceMockRecorder) FindMulti(page, s interface{}) *gomock.Call {
+func (mr *MockServiceMockRecorder) FindMulti(p, s interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "FindMulti", reflect.TypeOf((*MockService)(nil).FindMulti), page, s)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "FindMulti", reflect.TypeOf((*MockService)(nil).FindMulti), p, s)
 }
 
 // Update mocks base method

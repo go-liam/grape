@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-//var Server2 = new(SrvRole)
+var Server = new(SrvRole)
 
 type SrvRole struct {
 }
