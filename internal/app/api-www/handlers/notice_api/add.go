@@ -1,4 +1,4 @@
-package region_cms
+package notice_api
 
 import (
 	"encoding/json"
@@ -6,15 +6,16 @@ import (
 	"github.com/go-liam/util/conv"
 	"github.com/go-liam/util/response"
 	"github.com/go-liam/util/uuid"
+	"grape/configs/commom"
 	"grape/configs/errorcode"
-	"grape/internal/pkg/data/region"
+	"grape/internal/pkg/data/home_site/notice"
 	"io/ioutil"
 	"net/http"
 )
 
 type SrvAdd struct {
 	req    *ReqModel
-	srv    region.Service
+	srv    notice.Service
 	result int64
 }
 
@@ -22,17 +23,18 @@ func AddGin(c *gin.Context) {
 	srv := new(SrvAdd)
 	body, _ := ioutil.ReadAll(c.Request.Body)
 	json.Unmarshal(body, &srv.req)
-	srv.srv = region.Server
-	srv.req.UserID = uuid.UUID()
+	srv.srv = notice.Server
+	srv.req.ID = uuid.UUID()
 	c.JSON(http.StatusOK, srv.Add())
 }
 
 func (e *SrvAdd) Add() *response.APIResponse {
-	if e.req.RegionID == 0 {
+	if e.req.Title == "" {
 		return &response.APIResponse{Code: errorcode.RequestParameter, Message: errorcode.MsRequest, Data: response.DataItemNil}
 	}
 	item := GetModel(e.req)
-	item.UserID = conv.StringToInt64(e.req.UserID, 0) //uuid.AutoInt64ID()
+	item.ID = conv.StringToInt64(e.req.ID, 0) //uuid.AutoInt64ID()
+	item.Status = commom.StatusDefault
 	e.result, _ = e.srv.Create(item)
 	if e.result > 0 {
 		return &response.APIResponse{Code: errorcode.Success, Message: errorcode.MsSuccess, Data: e.req}

@@ -1,4 +1,4 @@
-package region_cms
+package region_api
 
 import (
 	"context"
