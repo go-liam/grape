@@ -3,22 +3,23 @@ package router
 import (
 	"github.com/gin-gonic/gin"
 	"grape/internal/app/api-www/config"
+	"grape/internal/app/api-www/handlers/site_api"
 	"grape/internal/app/api-www/handlers/site_cms"
 	"net/http"
 )
 
 func setupRouterAPI(engine *gin.Engine) {
-	path := "/www/v1/api"
+	path := config.Path + "/api/v1"
 	engine.GET("/", Index)
 	engine.GET(path, Index)
 	//other
 	g := engine.Group(path)
 	g.GET("/", Index)
-	//g.GET("ip", core.ClientIPHeader)
+	g.GET("site/:id", site_api.GetInfoGin)
 }
 
 func setupRouterCMS(engine *gin.Engine) {
-	path := "/www/cms/v1"
+	path := config.Path + "/cms/v1"
 	engine.GET(path, Index)
 	//other
 	g := engine.Group(path)

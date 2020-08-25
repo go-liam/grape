@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../rs/js/system.js"></script>
+    <script src="../../rs/js/jquery.min.js"></script>
+</head>
+<body>
+网站名称：<div id="idName"></div><br>
+关键字：<div id="idKey"></div><br>
+扩展：<div id="idExtended"></div><br>
+
+<script>
+    $(document).ready(function () {
+            let hostUrl = SystemURLWWW ;
+            console.log("hostUrl: ", hostUrl);
+            $.get(hostUrl + "/api_www/api/v1/site/1", function (jsData, status) {
+                console.log("数据: ", jsData);
+                $("#idName").html( jsData.data.title );
+                $("#idKey").html( jsData.data.description );
+                $("#idExtended").html( JSON.stringify(jsData.data.extended) );
+            });
+        });
+</script>
+</body>
+</html>

@@ -5,10 +5,12 @@ import (
 	"github.com/go-liam/tracing"
 	"grape/internal/app/api-www/config"
 	"grape/internal/pkg/middleware/metric"
+	"grape/internal/pkg/middleware/router"
 	"grape/internal/pkg/middleware/trace"
 )
 
 func SetupRouter(engine *gin.Engine) {
+	engine.Use(router.AccessControlAllow())
 	setupRouterAPI(engine)
 	setupRouterCMS(engine)
 }
