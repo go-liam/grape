@@ -1,6 +1,6 @@
 package test
 
 var (
-	urlSite = "/www/v1/"
-	urlCms  = "/www/cms/v1/"
+	urlSite = "/api_www/api/v1/"
+	urlCms  = "/api_www/cms/v1/"
 )
