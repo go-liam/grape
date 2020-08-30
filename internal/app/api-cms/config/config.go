@@ -1,7 +1,7 @@
 package config
 
 const (
-	Port       = ":7202"
+	Port       = ":5000"
 	ServerName = "api_cms"
 	Path       = "/" + ServerName
 )

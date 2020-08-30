@@ -7,7 +7,7 @@ import (
 
 func AccessControlAllow() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		c.Writer.Header().Add("Access-Control-Allow-Headers", "access-control-allow-headers,access-control-allow-methods,access-control-allow-origin,cache-control,content-type,utoken,tokenjwt")
+		c.Writer.Header().Add("Access-Control-Allow-Headers", "access-control-allow-headers,access-control-allow-methods,access-control-allow-origin,cache-control,content-type,utoken,tokenjwt,Authorization")
 		c.Writer.Header().Add("Access-Control-Allow-Origin", "*")
 		c.Writer.Header().Add("Access-Control-Allow-Methods", "POST,GET,OPTIONS,PUT,DELETE,PATCH")
 		if c.Request.Method == "OPTIONS" {

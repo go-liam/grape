@@ -21,7 +21,7 @@ func setupRouterCMS(engine *gin.Engine) {
 	engine.GET(path, Index)
 	//other
 	g := engine.Group(path)
-	g.GET("/", Index)
+	g.GET("/user/permissions", user.PermissionsGin)
 }
 
 func Index(c *gin.Context) {
