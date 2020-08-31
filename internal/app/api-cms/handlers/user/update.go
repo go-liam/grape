@@ -28,5 +28,5 @@ func UpdateUserGin(c *gin.Context) {
 }
 
 func (e *UpdateUser) data() *response.APIResponse {
-	return &response.APIResponse{Code: errorcode.Success, Message: errorcode.MsSuccess, Data: nil}
+	return &response.APIResponse{Code: errorcode.Success, Message: errorcode.MsSuccess, Data: e.req}
 }

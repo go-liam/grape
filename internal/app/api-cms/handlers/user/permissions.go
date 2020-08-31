@@ -16,10 +16,13 @@ avatar: null
 email: null
 id: 1
 nickname: "root"
-permissions: []
+  "permissions": [
+    {"id": 2, "name": "查询自己拥有的权限", "module": "用户"},
+    {"id": 6, "name": "查询日志记录的用户", "module": "日志"}
+  ]
 */
 type PermissionsResp struct {
-	Flag        int      `json:"admin"`
+	Flag        int8     `json:"admin"`
 	Avatar      string   `json:"avatar"`
 	Email       string   `json:"email"`
 	ID          string   `json:"id"`

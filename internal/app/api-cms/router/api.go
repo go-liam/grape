@@ -12,8 +12,8 @@ func setupRouterAPI(engine *gin.Engine) {
 	engine.GET("/", Index)
 	engine.GET(path, Index)
 	//other
-	//g := engine.Group(path)
-	//g.POST("/login", user.LoginGin)
+	g := engine.Group(path)
+	g.POST("/login", user.LoginGin) //登录
 }
 
 func setupRouterCMS(engine *gin.Engine) {
@@ -21,13 +21,13 @@ func setupRouterCMS(engine *gin.Engine) {
 	engine.GET(path, Index)
 	g := engine.Group(path)
 	// user
-	g.POST("/user/login", user.LoginGin)            //登录
-	g.GET("/user/permissions", user.PermissionsGin) //查询自己拥有的权限
-	g.PUT("/user", user.UpdateUserGin)              //更新用户信息
-	g.POST("/user/register", Index)                 //注册
-	g.PUT("/user/change_password", Index)           //修改密码
-	g.GET("/user/refresh", Index)                   //刷新令牌
-	g.GET("/user/information", Index)               //查询自己信息
+	//g.POST("/user/login", user.LoginGin)            //登录
+	g.GET("/user/permissions", user.PermissionsGin)        //查询自己拥有的权限
+	g.PUT("/user", user.UpdateUserGin)                     //更新用户信息
+	g.POST("/user/register", user.RegisterGin)             //注册
+	g.PUT("/user/change_password", user.ChangePasswordGin) //修改密码
+	g.GET("/user/refresh", user.RefreshGin)                //刷新令牌
+	g.GET("/user/information", user.InformationGin)        //查询自己信息
 }
 
 func Index(c *gin.Context) {
