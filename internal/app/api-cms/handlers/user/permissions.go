@@ -19,12 +19,13 @@ nickname: "root"
 permissions: []
 */
 type PermissionsResp struct {
-	Admin       bool     `json:"admin"`
+	Flag        int      `json:"admin"`
 	Avatar      string   `json:"avatar"`
 	Email       string   `json:"email"`
 	ID          string   `json:"id"`
 	Nickname    string   `json:"nickname"`
-	Permissions []string `json:"permissions"`
+	Username    string   `json:"username"`
+	Permissions []string `json:"permissions"` //?格式？
 }
 
 func PermissionsGin(c *gin.Context) {
@@ -34,9 +35,10 @@ func PermissionsGin(c *gin.Context) {
 
 func (e *Permissions) data() *response.APIResponse {
 	o := new(PermissionsResp)
-	o.Permissions = make([]string, 0)
-	o.Admin = true
-	o.Nickname = "Admin"
+	o.Permissions = []string{"user-add", "user-info"} //make([]string, 0)
+	o.Flag = 1
+	o.Nickname = "管理员"
+	o.Username = "root"
 	o.ID = "1234567890123456"
 	return &response.APIResponse{Code: errorcode.Success, Message: errorcode.MsSuccess, Data: o}
 }

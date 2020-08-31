@@ -14,7 +14,7 @@ type Login struct {
 }
 
 type LoginReq struct {
-	Name     string `json:"name"`
+	Name     string `json:"username"`
 	PassWord string `json:"password"`
 	ClientID int    `json:"client"`
 	OutTime  int    `json:"time"` //过期时间秒  10 s - 1*60*60 (1小时)
