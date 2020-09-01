@@ -2,7 +2,7 @@ package router
 
 import (
 	"github.com/gin-gonic/gin"
-	"grape/internal/pkg/util/jwt2"
+	jwt22 "grape/internal/pkg/service/jwt2"
 	"net/http"
 	"strings"
 )
@@ -55,13 +55,12 @@ type User struct {
 func GetJWTInfoByHeader(c *gin.Context) (*User, int) {
 	token := c.Request.Header.Get("Authorization")
 	token = strings.ReplaceAll(token, "Bearer ", "")
-	t, f := jwt2.Server.ParseToken(token)
+	t, f := jwt22.Server.ParseToken(token)
 	us := new(User)
 	if f != 0 || t == nil || t.UserID == 0 {
 		return us, f
 	}
 	us.UserID = t.UserID
 	us.ClientType = t.ClientType
-	// 将来可以加上 单点登录逻辑
 	return us, f
 }

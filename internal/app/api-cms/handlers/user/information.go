@@ -9,7 +9,7 @@ import (
 )
 
 type Information struct {
-	user    *router.User
+	jwtUser *router.User
 	jwtFlag int
 }
 
@@ -41,12 +41,12 @@ type GroupsItem struct {
 
 func InformationGin(c *gin.Context) {
 	srv := new(Information)
-	srv.user, srv.jwtFlag = router.GetJWTInfoByHeader(c)
+	srv.jwtUser, srv.jwtFlag = router.GetJWTInfoByHeader(c)
 	c.JSON(http.StatusOK, srv.data())
 }
 
 func (e *Information) data() *response.APIResponse {
-	if e.user.UserID <= 0 {
+	if e.jwtUser.UserID <= 0 {
 		return &response.APIResponse{Code: e.jwtFlag, Message: errorcode.MsUsGetToken, Data: response.DataItemNil}
 	}
 	o := new(InformationResp)

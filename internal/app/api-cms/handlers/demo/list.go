@@ -6,6 +6,7 @@ import (
 	"github.com/go-liam/util/response"
 	"grape/configs/errorcode"
 	"grape/internal/pkg/data/home_site/site"
+	"grape/internal/pkg/middleware/router"
 	"net/http"
 )
 
@@ -14,6 +15,8 @@ type SrvList struct {
 	list     []*site.Model
 	pageSize int // 分页
 	current  int // 分页
+	jwtUser  *router.User
+	jwtFlag  int
 }
 
 type RespList struct {
@@ -50,10 +53,14 @@ func GetListGin(c *gin.Context) {
 	srv.srv = site.Server
 	srv.pageSize = conv.StringToInt(c.Query("pageSize"), 20)
 	srv.current = conv.StringToInt(c.Query("current"), 1)
+	srv.jwtUser, srv.jwtFlag = router.GetJWTInfoByHeader(c)
 	c.JSON(http.StatusOK, srv.GetList())
 }
 
 func (e *SrvList) GetList() *response.APIResponse {
+	if e.jwtUser.UserID <= 0 {
+		return &response.APIResponse{Code: e.jwtFlag, Message: errorcode.MsUsGetToken, Data: response.DataItemNil}
+	}
 	back := new(RespList)
 	back.Pagination = &response.Pagination{PageSize: e.pageSize, Current: e.current}
 	s := &response.ListParameter{WhereSt: " and 1=1 ", OrderSt: " order by id "}

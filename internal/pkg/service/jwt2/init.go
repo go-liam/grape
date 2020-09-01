@@ -1,19 +1,23 @@
 package jwt2
 
 import (
+	"grape/internal/pkg/util/jwt2"
 	"log"
 	"time"
 )
 
-var Server = new(JWT)
-var ServerRefresh = new(JWT)
+/*
+	将来可以加上 单点登录逻辑（放在刷新逻辑）
+*/
+var Server = new(jwt2.JWT)
+var ServerRefresh = new(jwt2.JWT)
 
 var (
 	// SignKey ：加密盐,每段时间更新盐:新旧盐可同时进行
 	SignKey        = "188274e3052a9fd6450077a3287003a-mb1907@jm@!$$v2" //Token
 	SignKeyRefresh = "388274e3052a9fd6450077a3287003a-mb1907@jm@!$$v3" //Refresh
 	RefreshOutTime = 30 * 24 * 3600                                    // 30天
-	TokenOutTime   = 5 * 60                                            // 5分钟
+	TokenOutTime   = 30 * 60                                           // X 分钟(单点登录时调为 1分钟)
 )
 
 func init() {
@@ -23,7 +27,7 @@ func init() {
 }
 
 func Create(userID int64, clientType int, loginFlag int) (string, string) {
-	claims1 := &CustomClaims{
+	claims1 := &jwt2.CustomClaims{
 		UserID:     userID, // fmt.Sprintf("%d", userID),
 		ClientType: clientType,
 		LoginFlag:  loginFlag,
@@ -39,7 +43,7 @@ func Create(userID int64, clientType int, loginFlag int) (string, string) {
 func Refresh(refreshString string) (string, string) {
 	var diff int64 = 10 * 24 * 3600
 	claims1, err2 := ServerRefresh.ParseToken(refreshString)
-	if err2 != Success {
+	if err2 != jwt2.Success {
 		log.Printf("[ERROR] Refresh F: %+v\n", err2)
 		return "", ""
 	}

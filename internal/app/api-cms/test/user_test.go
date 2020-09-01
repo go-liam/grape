@@ -14,6 +14,7 @@ func TestCMS_v1_Login(t *testing.T) {
 {
   "username": "name",
 "client":1,
+"login_flag":0,
   "password": "123456"
 }
 	`
