@@ -46,9 +46,22 @@ func AuthMiddleWareCheckToken() gin.HandlerFunc {
 	}
 }
 
+type User struct {
+	UserID     int64
+	ClientType int
+}
+
 // 取出用户信息
-func GetJWTInfoByHeader(c *gin.Context) (*jwt2.CustomClaims, int) {
+func GetJWTInfoByHeader(c *gin.Context) (*User, int) {
 	token := c.Request.Header.Get("Authorization")
 	token = strings.ReplaceAll(token, "Bearer ", "")
-	return jwt2.Server.ParseToken(token)
+	t, f := jwt2.Server.ParseToken(token)
+	us := new(User)
+	if f != 0 || t == nil || t.UserID == 0 {
+		return us, f
+	}
+	us.UserID = t.UserID
+	us.ClientType = t.ClientType
+	// 将来可以加上 单点登录逻辑
+	return us, f
 }

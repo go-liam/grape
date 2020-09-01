@@ -35,7 +35,7 @@ func LoginGin(c *gin.Context) {
 
 func (e *Login) data() *response.APIResponse {
 	o := new(LoginResp)
-	o.Token, o.Refresh = jwt2.Create(123456, 1)
+	o.Token, o.Refresh = jwt2.Create(123456, 1, 0)
 	return &response.APIResponse{Code: errorcode.Success, Message: errorcode.MsSuccess, Data: o}
 }
 

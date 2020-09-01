@@ -4,10 +4,13 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/go-liam/util/response"
 	"grape/configs/errorcode"
+	"grape/internal/pkg/middleware/router"
 	"net/http"
 )
 
 type Information struct {
+	user    *router.User
+	jwtFlag int
 }
 
 /*
@@ -38,10 +41,14 @@ type GroupsItem struct {
 
 func InformationGin(c *gin.Context) {
 	srv := new(Information)
+	srv.user, srv.jwtFlag = router.GetJWTInfoByHeader(c)
 	c.JSON(http.StatusOK, srv.data())
 }
 
 func (e *Information) data() *response.APIResponse {
+	if e.user.UserID <= 0 {
+		return &response.APIResponse{Code: e.jwtFlag, Message: errorcode.MsUsGetToken, Data: response.DataItemNil}
+	}
 	o := new(InformationResp)
 	o.Nickname = "管理员"
 	o.Username = "root"

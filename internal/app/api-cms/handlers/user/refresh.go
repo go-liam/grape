@@ -4,11 +4,13 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/go-liam/util/response"
 	"grape/configs/errorcode"
+	"grape/internal/pkg/util/jwt2"
 	"net/http"
+	"strings"
 )
 
 type Refresh struct {
-	//req *RefreshReq
+	token string
 }
 
 type RefreshResp struct {
@@ -18,14 +20,16 @@ type RefreshResp struct {
 
 func RefreshGin(c *gin.Context) {
 	srv := new(Refresh)
+	srv.token = c.Request.Header.Get("Authorization")
+	srv.token = strings.ReplaceAll(srv.token, "Bearer ", "")
 	c.JSON(http.StatusOK, srv.data())
 }
 
 func (e *Refresh) data() *response.APIResponse {
 	o := new(RefreshResp)
-	o.Token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZGVudGl0eSI6MSwic2NvcGUiOiJsaW4iLCJ0eXBlIjoiYWNjZXNzIiwiZXhw" +
-		"IjoxNTk4ODAyNjgyfQ.imgpM44A_WZYTUZGm8kI-n0tgC7MREXcs717o3FNbbc"
-	o.Refresh = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZGVudGl0eSI6MSwic2NvcGUiOiJsaW4iLCJ0eXBlIjoicmVmcmVzaCIsImV4cCI6" +
-		"MTYwMTM5MTA4Mn0.69aH4T1B5w9cq6q6hfJt8fZZr5Gpys9HVwKCWmjMhZk"
+	o.Token, o.Refresh = jwt2.Refresh(e.token)
+	if o.Refresh == "" || o.Token == "" {
+		return &response.APIResponse{Code: errorcode.RefreshTokenExpired, Message: errorcode.RefreshTokenExpiredMsg, Data: o}
+	}
 	return &response.APIResponse{Code: errorcode.Success, Message: errorcode.MsSuccess, Data: o}
 }

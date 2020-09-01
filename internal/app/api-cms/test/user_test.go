@@ -69,11 +69,12 @@ func TestCMS_v1_ChangePassword(t *testing.T) {
 }
 
 func TestCMS_v1_RefreshGin(t *testing.T) {
-	back, _ := router3.RouteJWTTool(router.SetupRouterTest(), "GET", config.Path+"/cms/v1/user/refresh", nil, testdata.UserKey)
+	token := "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEyMzQ1Njc4OTAxMjM0NTYsInV0eSI6MSwibGciOjAsImV4cCI6MTYwMTUzNjA1OX0.T2NIr1rZkwrqPE80ahMNl5YewBCUnDcN7LekuwwW9MY"
+	back, _ := router3.RouteJWTTool(router.SetupRouterTest(), "GET", config.Path+"/cms/v1/user/refresh", nil, token)
 	println(back)
 }
 
 func TestCMS_v1_InformationGin(t *testing.T) {
-	back, _ := router3.RouteJWTTool(router.SetupRouterTest(), "GET", config.Path+"/cms/v1/user/information", nil, testdata.UserKey)
+	back, _ := router3.RouteJWTTool(router.SetupRouterTest(), "GET", config.Path+"/cms/v1/user/information", nil, testdata.JWTKey)
 	println(back)
 }

@@ -11,6 +11,7 @@ import (
 
 func SetupRouter(engine *gin.Engine) {
 	engine.Use(router.AccessControlAllow())
+	engine.Use(router.AccessOPTIONSlAllow())
 	setupRouterAPI(engine)
 	setupRouterCMS(engine)
 }

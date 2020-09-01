@@ -8,13 +8,13 @@ import (
 var (
 	Success = 0
 	// ErrorTokenExpired : 过期了
-	ErrorTokenExpired = -1 // errors.New("Token is expired")
+	ErrorTokenExpired = 10041 // errors.New("Token is expired")
 	// ErrorTokenNotValidYet ：还没有生效
-	ErrorTokenNotValidYet = -2 // errors.New("Token not active yet")
+	ErrorTokenNotValidYet = 10042 // errors.New("Token not active yet")
 	// ErrorTokenMalformed  ：That's not even a token
-	ErrorTokenMalformed = -3 // errors.New("That's not even a token")
+	ErrorTokenMalformed = 10043 // errors.New("That's not even a token")
 	// ErrorTokenInvalid ：Couldn't handle this token
-	ErrorTokenInvalid = -4 //errors.New("Couldn't handle this token")
+	ErrorTokenInvalid = 10044 //errors.New("Couldn't handle this token")
 )
 
 // JWT 签名结构
@@ -23,16 +23,14 @@ type JWT struct {
 }
 
 type CustomClaims struct {
-	UserID     string `json:"uid"` // userID,18位长度，用int64 js取值会有问题
-	ClientType int    `json:"uty"` // 客户端类型
+	UserID     int64 `json:"uid"` // userID,18位长度，用int64 js取值会有问题
+	ClientType int   `json:"uty"` // 客户端类型
+	LoginFlag  int   `json:"lg"`  // 登录方式: 1 单点登录
 	jwtgo.StandardClaims
 }
 
-// NewJWT 新建一个jwt实例
-func NewJWT(key string) *JWT {
-	return &JWT{
-		[]byte(key),
-	}
+func (j *JWT) SetKey(key string) {
+	j.SigningKey = []byte(key)
 }
 
 // CreateToken 生成一个token
