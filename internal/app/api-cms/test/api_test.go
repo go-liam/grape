@@ -17,3 +17,8 @@ func TestAPI_v1_Index(t *testing.T) {
 	back, _ := router3.RouteTestTool(router.SetupRouterTest(), "GET", config.Path+"/v1", nil, testdata.UserKey, testdata.AdminKey)
 	println(back)
 }
+
+func TestAPI_v1_demos(t *testing.T) {
+	back, _ := router3.RouteTestTool(router.SetupRouterTest(), "GET", config.Path+"/api/v1/demos", nil, testdata.UserKey, testdata.AdminKey)
+	println(back)
+}

@@ -2,7 +2,9 @@ package router
 
 import (
 	"github.com/gin-gonic/gin"
+	"grape/internal/pkg/util/jwt2"
 	"net/http"
+	"strings"
 )
 
 func AccessControlAllow() gin.HandlerFunc {
@@ -28,4 +30,25 @@ func AccessOPTIONSlAllow() gin.HandlerFunc {
 		}
 		c.Next()
 	}
+}
+
+// 过滤空头
+func AuthMiddleWareCheckToken() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		token := c.Request.Header.Get("Authorization")
+		errCode := 401
+		if token == "" {
+			c.Status(errCode)
+			c.Abort()
+			return
+		}
+		c.Next()
+	}
+}
+
+// 取出用户信息
+func GetJWTInfoByHeader(c *gin.Context) (*jwt2.CustomClaims, int) {
+	token := c.Request.Header.Get("Authorization")
+	token = strings.ReplaceAll(token, "Bearer ", "")
+	return jwt2.Server.ParseToken(token)
 }

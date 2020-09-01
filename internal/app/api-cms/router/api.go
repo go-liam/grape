@@ -3,6 +3,7 @@ package router
 import (
 	"github.com/gin-gonic/gin"
 	"grape/internal/app/api-cms/config"
+	"grape/internal/app/api-cms/handlers/demo"
 	"grape/internal/app/api-cms/handlers/user"
 	"net/http"
 )
@@ -13,7 +14,8 @@ func setupRouterAPI(engine *gin.Engine) {
 	engine.GET(path, Index)
 	//other
 	g := engine.Group(path)
-	g.POST("/login", user.LoginGin) //登录
+	g.POST("/login", user.LoginGin)  //登录
+	g.GET("/demos", demo.GetListGin) //登录
 }
 
 func setupRouterCMS(engine *gin.Engine) {
