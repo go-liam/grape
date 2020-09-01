@@ -1,5 +1,12 @@
 package bind
 
+const (
+	TypeUserName = 10
+	TypeUserPsw = 11
+	TypeEmail = 12
+	TypePhone = 4
+)
+
 type Model struct {
 	ID        int64 `gorm:"column:id;primary_key" json:"id"`    //log id
 	CreatedAt int64 `gorm:"column:created_at" json:"createdAt"` // 创建时间戳

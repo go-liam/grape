@@ -1,6 +1,7 @@
 package user
 
 import (
+	"errors"
 	"fmt"
 	"github.com/go-liam/util/conv"
 	"github.com/go-liam/util/response"
@@ -11,6 +12,14 @@ import (
 var Server = new(SrvUser)
 
 type SrvUser struct {
+}
+
+func (e *SrvUser) CheckAndCreate(item *Model) (int64, error) {
+	ck,_:= e.FindOne(item.ID)
+	if ck.ID > 0 {
+		return 0,errors.New("had data")
+	}
+	return e.Create(item)
 }
 
 func (e *SrvUser) Create(item *Model) (int64, error) {
