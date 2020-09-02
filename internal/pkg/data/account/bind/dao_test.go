@@ -23,3 +23,9 @@ func TestSrvBind_FindOne(t *testing.T) {
 	log.Printf("v:=%+v\n", v)
 	log.Printf("err:=%+v\n", err)
 }
+
+func TestName_FindOneByUserID(t *testing.T) {
+	v, err := new(SrvBind).FindOneByUserID(1, 1)
+	log.Printf("v:=%+v\n", v)
+	log.Printf("err:=%+v\n", err)
+}

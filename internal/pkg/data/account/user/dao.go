@@ -15,9 +15,9 @@ type SrvUser struct {
 }
 
 func (e *SrvUser) CheckAndCreate(item *Model) (int64, error) {
-	ck,_:= e.FindOne(item.ID)
+	ck, _ := e.FindOne(item.ID)
 	if ck.ID > 0 {
-		return 0,errors.New("had data")
+		return 0, errors.New("had data")
 	}
 	return e.Create(item)
 }

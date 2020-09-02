@@ -10,6 +10,7 @@ type Model struct {
 	Email     string `gorm:"column:email" json:"email"`          // 邮箱（冗余）
 	Phone     string `gorm:"column:phone" json:"phone"`          // 手机（冗余）
 	Name      string `gorm:"column:name" json:"name"`            //账号（冗余）
+	NickName  string `gorm:"column:nick_name" json:"nick_name"`  //昵称
 }
 
 func (sv *Model) TableName() string {

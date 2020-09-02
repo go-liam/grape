@@ -1,6 +1,7 @@
 package region
 
 import (
+	"errors"
 	"fmt"
 	"github.com/go-liam/util/response"
 	"grape/internal/pkg/database/mysql"
@@ -43,3 +44,11 @@ func (e *SrvRegion) FindMulti(p *response.Pagination, s *response.ListParameter)
 //	v := mysql.ServerAPI.Engine().Exec(sql, item.RegionID,item.UpdatedAt, item.UserID)
 //	return v.RowsAffected, v.Error
 //}
+
+func (e *SrvRegion) CheckAndCreate(item *Model) (int64, error) {
+	ck, _ := e.FindOne(item.UserID)
+	if ck.UserID > 0 {
+		return 0, errors.New("had data")
+	}
+	return e.Create(item)
+}
