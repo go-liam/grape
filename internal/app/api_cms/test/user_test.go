@@ -12,7 +12,7 @@ import (
 func TestCMS_v1_Login(t *testing.T) {
 	data := `
 {
-  "username": "name",
+  "username": "root",
 "client":1,
 "login_flag":0,
   "password": "123456"

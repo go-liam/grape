@@ -5,6 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/go-liam/util/response"
 	"grape/configs/errorcode"
+	"grape/internal/pkg/service/account"
 	"grape/internal/pkg/service/jwt2"
 	"io/ioutil"
 	"net/http"
@@ -15,11 +16,10 @@ type Login struct {
 }
 
 type LoginReq struct {
-	Name      string `json:"username"`
-	PassWord  string `json:"password"`
+	UserName  string `json:"username"`
+	Password  string `json:"password"`
 	ClientID  int    `json:"client"`
 	LoginFlag int    `json:"login_flag"`
-	//OutTime  int    `json:"time"` //过期时间秒  10 s - 1*60*60 (1小时)
 }
 
 type LoginResp struct {
@@ -35,6 +35,10 @@ func LoginGin(c *gin.Context) {
 }
 
 func (e *Login) data() *response.APIResponse {
-	o := jwt2.LoginToken(12345, e.req.ClientID, e.req.LoginFlag)
+	g1 ,_ := account.LoginByPassword(e.req.UserName,e.req.Password)
+	if g1 <=0{
+		return &response.APIResponse{Code: errorcode.LoginError, Message: errorcode.LoginErrorMsg, Data: response.DataItemNil}
+	}
+	o := jwt2.LoginToken(g1, e.req.ClientID, e.req.LoginFlag)
 	return &response.APIResponse{Code: errorcode.Success, Message: errorcode.MsSuccess, Data: o}
 }
