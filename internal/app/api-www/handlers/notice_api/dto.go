@@ -18,8 +18,8 @@ type ReqModel struct {
 
 type RespModel struct {
 	ID         string      ` json:"id"`          // id
-	CreatedAt  int64       ` json:"createdAt"`   // 创建时间戳
-	UpdatedAt  int64       ` json:"updatedAt"`   // 更新时间戳
+	CreatedAt  int64       ` json:"created_at"`  // 创建时间戳
+	UpdatedAt  int64       ` json:"updated_at"`  // 更新时间戳
 	Status     int8        `json:"status"  `     // 44 删除, 1 启用, 4 禁用
 	LanguageID int         `json:"languageID"  ` // 语言ID:1中文,2英语
 	Title      string      `json:"title"  `      //标题

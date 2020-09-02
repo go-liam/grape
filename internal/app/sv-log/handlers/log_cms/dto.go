@@ -13,9 +13,9 @@ type ReqModel struct {
 }
 
 type RespModel struct {
-	ID        string      ` json:"id"`        // id
-	CreatedAt int64       ` json:"createdAt"` // 创建时间戳
-	Extended  interface{} `json:"extended" `  // 扩展的
+	ID        string      ` json:"id"`         // id
+	CreatedAt int64       ` json:"created_at"` // 创建时间戳
+	Extended  interface{} `json:"extended" `   // 扩展的
 	Level     int32       ` json:"level"`
 	Msg       string      ` json:"msg"`
 }

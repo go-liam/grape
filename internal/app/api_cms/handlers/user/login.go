@@ -35,8 +35,8 @@ func LoginGin(c *gin.Context) {
 }
 
 func (e *Login) data() *response.APIResponse {
-	g1 ,_ := account.LoginByPassword(e.req.UserName,e.req.Password)
-	if g1 <=0{
+	g1, _ := account.LoginByPassword(e.req.UserName, e.req.Password)
+	if g1 <= 0 {
 		return &response.APIResponse{Code: errorcode.LoginError, Message: errorcode.LoginErrorMsg, Data: response.DataItemNil}
 	}
 	o := jwt2.LoginToken(g1, e.req.ClientID, e.req.LoginFlag)

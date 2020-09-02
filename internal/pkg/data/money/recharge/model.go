@@ -3,8 +3,8 @@ package recharge
 // 充值日志
 type Model struct {
 	ID         int64  `gorm:"column:id;primary_key" json:"id"`      // id
-	CreatedAt  int64  `gorm:"column:created_at" json:"createdAt"`   // 创建时间戳
-	UpdatedAt  int64  `gorm:"column:updated_at" json:"updatedAt"`   // 更新时间戳
+	CreatedAt  int64  `gorm:"column:created_at" json:"created_at"`  // 创建时间戳
+	UpdatedAt  int64  `gorm:"column:updated_at" json:"updated_at"`  // 更新时间戳
 	Status     int8   `gorm:"column:status" json:"status" `         // 44 删除, 10 ok
 	Remark     string `gorm:"column:remark"  json:"remark"`         // 备注
 	Extended   string `gorm:"column:extended" json:"extended"`      // 扩展的

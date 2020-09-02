@@ -12,7 +12,7 @@ type ReqModel struct {
 
 type RespModel struct {
 	UserID    string ` json:"userID"`
-	CreatedAt int64  ` json:"createdAt"` // 创建时间戳
+	CreatedAt int64  ` json:"created_at"` // 创建时间戳
 	RegionID  int    `json:"regionID"  `
 }
 
