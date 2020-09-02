@@ -2,8 +2,8 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
-	"grape/internal/app/api-cms/config"
-	"grape/internal/app/api-cms/router"
+	"grape/internal/app/api_cms/config"
+	"grape/internal/app/api_cms/router"
 	"log"
 	"os"
 	"os/signal"

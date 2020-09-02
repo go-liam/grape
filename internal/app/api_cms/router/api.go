@@ -2,9 +2,9 @@ package router
 
 import (
 	"github.com/gin-gonic/gin"
-	"grape/internal/app/api-cms/config"
-	"grape/internal/app/api-cms/handlers/demo"
-	"grape/internal/app/api-cms/handlers/user"
+	"grape/internal/app/api_cms/config"
+	"grape/internal/app/api_cms/handlers/demo"
+	"grape/internal/app/api_cms/handlers/user"
 	"grape/internal/pkg/middleware/router"
 	"net/http"
 )

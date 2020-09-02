@@ -2,8 +2,8 @@ package test
 
 import (
 	"grape/configs/testdata"
-	"grape/internal/app/api-cms/config"
-	"grape/internal/app/api-cms/router"
+	"grape/internal/app/api_cms/config"
+	"grape/internal/app/api_cms/router"
 	router3 "grape/internal/pkg/middleware/router"
 	"strings"
 	"testing"

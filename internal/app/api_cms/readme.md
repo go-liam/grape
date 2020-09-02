@@ -3,5 +3,5 @@
 cms 接口
 
 ## run 
-go run app/api-cms/main.go
+go run app/api_cms/main.go
 
