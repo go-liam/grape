@@ -8,7 +8,7 @@ import (
 )
 
 func setupRouterCMSUser(engine *gin.Engine) {
-	path := config.Path + "/cms/v1/user"
+	path := config.Path + "/cms/v1"
 	//path
 	g := engine.Group(path)
 	g.Use(router.AuthMiddleWareCheckToken())

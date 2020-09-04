@@ -11,14 +11,16 @@ import (
 	"net/http"
 )
 
+const deleteStatus  = 44
+
 type SrvUpdateStatus struct {
 	srv role.Service
 	req *reqStatus
 }
 
 type reqStatus struct {
-	IDs    []string `json:"IDs" `
-	Status int      `json:"status" `
+	IDs    []string `json:"ids" `
+	//Status int      `json:"status" `
 }
 
 func UpdateStatusGin(c *gin.Context) {
@@ -34,7 +36,7 @@ func (e *SrvUpdateStatus) UpdateStatus() *response.APIResponse {
 		return &response.APIResponse{Code: errorcode.RequestParameter, Message: errorcode.MsRequest, Data: response.DataItemNil}
 	}
 	ids := conv.ArrayStringToInt64(e.req.IDs)
-	result, _ := e.srv.UpdateStatusByIDs(e.req.Status, ids)
+	result, _ := e.srv.UpdateStatusByIDs(deleteStatus, ids)
 	if result > 0 {
 		return &response.APIResponse{Code: errorcode.Success, Message: errorcode.MsSuccess, Data: response.DataItemNil}
 	}

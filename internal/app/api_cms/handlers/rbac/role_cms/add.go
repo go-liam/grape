@@ -10,6 +10,7 @@ import (
 	"grape/configs/errorcode"
 	"grape/internal/pkg/data/rbac/role"
 	"io/ioutil"
+	"log"
 	"net/http"
 )
 
@@ -29,6 +30,7 @@ func AddGin(c *gin.Context) {
 }
 
 func (e *SrvAdd) Add() *response.APIResponse {
+	log.Printf("i=%+v\n",e.req)
 	if e.req.Name == "" {
 		return &response.APIResponse{Code: errorcode.RequestParameter, Message: errorcode.MsRequest, Data: response.DataItemNil}
 	}

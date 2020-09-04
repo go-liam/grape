@@ -24,7 +24,7 @@ type RespList struct {
 func GetListGin(c *gin.Context) {
 	srv := new(SrvList)
 	srv.srv = power.Server
-	srv.pageSize = conv.StringToInt(c.Query("pageSize"), 20)
+	srv.pageSize = conv.StringToInt(c.Query("size"), 20)
 	srv.current = conv.StringToInt(c.Query("current"), 1)
 	c.JSON(http.StatusOK, srv.GetList())
 }

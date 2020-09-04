@@ -30,7 +30,7 @@ func EditPowerGin(c *gin.Context) {
 func (e *SrvEditPower) Edit() *response.APIResponse {
 	println("id=", e.id)
 	println("req=", e.req.PowerIDS)
-	if e.req.PowerIDS == "" || e.id <= 0 {
+	if e.req.PowerIDS == nil || e.id <= 0 {
 		return &response.APIResponse{Code: errorcode.RequestParameter, Message: errorcode.MsRequest, Data: response.DataItemNil}
 	}
 	item := GetModel(e.req)
