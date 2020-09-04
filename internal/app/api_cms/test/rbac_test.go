@@ -14,6 +14,42 @@ func TestCMS_v1_power_list(t *testing.T) {
 	println(back)
 }
 
+func TestCMS_v1_power_Add(t *testing.T) {
+	data := `
+{
+  "tag": "add-power",
+  "name":"添加用户"
+}
+	`
+	reader := strings.NewReader(data)
+	back, _ := router3.RouteJWTTool(router.SetupRouterTest(), "POST", config.Path+"/cms/v1/rbac/power", reader, testdata.UserKey)
+	println(back)
+}
+
+func TestCMS_v1_power_edit(t *testing.T) {
+	data := `
+{
+  "tag": "add-power2",
+  "name":"添加用户2"
+}
+	`
+	reader := strings.NewReader(data)
+	back, _ := router3.RouteJWTTool(router.SetupRouterTest(), "PUT", config.Path+"/cms/v1/rbac/power/1", reader, testdata.UserKey)
+	println(back)
+}
+
+func TestCMS_v1_power_delete(t *testing.T) {
+	data := `
+{
+  "ids":["0","3","4","5"]
+}
+	`
+	reader := strings.NewReader(data)
+	back, _ := router3.RouteJWTTool(router.SetupRouterTest(), "PUT", config.Path+"/cms/v1/rbac/power-status", reader, testdata.UserKey)
+	println(back)
+}
+
+
 func TestCMS_v1_role_info(t *testing.T) {
 	back, _ := router3.RouteJWTTool(router.SetupRouterTest(), "GET", config.Path+"/cms/v1/rbac/role/1", nil, testdata.UserKey)
 	println(back)

@@ -14,6 +14,9 @@ func setupRouterCMSRBAC(engine *gin.Engine) {
 	g.Use(router.AuthMiddleWareCheckToken())
 	//power
 	g.GET("/powers", power_cms.GetListGin)
+	g.POST("/power", power_cms.AddGin)
+	g.PUT("/power/:id", power_cms.EditGin)
+	g.PUT("/power-status", power_cms.UpdateStatusGin)
 	// role
 	g.GET("/role/:id", role_cms.GetInfoGin)
 	g.GET("/roles", role_cms.GetListGin)
@@ -21,5 +24,6 @@ func setupRouterCMSRBAC(engine *gin.Engine) {
 	g.PUT("/role-power/:id", role_cms.EditPowerGin)
 	g.PUT("/role-status", role_cms.UpdateStatusGin)
 	g.POST("/role", role_cms.AddGin)
+	//user
 
 }

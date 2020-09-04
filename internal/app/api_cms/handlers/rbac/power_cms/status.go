@@ -17,7 +17,7 @@ type SrvUpdateStatus struct {
 }
 
 type reqStatus struct {
-	IDs    []string `json:"IDs" `
+	IDs    []string `json:"ids" `
 	Status int      `json:"status" `
 }
 
@@ -30,11 +30,12 @@ func UpdateStatusGin(c *gin.Context) {
 }
 
 func (e *SrvUpdateStatus) UpdateStatus() *response.APIResponse {
+	delete := 44
 	if e.req == nil || len(e.req.IDs) <= 0 {
 		return &response.APIResponse{Code: errorcode.RequestParameter, Message: errorcode.MsRequest, Data: response.DataItemNil}
 	}
 	ids := conv.ArrayStringToInt64(e.req.IDs)
-	result, _ := e.srv.UpdateStatusByIDs(e.req.Status, ids)
+	result, _ := e.srv.UpdateStatusByIDs(delete, ids)
 	if result > 0 {
 		return &response.APIResponse{Code: errorcode.Success, Message: errorcode.MsSuccess, Data: response.DataItemNil}
 	}
