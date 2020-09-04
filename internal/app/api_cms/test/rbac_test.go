@@ -107,3 +107,19 @@ func TestCMS_v1_role_Add(t *testing.T) {
 	back, _ := router3.RouteJWTTool(router.SetupRouterTest(), "POST", config.Path+"/cms/v1/rbac/role", reader, testdata.UserKey)
 	println(back)
 }
+
+
+func TestCMS_v1_rbac_user_Add(t *testing.T) {
+	data := `
+{
+  "extended": "",
+"role_ids": [1,2,3],
+"password":"123456",
+"email":"asd@asd.com",
+  "username":"root10"
+}
+	`
+	reader := strings.NewReader(data)
+	back, _ := router3.RouteJWTTool(router.SetupRouterTest(), "POST", config.Path+"/cms/v1/rbac/user", reader, testdata.UserKey)
+	println(back)
+}

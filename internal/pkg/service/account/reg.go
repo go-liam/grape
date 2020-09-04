@@ -23,6 +23,7 @@ type RegModel struct {
 	Phone    string
 	NickName string
 	RegionID int
+	UserID int64
 }
 
 func RegByNamePassword(i *RegModel) (int64, error) {
@@ -31,7 +32,10 @@ func RegByNamePassword(i *RegModel) (int64, error) {
 	if ck.UserID > 0 {
 		return 0, errors.New("[ERROR]RegByNamePassword: had name")
 	}
-	uid := uuid.AutoInt64ID()
+	uid := i.UserID
+	if uid <=0 {
+		uid = uuid.AutoInt64ID()
+	}
 	// add region
 	region.Server.CheckAndCreate(&region.Model{UserID: uid, RegionID: i.RegionID})
 	// add name
