@@ -11,7 +11,7 @@ type ReqModel struct {
 	Extended interface{} `json:"extended" ` // 扩展的
 	Flag     int8        ` json:"flag"`
 	Remark   string      ` json:"remark"`
-	RoleIDs  string      ` json:"role_ids"`
+	RoleIDs  []string      ` json:"role_ids"`
 }
 
 type ReqCreateModel struct {
@@ -19,7 +19,7 @@ type ReqCreateModel struct {
 	Extended interface{} `json:"extended" ` // 扩展的
 	Flag     int8        `json:"flag"`
 	Remark   string      `json:"remark"`
-	RoleIDs  interface{} `json:"role_ids"`
+	RoleIDs  []string `json:"role_ids"`
 	Username string      `json:"username"`
 	Password string      `json:"password"`
 	Email    string      `json:"email"`
@@ -41,7 +41,7 @@ func GetModel(i *ReqModel) *user.Model {
 	o.ID = conv.StringToInt64(i.ID, 0)
 	o.Flag = i.Flag
 	o.Remark = i.Remark
-	o.RoleIDs = i.RoleIDs
+	o.RoleIDs = changeIdsToString(i.RoleIDs)
 	o.Extended = conv.StructToJsonString(i.Extended)
 	return o
 }
@@ -66,4 +66,9 @@ func GetRespModel(i *user.Model) *RespModel {
 func changeIds(st string) interface{} {
 	ar := conv.StringToInt64Array(st)
 	return conv.ArrayInt64ToString(ar)
+}
+
+func changeIdsToString(st []string) string {
+	ar := conv.ArrayStringToInt64(st)
+	return conv.StructToJsonString(ar)
 }

@@ -30,5 +30,6 @@ func setupRouterCMSRBAC(engine *gin.Engine) {
 	g.POST("/user", user_cms.AddGin)
 	g.GET("/users", user_cms.GetListGin)
 	g.PUT("/user-password", user.CmsChangePasswordGin)
+	g.PUT("/user", user_cms.EditGin)
 	//other
 }

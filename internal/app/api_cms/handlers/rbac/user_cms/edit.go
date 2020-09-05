@@ -26,7 +26,9 @@ func EditGin(c *gin.Context) {
 
 func (e *SrvEdit) Edit() *response.APIResponse {
 	item := GetModel(e.req)
-	e.result, _ = e.srv.Update(item)
+	i,_:= e.srv.FindOne(item.ID)
+	i.RoleIDs= item.RoleIDs
+	e.result, _ = e.srv.Update(i)
 	if e.result > 0 {
 		return &response.APIResponse{Code: errorcode.Success, Message: errorcode.MsSuccess, Data: e.req}
 	}

@@ -139,3 +139,16 @@ func TestCMS_v1_rbac_user_psw(t *testing.T) {
 	back, _ := router3.RouteJWTTool(router.SetupRouterTest(), "PUT", config.Path+"/cms/v1/rbac/user-password", reader, testdata.UserKey)
 	println(back)
 }
+
+
+func TestCMS_v1_rbac_user_edit(t *testing.T) {
+	data := `
+{
+  "id": "2",
+"role_ids": ["1","2","3"]
+}
+	`
+	reader := strings.NewReader(data)
+	back, _ := router3.RouteJWTTool(router.SetupRouterTest(), "PUT", config.Path+"/cms/v1/rbac/user", reader, testdata.UserKey)
+	println(back)
+}
