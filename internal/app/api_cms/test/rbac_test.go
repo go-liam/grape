@@ -86,7 +86,7 @@ func TestCMS_v1_role_delete(t *testing.T) {
 func TestCMS_v1_role_updatePower(t *testing.T) {
 	data := `
 {
-  "power_ids":"1,2,3"
+  "power_ids":["1","2","3"]
 }
 	`
 	reader := strings.NewReader(data)
@@ -99,7 +99,7 @@ func TestCMS_v1_role_Add(t *testing.T) {
 {
   "extended": {"info":"xx-info"},
   "name":"name--休闲鞋",  
-	"power_ids": [1,2,3]
+	"power_ids":["1","2","3"]
 }
 	`
 	reader := strings.NewReader(data)

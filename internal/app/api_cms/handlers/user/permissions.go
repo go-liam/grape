@@ -28,7 +28,7 @@ type PermissionsResp struct {
 	ID          string   `json:"id"`
 	Nickname    string   `json:"nickname"`
 	Username    string   `json:"username"`
-	Permissions []string `json:"permissions"` //?格式？
+	Permissions []string `json:"permissions"` //接管权限
 }
 
 func PermissionsGin(c *gin.Context) {
@@ -38,8 +38,8 @@ func PermissionsGin(c *gin.Context) {
 
 func (e *Permissions) data() *response.APIResponse {
 	o := new(PermissionsResp)
-	o.Permissions = []string{"user-add", "user-info"} //make([]string, 0)
-	o.Flag = 1
+	o.Permissions = []string{"rbac-menu", "rbac-user-menu","rbac-user-list","rbac-user-password"} //make([]string, 0)
+	o.Flag = 0
 	o.Nickname = "管理员"
 	o.Username = "root"
 	o.ID = "1234567890123456"
