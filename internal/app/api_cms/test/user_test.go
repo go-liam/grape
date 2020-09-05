@@ -24,7 +24,8 @@ func TestCMS_v1_Login(t *testing.T) {
 }
 
 func TestCMS_v1_Permissions(t *testing.T) {
-	back, _ := router3.RouteJWTTool(router.SetupRouterTest(), "GET", config.Path+"/cms/v1/user/permissions", nil, testdata.UserKey)
+	token := testdata.JWTKey
+	back, _ := router3.RouteJWTTool(router.SetupRouterTest(), "GET", config.Path+"/cms/v1/user/permissions", nil, token)
 	println(back)
 }
 

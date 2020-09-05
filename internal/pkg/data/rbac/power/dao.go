@@ -65,3 +65,19 @@ func (e *SrvPower) UpdateStatusByIDs(status int, ls []int64) (int64, error) {
 	v := mysql.ServerAPI.Engine().Exec(sql, status, updatedAt)
 	return v.RowsAffected, v.Error
 }
+
+func (e *SrvPower) FindMultiByIDs(ids []int64) ([]*Model, error) {
+	result := make([]*Model, 0)
+	st := conv.ArrayToString(ids, ",")
+	sql := fmt.Sprintf("select * from rb_power where id in (%v)  and status < 44  ", st)
+	v := mysql.ServerAPI.Engine().Raw(sql).Scan(&result)
+	return result, v.Error
+}
+
+func (e *SrvPower) GetTagByList(list []*Model) []string {
+	ls := make([]string, 0)
+	for _, v := range list {
+		ls = append(ls, v.Tag)
+	}
+	return ls
+}

@@ -140,7 +140,6 @@ func TestCMS_v1_rbac_user_psw(t *testing.T) {
 	println(back)
 }
 
-
 func TestCMS_v1_rbac_user_edit(t *testing.T) {
 	data := `
 {

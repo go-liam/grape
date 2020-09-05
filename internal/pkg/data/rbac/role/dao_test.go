@@ -46,3 +46,9 @@ func TestSrvRole_UpdateState(t *testing.T) {
 	log.Printf("v:=%+v\n", v)
 	log.Printf("err:=%+v\n", err)
 }
+
+func TestName_FindMultiByIDs(t *testing.T) {
+	v1, v2 := Server.FindMultiByIDs([]int64{1, 2})
+	log.Printf("v:=%+v\n", v1)
+	log.Printf("v2:=%+v\n", v2)
+}

@@ -75,3 +75,24 @@ func (e *SrvRole) FindMoreByList(list []*Model, groupIDs []int64) []*Model {
 	}
 	return ls
 }
+
+func (e *SrvRole) FindMultiByIDs(ids []int64) ([]*Model, error) {
+	result := make([]*Model, 0)
+	st := conv.ArrayToString(ids, ",")
+	sql := fmt.Sprintf("select * from rb_role where id in (%v)  and status < 44  ", st)
+	v := mysql.ServerAPI.Engine().Raw(sql).Scan(&result)
+	return result, v.Error
+}
+
+func (e *SrvRole) GetPowerIDsByIDs(roleIDs []int64) []int64 {
+	arr := make([]int64, 0)
+	if len(roleIDs) == 0 {
+		return arr
+	}
+	ls, _ := e.FindMultiByIDs(roleIDs)
+	for _, v := range ls {
+		ay := conv.StringToInt64Array(v.PowerIDS)
+		arr = append(arr, ay...)
+	}
+	return conv.RemoveDuplicateArrayInt64(arr)
+}

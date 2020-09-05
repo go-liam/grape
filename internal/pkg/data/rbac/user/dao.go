@@ -61,3 +61,14 @@ func (e *SrvUser) UpdateStatusByIDs(status int, ls []int64) (int64, error) {
 	v := mysql.ServerAPI.Engine().Exec(sql, status, updatedAt)
 	return v.RowsAffected, v.Error
 }
+
+func (e *SrvUser) FindMultiByIDs(ids []int64) ([]*Model, error) {
+	result := make([]*Model, 0)
+	if len(ids) == 0 {
+		return result, nil
+	}
+	st := conv.ArrayToString(ids, ",")
+	sql := fmt.Sprintf("select * from rb_user where id in (%v)  and status < 44  ", st)
+	v := mysql.ServerAPI.Engine().Raw(sql).Scan(&result)
+	return result, v.Error
+}

@@ -9,7 +9,7 @@ type ReqModel struct {
 	ID       string      ` json:"id"`       // id
 	Extended interface{} `json:"extended" ` // 扩展的
 	Name     string      `json:"name" `
-	PowerIDS []string `json:"power_ids"  `
+	PowerIDS []string    `json:"power_ids"  `
 }
 
 type RespModel struct {
@@ -19,7 +19,7 @@ type RespModel struct {
 	Status    int8        `json:"status"  `    // 44 删除, 1 启用, 4 禁用
 	Extended  interface{} `json:"extended" `   // 扩展的
 	Name      string      `json:"name" `
-	PowerIDS  []string `json:"power_ids"  `
+	PowerIDS  []string    `json:"power_ids"  `
 }
 
 func GetModel(i *ReqModel) *role.Model {

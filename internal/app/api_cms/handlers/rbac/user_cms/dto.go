@@ -63,4 +63,3 @@ func GetRespModel(i *user.Model) *RespModel {
 	}
 	return o
 }
-

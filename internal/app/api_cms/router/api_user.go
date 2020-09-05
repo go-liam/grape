@@ -3,6 +3,7 @@ package router
 import (
 	"github.com/gin-gonic/gin"
 	"grape/internal/app/api_cms/config"
+	"grape/internal/app/api_cms/handlers/jwt"
 	"grape/internal/app/api_cms/handlers/user"
 	"grape/internal/pkg/middleware/router"
 )
@@ -13,7 +14,7 @@ func setupRouterCMSUser(engine *gin.Engine) {
 	g := engine.Group(path)
 	g.Use(router.AuthMiddleWareCheckToken())
 	// user
-	g.GET("/user/refresh", user.RefreshGin) //刷新令牌
+	g.GET("/user/refresh", jwt.RefreshGin) //刷新令牌
 	//g.POST("/user/login", user.LoginGin)            //登录
 	g.GET("/user/permissions", user.PermissionsGin)        //查询自己拥有的权限
 	g.PUT("/user", user.UpdateUserGin)                     //更新用户信息

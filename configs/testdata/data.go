@@ -24,5 +24,5 @@ var ErrorDBConnect = errors.New("数据库错误")
 const (
 	UserKey = "jsrseida"
 	AdminKey = "box2CELUbG1rVYcbzO32R7WEj0oE9ECu"
-	JWTKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEyMzQ1Njc4OTAxMjM0NTY3LCJ1dHkiOjEsImxnIjoxLCJleHAiOjY3ODI5NDMxMTJ9.AExdsA3KKA9VTiNPimDnM6PELPSeEG27lLWzKSpqUIc"
+	JWTKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsInV0eSI6MSwibGciOjAsImV4cCI6MTYyNTI0MjYzN30.1BAo1Ud_29d66vrGs-uaiaJVxGu3t5DZjNWAP6E0ar0"
 )

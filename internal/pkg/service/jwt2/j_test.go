@@ -35,3 +35,16 @@ func TestName_Refresh2(t *testing.T) {
 	println("token=", token)
 	println("refresh=", refresh)
 }
+
+func TestName_token(t *testing.T) {
+	j := new(jwt2.JWT)
+	j.SetKey(SignKey)
+	claims := &jwt2.CustomClaims{
+		UserID:     1,
+		ClientType: 1,
+	}
+	minute := 300 * 24 * 3600
+	claims.ExpiresAt = time.Now().Add(time.Second * time.Duration(minute)).Unix()
+	f1, _ := j.CreateToken(claims)
+	println("token =", f1)
+}

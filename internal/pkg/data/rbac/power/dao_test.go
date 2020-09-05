@@ -1,6 +1,7 @@
 package power
 
 import (
+	"github.com/go-liam/util/conv"
 	"log"
 	"testing"
 )
@@ -45,4 +46,10 @@ func TestSrvPower_UpdateState(t *testing.T) {
 	v, err := new(SrvPower).UpdateStatus(item)
 	log.Printf("v:=%+v\n", v)
 	log.Printf("err:=%+v\n", err)
+}
+
+func TestName_FindMultiByIDs(t *testing.T) {
+	v1, v2 := Server.FindMultiByIDs([]int64{11, 21})
+	log.Printf("v:=%+v\n", conv.StructToJsonString(v1))
+	log.Printf("v2:=%+v\n", v2)
 }
