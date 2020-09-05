@@ -6,6 +6,7 @@ import (
 	"github.com/go-liam/util/conv"
 	"github.com/go-liam/util/response"
 	"grape/configs/errorcode"
+	"grape/internal/pkg/data/rbac/role"
 	"grape/internal/pkg/data/rbac/user"
 	"net/http"
 )
@@ -47,10 +48,23 @@ func (e *SrvList) GetList() *response.APIResponse {
 	}
 	s := &response.ListParameter{WhereSt: w, OrderSt: " order by id "}
 	e.list, _ = e.srv.FindMulti(back.Pagination, s)
+	lsRole ,_:= role.Server.FindMulti(&response.Pagination{PageSize:100000,Current:1},&response.ListParameter{})
 	ls := make([]*RespModel, 0)
 	for _, v := range e.list {
-		ls = append(ls, GetRespModel(v))
+		i := GetRespModel(v)
+		e.getRole(i,lsRole,v.RoleIDs)
+		ls = append(ls, i)
 	}
 	back.List = ls
 	return &response.APIResponse{Code: errorcode.Success, Message: errorcode.MsSuccess, Data: back}
+}
+
+func (e *SrvList) getRole(i *RespModel, ls []*role.Model,ids string) {
+	ids64 := conv.StringToInt64Array(ids)
+	more := role.Server.FindMoreByList(ls, ids64)
+	lsG := make([]string, 0)
+	for _, v := range more {
+		lsG = append(lsG, v.Name)
+	}
+	i.RoleNames = lsG
 }

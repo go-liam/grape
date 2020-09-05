@@ -11,7 +11,7 @@ require (
 	github.com/gin-gonic/gin v1.6.2
 	github.com/go-liam/cache v1.0.0
 	github.com/go-liam/tracing v1.0.1
-	github.com/go-liam/util v1.0.20
+	github.com/go-liam/util v1.0.21
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0
 	github.com/golang/mock v1.3.1
 	github.com/golang/protobuf v1.3.5

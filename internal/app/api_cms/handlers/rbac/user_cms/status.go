@@ -17,7 +17,7 @@ type SrvUpdateStatus struct {
 }
 
 type reqStatus struct {
-	IDs    []string `json:"IDs" `
+	IDs    []string `json:"ids" `
 	Status int      `json:"status" `
 }
 

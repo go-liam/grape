@@ -56,7 +56,7 @@ func (e *SrvAdd) Add() *response.APIResponse {
 	}
 	// rbac user
 	ex := fmt.Sprintf(`{"email":"%s","name":"%s","nick":"匿名"}`, e.req.Email, e.req.Username)
-	item := &user.Model{ID: uid, RoleIDs: conv.StructToJsonString(e.req.RoleIDs),
+	item := &user.Model{ID: uid, RoleIDs: conv.ArrayStringToInt64String(e.req.RoleIDs),
 		Extended: ex,
 	}
 	//item := GetModel(u1)

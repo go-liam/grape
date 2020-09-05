@@ -65,3 +65,13 @@ func (e *SrvRole) UpdateStatusByIDs(status int, ls []int64) (int64, error) {
 	v := mysql.ServerAPI.Engine().Exec(sql, status, updatedAt)
 	return v.RowsAffected, v.Error
 }
+
+func (e *SrvRole) FindMoreByList(list []*Model, groupIDs []int64) []*Model {
+	ls := make([]*Model, 0)
+	for _, v := range list {
+		if conv.ArrayInt64Contains(groupIDs, v.ID) {
+			ls = append(ls, v)
+		}
+	}
+	return ls
+}

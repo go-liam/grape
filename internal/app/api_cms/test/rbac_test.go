@@ -111,10 +111,10 @@ func TestCMS_v1_rbac_user_Add(t *testing.T) {
 	data := `
 {
   "extended": "",
-"role_ids": [1,2,3],
+"role_ids": ["1","2","3"],
 "password":"123456",
 "email":"asd@asd.com",
-  "username":"root19"
+  "username":"root20"
 }
 	`
 	reader := strings.NewReader(data)
@@ -145,10 +145,23 @@ func TestCMS_v1_rbac_user_edit(t *testing.T) {
 	data := `
 {
   "id": "2",
+"email":"",
 "role_ids": ["1","2","3"]
 }
 	`
 	reader := strings.NewReader(data)
 	back, _ := router3.RouteJWTTool(router.SetupRouterTest(), "PUT", config.Path+"/cms/v1/rbac/user", reader, testdata.UserKey)
+	println(back)
+}
+
+func TestCMS_v1_user_delete(t *testing.T) {
+	data := `
+{
+  "status": 44,
+  "ids":["0","2","4","5"]
+}
+	`
+	reader := strings.NewReader(data)
+	back, _ := router3.RouteJWTTool(router.SetupRouterTest(), "PUT", config.Path+"/cms/v1/rbac/user-status", reader, testdata.UserKey)
 	println(back)
 }
