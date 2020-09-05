@@ -15,7 +15,7 @@ type SrvEdit struct {
 	req    *ReqModel
 	srv    power.Service
 	result int64
-	id int64
+	id     int64
 }
 
 func EditGin(c *gin.Context) {
@@ -23,7 +23,7 @@ func EditGin(c *gin.Context) {
 	body, _ := ioutil.ReadAll(c.Request.Body)
 	json.Unmarshal(body, &srv.req)
 	srv.srv = power.Server
-	srv.id = conv.StringToInt64(c.Param("id"),0)
+	srv.id = conv.StringToInt64(c.Param("id"), 0)
 	c.JSON(http.StatusOK, srv.Edit())
 }
 

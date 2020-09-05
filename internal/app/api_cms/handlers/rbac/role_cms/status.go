@@ -11,7 +11,7 @@ import (
 	"net/http"
 )
 
-const deleteStatus  = 44
+const deleteStatus = 44
 
 type SrvUpdateStatus struct {
 	srv role.Service
@@ -19,7 +19,7 @@ type SrvUpdateStatus struct {
 }
 
 type reqStatus struct {
-	IDs    []string `json:"ids" `
+	IDs []string `json:"ids" `
 	//Status int      `json:"status" `
 }
 

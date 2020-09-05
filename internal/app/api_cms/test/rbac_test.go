@@ -49,14 +49,13 @@ func TestCMS_v1_power_delete(t *testing.T) {
 	println(back)
 }
 
-
 func TestCMS_v1_role_info(t *testing.T) {
 	back, _ := router3.RouteJWTTool(router.SetupRouterTest(), "GET", config.Path+"/cms/v1/rbac/role/1", nil, testdata.UserKey)
 	println(back)
 }
 
 func TestCMS_v1_role_list(t *testing.T) {
-	p := "?pageSize=20&current=1"
+	p := "?size=20&current=1"
 	back, _ := router3.RouteJWTTool(router.SetupRouterTest(), "GET", config.Path+"/cms/v1/rbac/roles"+p, nil, testdata.UserKey)
 	println(back)
 }
@@ -108,7 +107,6 @@ func TestCMS_v1_role_Add(t *testing.T) {
 	println(back)
 }
 
-
 func TestCMS_v1_rbac_user_Add(t *testing.T) {
 	data := `
 {
@@ -116,10 +114,28 @@ func TestCMS_v1_rbac_user_Add(t *testing.T) {
 "role_ids": [1,2,3],
 "password":"123456",
 "email":"asd@asd.com",
-  "username":"root10"
+  "username":"root19"
 }
 	`
 	reader := strings.NewReader(data)
 	back, _ := router3.RouteJWTTool(router.SetupRouterTest(), "POST", config.Path+"/cms/v1/rbac/user", reader, testdata.UserKey)
+	println(back)
+}
+
+func TestCMS_v1_user_list(t *testing.T) {
+	p := "?size=2&current=1&role=1"
+	back, _ := router3.RouteJWTTool(router.SetupRouterTest(), "GET", config.Path+"/cms/v1/rbac/users"+p, nil, testdata.UserKey)
+	println(back)
+}
+
+func TestCMS_v1_rbac_user_psw(t *testing.T) {
+	data := `
+{
+  "id": "2",
+"password":"123456"
+}
+	`
+	reader := strings.NewReader(data)
+	back, _ := router3.RouteJWTTool(router.SetupRouterTest(), "PUT", config.Path+"/cms/v1/rbac/user-password", reader, testdata.UserKey)
 	println(back)
 }

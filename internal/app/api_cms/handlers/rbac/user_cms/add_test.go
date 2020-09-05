@@ -31,7 +31,7 @@ func TestAdd(t *testing.T) {
 		m.EXPECT().Create(item).Return(int64(1), nil).AnyTimes()
 
 		e.srv = m
-		e.req = &ReqModel{ID: "1", RoleIDs: testdata.ConstWantString}
+		e.req = &ReqCreateModel{ID: "1", RoleIDs: testdata.ConstWantString}
 		e.Add()
 		assert.EqualValues(t, testdata.ConstWantOne, e.result)
 	})
@@ -45,7 +45,7 @@ func TestAdd(t *testing.T) {
 		m.EXPECT().Create(item).Return(int64(0), nil).AnyTimes()
 
 		e.srv = m
-		e.req = &ReqModel{ID: "1", RoleIDs: testdata.ConstWantString}
+		e.req = &ReqCreateModel{ID: "1", RoleIDs: testdata.ConstWantString}
 		e.Add()
 		assert.EqualValues(t, 0, e.result)
 	})

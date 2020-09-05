@@ -2,6 +2,7 @@ package user_cms
 
 import (
 	"github.com/go-liam/util/conv"
+	"github.com/go-liam/util/response"
 	"grape/internal/pkg/data/rbac/user"
 )
 
@@ -18,7 +19,7 @@ type ReqCreateModel struct {
 	Extended interface{} `json:"extended" ` // 扩展的
 	Flag     int8        `json:"flag"`
 	Remark   string      `json:"remark"`
-	RoleIDs  string      `json:"role_ids"`
+	RoleIDs  interface{} `json:"role_ids"`
 	Username string      `json:"username"`
 	Password string      `json:"password"`
 	Email    string      `json:"email"`
@@ -32,7 +33,7 @@ type RespModel struct {
 	Extended  interface{} `json:"extended" `   // 扩展的
 	Flag      int8        ` json:"flag"`
 	Remark    string      ` json:"remark"`
-	RoleIDs   string      ` json:"roleIDs"`
+	RoleIDs   interface{} ` json:"role_ids"`
 }
 
 func GetModel(i *ReqModel) *user.Model {
@@ -50,8 +51,19 @@ func GetRespModel(i *user.Model) *RespModel {
 	o.Status = i.Status
 	o.ID = conv.Int64ToString(i.ID)
 	o.Extended = conv.StringToInterface(i.Extended)
+	if o.Extended == nil {
+		o.Extended = response.DataItemNil
+	}
 	o.Flag = i.Flag
 	o.Remark = i.Remark
-	o.RoleIDs = i.RoleIDs
+	o.RoleIDs = changeIds(i.RoleIDs)
+	if o.RoleIDs == nil {
+		o.RoleIDs = response.DataListNil
+	}
 	return o
+}
+
+func changeIds(st string) interface{} {
+	ar := conv.StringToInt64Array(st)
+	return conv.ArrayInt64ToString(ar)
 }

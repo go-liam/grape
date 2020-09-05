@@ -6,6 +6,7 @@ import (
 	"grape/internal/app/api_cms/handlers/rbac/power_cms"
 	"grape/internal/app/api_cms/handlers/rbac/role_cms"
 	"grape/internal/app/api_cms/handlers/rbac/user_cms"
+	"grape/internal/app/api_cms/handlers/user"
 	"grape/internal/pkg/middleware/router"
 )
 
@@ -27,4 +28,7 @@ func setupRouterCMSRBAC(engine *gin.Engine) {
 	g.POST("/role", role_cms.AddGin)
 	//user
 	g.POST("/user", user_cms.AddGin)
+	g.GET("/users", user_cms.GetListGin)
+	g.PUT("/user-password", user.CmsChangePasswordGin)
+	//other
 }

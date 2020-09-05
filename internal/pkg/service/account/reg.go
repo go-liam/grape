@@ -23,17 +23,17 @@ type RegModel struct {
 	Phone    string
 	NickName string
 	RegionID int
-	UserID int64
+	UserID   int64
 }
 
 func RegByNamePassword(i *RegModel) (int64, error) {
 	// create uid
 	ck, _ := bind.Server.FindOne(bind.TypeUserName, i.UserName)
 	if ck.UserID > 0 {
-		return 0, errors.New("[ERROR]RegByNamePassword: had name")
+		return -1, errors.New("[ERROR]RegByNamePassword: had name")
 	}
 	uid := i.UserID
-	if uid <=0 {
+	if uid <= 0 {
 		uid = uuid.AutoInt64ID()
 	}
 	// add region

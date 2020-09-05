@@ -2,6 +2,7 @@ package user_cms
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/go-liam/util/conv"
 	"github.com/go-liam/util/response"
@@ -32,8 +33,9 @@ func AddGin(c *gin.Context) {
 
 func (e *SrvAdd) Add() *response.APIResponse {
 	// user
+	uid := conv.StringToInt64(e.req.ID, 0)
 	i := &account.RegModel{
-		UserID: conv.StringToInt64(e.req.ID,0),
+		UserID:   uid,
 		NickName: "匿名",
 		Password: e.req.Password,
 		RegionID: 1,
@@ -44,14 +46,21 @@ func (e *SrvAdd) Add() *response.APIResponse {
 		Extended: "", //`{"x":1,"b":"xxx"}`
 	}
 	v1, v2 := account.RegByNamePassword(i)
-	if v1 <=0 || v2 != nil{
-		log.Printf("[ERROR] %+v\n",v2)
+	if v1 == -1 {
+		log.Printf("[ERROR] %+v\n", v2)
+		return &response.APIResponse{Code: errorcode.RegHadNameError, Message: errorcode.RegHadNameErrorMsg, Data: e.req}
+	}
+	if v1 <= 0 || v2 != nil {
+		log.Printf("[ERROR] %+v\n", v2)
 		return &response.APIResponse{Code: errorcode.Database, Message: errorcode.MsDatabase, Data: e.req}
 	}
 	// rbac user
-	u1:= &ReqModel{ID:e.req.ID,RoleIDs:e.req.RoleIDs}
-	item := GetModel(u1)
-	item.ID = conv.StringToInt64(e.req.ID, 0) //uuid.AutoInt64ID()
+	ex := fmt.Sprintf(`{"email":"%s","name":"%s","nick":"匿名"}`, e.req.Email, e.req.Username)
+	item := &user.Model{ID: uid, RoleIDs: conv.StructToJsonString(e.req.RoleIDs),
+		Extended: ex,
+	}
+	//item := GetModel(u1)
+	item.ID = uid
 	item.Status = commom.StatusDefault
 	e.result, _ = e.srv.Create(item)
 	if e.result > 0 {

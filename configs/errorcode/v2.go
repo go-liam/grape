@@ -7,4 +7,7 @@ const (
 	// login : 1001* 给登录
 	LoginError    = 10010
 	LoginErrorMsg = "登录不成功"
+	// user reg 1002*
+	RegHadNameError    = 10020
+	RegHadNameErrorMsg = "账号已经存在"
 )

@@ -30,7 +30,7 @@ func AddGin(c *gin.Context) {
 }
 
 func (e *SrvAdd) Add() *response.APIResponse {
-	log.Printf("i=%+v\n",e.req)
+	log.Printf("i=%+v\n", e.req)
 	if e.req.Name == "" {
 		return &response.APIResponse{Code: errorcode.RequestParameter, Message: errorcode.MsRequest, Data: response.DataItemNil}
 	}
