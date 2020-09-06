@@ -14,4 +14,7 @@ https://doc.cms.talelin.com/start/koa/frontend-demo.html#%E5%BB%BA%E7%AB%8B%E9%A
 
 1.用户登录
 2。jwt 验证
-3。用户权限
+3。用户权限 rbac
+
+服务：api_cms
+CMS: lin-cms-vue

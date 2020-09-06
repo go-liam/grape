@@ -25,3 +25,12 @@ https://github.com/qiuChengleiy/shop-vue/blob/master/desc.md
 https://github.com/yrinleung/openshopping-vue
 
 
+## good
+
+https://github.com/W-Qing/Vue-MintShop
+
+## APP 
+
+Vue-MintShop 非常简单；
+https://github.com/W-Qing/Vue-MintShop
+
