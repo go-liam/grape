@@ -1,8 +1,8 @@
 package main
 
 import (
-	"grape/internal/app/svr_job/core"
 	"grape/internal/app/svr_job/handlers"
+	"grape/internal/app/svr_job/handlers/job"
 	"log"
 	"os"
 	"os/signal"
@@ -11,7 +11,7 @@ import (
 func main() {
 	println(":run server")
 	go handlers.RunHttpServer()
-	core.JobHour()
+	job.RunJob()
 	quit := make(chan os.Signal)
 	signal.Notify(quit, os.Interrupt)
 	<-quit
