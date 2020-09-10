@@ -8,7 +8,27 @@ import (
 	"testing"
 )
 
-func TestCMS_v1_power_list(t *testing.T) {
+func TestShop_v1_position_list(t *testing.T) {
 	back, _ := router3.RouteJWTTool(router.SetupRouterTest(), "GET", config.Path+"/api/v1/shop/position", nil, testdata.UserKey)
+	println(back)
+}
+
+func TestShop_v1_index_category_list(t *testing.T) {
+	back, _ := router3.RouteJWTTool(router.SetupRouterTest(), "GET", config.Path+"/api/v1/shop/index-category", nil, testdata.UserKey)
+	println(back)
+}
+
+func TestShop_v1_shop_list(t *testing.T) {
+	back, _ := router3.RouteJWTTool(router.SetupRouterTest(), "GET", config.Path+"/api/v1/shop/shops", nil, testdata.UserKey)
+	println(back)
+}
+
+func TestShop_v1_search_shops_list(t *testing.T) {
+	back, _ := router3.RouteJWTTool(router.SetupRouterTest(), "GET", config.Path+"/api/v1/shop/search-shops", nil, testdata.UserKey)
+	println(back)
+}
+
+func TestShop_v1_sms_sendCode(t *testing.T) {
+	back, _ := router3.RouteJWTTool(router.SetupRouterTest(), "GET", config.Path+"/api/v1/sms/send-code?phone=1234567&type=1", nil, testdata.UserKey)
 	println(back)
 }

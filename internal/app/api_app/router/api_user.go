@@ -2,23 +2,23 @@ package router
 
 import (
 	"github.com/gin-gonic/gin"
-	"grape/internal/app/api_cms/config"
-	"grape/internal/app/api_cms/handlers/jwt"
-	"grape/internal/app/api_cms/handlers/user"
+	"grape/internal/app/api_app/config"
+	"grape/internal/app/api_app/handlers/jwt"
+	"grape/internal/app/api_app/handlers/user"
 	"grape/internal/pkg/middleware/router"
 )
 
-func setupRouterCMSUser(engine *gin.Engine) {
-	path := config.Path + "/cms/v1"
-	//path
+func setupRouterUser(engine *gin.Engine) {
+	path := config.Path + "/api/v1"
 	g := engine.Group(path)
+	// login
+	g.POST("/user/login-pwd", user.LoginPwdGin)
+	g.GET("/user/login-sms", user.LoginMsmGin)  //发短信
+	g.POST("/user/login-sms", user.LoginMsmGin) //登录
+	g.GET("/user/logout", user.LogoutGin)
+	// token
 	g.Use(router.AuthMiddleWareCheckToken())
 	// user
 	g.GET("/user/refresh", jwt.RefreshGin) //刷新令牌
-	//g.POST("/user/login", user.LoginGin)            //登录
-	g.GET("/user/permissions", user.PermissionsGin)        //查询自己拥有的权限
-	g.PUT("/user", user.UpdateUserGin)                     //更新用户信息
-	g.POST("/user/register", user.RegisterGin)             //注册
-	g.PUT("/user/change_password", user.ChangePasswordGin) //修改密码
-	g.GET("/user/information", user.InformationGin)        //查询自己信息
+	g.GET("/user/info", user.InfoGin)
 }

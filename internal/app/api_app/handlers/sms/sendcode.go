@@ -1,4 +1,4 @@
-package user
+package sms
 
 import (
 	"github.com/gin-gonic/gin"
@@ -7,12 +7,11 @@ import (
 	"net/http"
 )
 
-func InfoGin(c *gin.Context) {
-	st := `{
- "id": "12345678901234567",
- "_id": "12345678901234567",
-"phone": "13845678901",
-      "name": "aaa"
+func SendGin(c *gin.Context) {
+	st := `
+{
+ "phone": "138000000",
+ "type": 1
 }
 `
 	data := conv.StringToInterface(st)

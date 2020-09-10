@@ -34,3 +34,11 @@ https://github.com/W-Qing/Vue-MintShop
 Vue-MintShop 非常简单；
 https://github.com/W-Qing/Vue-MintShop
 
+vue:打包相关(本地运行)
+https://blog.csdn.net/qq_37968920/article/details/83860434
+A. 在你的router中将mode从histroy模式修改为hash模式
+B.
+cd dist 
+npm install -g http-server 
+hs 需要这三步
+

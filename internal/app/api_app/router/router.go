@@ -13,7 +13,7 @@ func SetupRouter(engine *gin.Engine) {
 	engine.Use(router.AccessControlAllow())
 	engine.Use(router.AccessOPTIONSlAllow())
 	setupRouterAPI(engine)
-	setupRouterUser(engine)
+	setupRouterUserCenter(engine)
 }
 
 func SetupRouterMetric(engine *gin.Engine) {

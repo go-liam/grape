@@ -7,12 +7,14 @@ import (
 	"net/http"
 )
 
-func InfoGin(c *gin.Context) {
-	st := `{
+func LoginPwdGin(c *gin.Context) {
+	st := `
+{
+"access_token":"access_token",
+"refresh_token":"refresh_token",
  "id": "12345678901234567",
  "_id": "12345678901234567",
-"phone": "13845678901",
-      "name": "aaa"
+ "name": "aaa"
 }
 `
 	data := conv.StringToInterface(st)

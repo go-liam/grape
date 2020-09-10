@@ -1,7 +1,7 @@
 package config
 
 const (
-	Port       = ":4000"
+	Port       = ":4001"
 	ServerName = "api_app"
 	Path       = "/" + ServerName
 )
