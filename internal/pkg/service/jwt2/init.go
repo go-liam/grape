@@ -17,7 +17,7 @@ var (
 	SignKey        = "188274e3052a9fd6450077a3287003a-mb1907@jm@!$$v2" //Token
 	SignKeyRefresh = "388274e3052a9fd6450077a3287003a-mb1907@jm@!$$v3" //Refresh
 	RefreshOutTime = 30 * 24 * 3600                                    // 30天
-	TokenOutTime   = 30 * 60                                           // X 分钟(单点登录时调为 1分钟)
+	TokenOutTime   = 1 * 60                                           // X 分钟(单点登录时调为 1分钟)
 )
 
 func init() {

@@ -13,9 +13,9 @@ func TestCMS_v1_Login_pwd(t *testing.T) {
 	data := `
 {
   "username": "root",
-"client":1,
-"login_flag":0,
-  "password": "123456"
+"client":2,
+"login_flag":1,
+  "password": "123456--"
 }
 	`
 	reader := strings.NewReader(data)
@@ -27,8 +27,8 @@ func TestCMS_v1_Login_sms(t *testing.T) {
 	data := `
 {
   "phone": "138000000000",
-"client":1,
-"login_flag":0,
+"client":2,
+"login_flag":1,
   "code": "123456"
 }
 	`

@@ -12,7 +12,7 @@ func setupRouterUser(engine *gin.Engine) {
 	path := config.Path + "/api/v1"
 	g := engine.Group(path)
 	// login
-	g.POST("/user/login-pwd", user.LoginPwdGin)
+	g.POST("/user/login-pwd", user.LoginByPwdGin)
 	g.GET("/user/login-sms", user.LoginMsmGin)  //发短信
 	g.POST("/user/login-sms", user.LoginMsmGin) //登录
 	g.GET("/user/logout", user.LogoutGin)

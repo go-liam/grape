@@ -1,16 +1,17 @@
 package jwt2
 
 import (
-	"grape/internal/pkg/service/jwt2"
 	"log"
 	"testing"
 	"time"
 )
 
+const SignKey  = "xxxxxxx"
+
 func TestJWT_CreateToken(t *testing.T) {
 	// creat
 	j := new(JWT)
-	j.SetKey(jwt2.SignKey)
+	j.SetKey(SignKey)
 	claims := &CustomClaims{
 		UserID:     12345678901234567,
 		ClientType: 1,
@@ -34,4 +35,12 @@ func TestJWT_CreateToken(t *testing.T) {
 	refresh, err3 := j.RefreshToken(token, 123410)
 	log.Printf("token2=%+v\n", refresh)
 	log.Printf("err3=%+v\n", err3)
+}
+
+func TestName_ParseToken(t *testing.T) {
+	j := new(JWT)
+	j.SetKey(SignKey)
+	info, err2 := j.ParseToken("token")
+	log.Printf("info=%+v\n", info)
+	log.Printf("err2=%+v\n", err2)
 }
