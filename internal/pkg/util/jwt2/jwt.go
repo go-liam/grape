@@ -6,7 +6,7 @@ import (
 )
 
 var (
-	Success = 0
+	Success        = 0
 	ErrorTokenNull = 10040
 	// ErrorTokenExpired : 过期了
 	ErrorTokenExpired = 10041 // errors.New("Token is expired")
@@ -43,7 +43,7 @@ func (j *JWT) CreateToken(claims *CustomClaims) (string, error) {
 // ParseToken 解析Tokne
 func (j *JWT) ParseToken(tokenString string) (*CustomClaims, int) {
 	if tokenString == "" || len(tokenString) < 50 {
-		return new(CustomClaims),ErrorTokenNull
+		return new(CustomClaims), ErrorTokenNull
 	}
 	token, err := jwtgo.ParseWithClaims(tokenString, &CustomClaims{}, func(token *jwtgo.Token) (interface{}, error) {
 		return j.SigningKey, nil

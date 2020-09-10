@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-const SignKey  = "xxxxxxx"
+const SignKey = "xxxxxxx"
 
 func TestJWT_CreateToken(t *testing.T) {
 	// creat
