@@ -1,5 +1,14 @@
 # 开发日志
 
+## 2020-0911
+下步 服务健康检查；
+
+
+## 2020-0909
+APP jwt流程完成
+服务：api_app
+app: Vue-MintShop/mintshop-client
+
 ## 2020-0906
 cms 基本功能搞定了，下步APP
 服务：api_cms
