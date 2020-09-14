@@ -46,8 +46,8 @@ func (e *SrvServer) FindMulti(p *response.Pagination, s *response.ListParameter)
 
 func (e *SrvServer) Update(item *Model) (int64, error) {
 	item.UpdatedAt = time.Now().Unix()
-	sql := "update sa_server set `title` = ?,description=?,extended=?,updated_at=? where `id` = ? "
-	v := mysql.ServerAPI.Engine().Exec(sql, item.Title, item.Description, item.Extended, item.UpdatedAt, item.ID)
+	sql := "update sa_server set `title` = ?,description=?,extended=?,updated_at=?,url= ?  where `id` = ? "
+	v := mysql.ServerAPI.Engine().Exec(sql, item.Title, item.Description, item.Extended, item.UpdatedAt, item.URL, item.ID)
 	return v.RowsAffected, v.Error
 }
 
@@ -63,5 +63,12 @@ func (e *SrvServer) UpdateStatusByIDs(status int, ls []int64) (int64, error) {
 	ids := conv.ArrayToString(ls, ",")
 	sql := fmt.Sprintf("update sa_server set `status` = ?,updated_at=? where `id` in (%s) ", ids)
 	v := mysql.ServerAPI.Engine().Exec(sql, status, updatedAt)
+	return v.RowsAffected, v.Error
+}
+
+func (e *SrvServer) UpdateHealth(item *Model) (int64, error) {
+	item.UpdatedAt = time.Now().Unix()
+	sql := "update sa_server set `run_status` = ?,health=?, updated_at=? where `id` = ? "
+	v := mysql.ServerAPI.Engine().Exec(sql, item.RunStatus, item.Health, item.UpdatedAt, item.ID)
 	return v.RowsAffected, v.Error
 }

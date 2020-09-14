@@ -7,7 +7,7 @@ import (
 	"grape/internal/pkg/database/redis"
 )
 
-const redisSecondTime = 32
+const redisSecondTime = 122
 
 func (e *SrvServer) CacheOne(id int64) (*Model, error) {
 	key := fmt.Sprintf("%s_server_%d", env.RedisConfig.RedisPrefix, id)

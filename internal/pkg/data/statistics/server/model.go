@@ -16,6 +16,9 @@ type Model struct {
 	Title       string `json:"title" gorm:"column:title" `             //标题
 	Description string `json:"description" gorm:"column:description" ` //描述
 	Extended    string `json:"extended" gorm:"column:extended" `       // 扩展的
+	URL         string `json:"url" gorm:"column:url" `                 // 地址
+	RunStatus   int8   `json:"run_status" gorm:"column:run_status" `   // 健康状态
+	Health      string `json:"health" gorm:"column:health" `           // 健康信息
 }
 
 func (sv *Model) TableName() string {
